@@ -2,14 +2,14 @@ package com.board.jsp.yoony.category;
 
 public class CategoryDTO {
 
-  private Number categoryId;
+  private int categoryId;
   private String name;
 
-  public Number getCategoryId() {
+  public int getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(Number categoryId) {
+  public void setCategoryId(int categoryId) {
     this.categoryId = categoryId;
   }
 

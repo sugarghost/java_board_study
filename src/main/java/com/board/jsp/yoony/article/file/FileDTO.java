@@ -2,25 +2,25 @@ package com.board.jsp.yoony.article.file;
 
 public class FileDTO {
 
-  private Number fileId;
-  private Number articleId;
+  private int fileId;
+  private int articleId;
   private String fileName;
   private String filePath;
   private String fileType;
 
-  public Number getFileId() {
+  public int getFileId() {
     return fileId;
   }
 
-  public void setFileId(Number fileId) {
+  public void setFileId(int fileId) {
     this.fileId = fileId;
   }
 
-  public Number getArticleId() {
+  public int getArticleId() {
     return articleId;
   }
 
-  public void setArticleId(Number articleId) {
+  public void setArticleId(int articleId) {
     this.articleId = articleId;
   }
 

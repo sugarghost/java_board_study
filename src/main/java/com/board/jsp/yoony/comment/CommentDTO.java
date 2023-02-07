@@ -4,24 +4,24 @@ import java.sql.Date;
 
 public class CommentDTO {
 
-  private Number commentId;
-  private Number articleId;
+  private int commentId;
+  private int articleId;
   private String content;
   private Date createdDate;
 
-  public Number getCommentId() {
+  public int getCommentId() {
     return commentId;
   }
 
-  public void setCommentId(Number commentId) {
+  public void setCommentId(int commentId) {
     this.commentId = commentId;
   }
 
-  public Number getArticleId() {
+  public int getArticleId() {
     return articleId;
   }
 
-  public void setArticleId(Number articleId) {
+  public void setArticleId(int articleId) {
     this.articleId = articleId;
   }
 

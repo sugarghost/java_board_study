@@ -1,14 +1,18 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: YK
+  Date: 2023-02-06
+  Time: 오후 4:14
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
-<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <title>JSP - Hello World</title>
+    <title>Title</title>
 </head>
 <body>
-<script>
-  location.href = "/boards/free/List.jsp";
-</script>
+
 </body>
 </html>

@@ -5,6 +5,7 @@
 <%@ page import="com.board.jsp.yoony.article.ArticleDTO" %>
 <%@ page import="com.board.jsp.yoony.category.CategoryDAO" %>
 <%@ page import="com.board.jsp.yoony.category.CategoryDTO" %>
+<%@ page import="com.board.jsp.yoony.article.ArticlePage" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -22,10 +23,12 @@
 </head>
 <body>
 <%
+    // 검색조건 지정을 위한 category 가져옴
     CategoryDAO categoryDAO = CategoryDAO.getInstance();
     List<CategoryDTO> categoryList = categoryDAO.getCategoryList();
     pageContext.setAttribute("categoryList", categoryList);
-    ArticleDAO articleDAO = ArticleDAO.getInstance();
+
+    // 검색을 위한 param 설정
     Map<String, Object> param = new HashMap<String, Object>();
     request.setCharacterEncoding("utf-8");
     String searchWord = request.getParameter("searchWord");
@@ -45,7 +48,27 @@
         param.put("endDate", request.getParameter("endDate"));
     }
 
+    // 페이지네이션 구현
+    ArticleDAO articleDAO = ArticleDAO.getInstance();
+    int totalCount = articleDAO.getArticleCount(param);
+    int pageSize = 5;
+    int blockPage = 10;
+    int totalPage = (int)Math.ceil((double)totalCount/pageSize);
+
+    int pageNum = 1;
+    String pageTemp = request.getParameter("pageNum");
+    if (pageTemp != null && !pageTemp.equals("")) {
+        pageNum = Integer.parseInt(pageTemp);
+    }
+
+    int rowStart = (pageNum - 1) * pageSize + 1;
+    int rowEnd = rowStart + pageSize - 1;
+    param.put("rowStart", rowStart);
+    param.put("rowEnd", rowEnd);
+
+    // 검색조건에 따른 게시글 가져옴
     List<ArticleDTO> articleList = articleDAO.getArticleList(param);
+
 
 %>
 <h1>자유 게시판 - 목록</h1>
@@ -116,6 +139,9 @@
 
     <table>
         <tr>
+            <td>
+                <%= ArticlePage.pagingStr(totalCount,pageSize, blockPage,pageNum,request.getRequestURI(),param)%>
+            </td>
             <td>
                 <a href="Write.jsp">글쓰기</a>
             </td>

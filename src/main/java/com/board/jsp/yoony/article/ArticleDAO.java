@@ -60,10 +60,11 @@ public class ArticleDAO {
     }
   }
 
-  public List<ArticleDTO> getArticleList(Map<String, Object> map) {
-    logger.debug("getArticleList(Map map) : " + map.toString());
-    List<ArticleDTO> articleList = new Vector<ArticleDTO>();
-    String query = "SELECT * FROM article WHERE 1=1 ";
+  public int getArticleCount(Map<String, Object> map) {
+    logger.debug("getArticleCount(Map map) : " + map.toString());
+    int totalCount = 0;
+
+    String query = "SELECT COUNT(*) FROM article WHERE 1=1";
 
     if (map.get("searchWord") != null) {
       query += " AND ("
@@ -89,6 +90,51 @@ public class ArticleDAO {
     try {
       con = MyDatabase.getConnection();
       pstmt = con.prepareStatement(query);
+      rs = pstmt.executeQuery();
+      if (rs.next()) {
+        totalCount = rs.getInt(1);
+      }
+      logger.debug("getArticleCount() : " + totalCount);
+    } catch (Exception e) {
+      logger.error("getArticleCount() ERROR : " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      MyDatabase.closeConnection(con, pstmt, rs);
+      return totalCount;
+    }
+  }
+  public List<ArticleDTO> getArticleList(Map<String, Object> map) {
+    logger.debug("getArticleList(Map map) : " + map.toString());
+    List<ArticleDTO> articleList = new Vector<ArticleDTO>();
+    String query = "SELECT Tb.* FROM (SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num FROM article, (SELECT @ROWNUM:=0) AS R WHERE 1=1";
+
+    if (map.get("searchWord") != null) {
+      query += " AND ("
+          + "title LIKE '%" + map.get("searchWord") + "%' "
+          + "OR writer LIKE '%" + map.get("searchWord") + "%' "
+          + "OR content LIKE '%" + map.get("searchWord") + "%' "
+          + ")";
+    }
+
+    if (map.get("category") != null) {
+      query += " AND category = '" + map.get("category") + "'";
+    }
+    if (map.get("startDate") != null && map.get("endDate") != null) {
+      query += " AND created_date BETWEEN date('" + map.get("startDate") + "')"
+          + " AND date('" + map.get("endDate") + "')+1";
+    }
+    query += " ORDER BY article_id DESC"
+        + ") Tb WHERE row_num BETWEEN ? AND ?";
+    logger.debug("getArticleList query : " + query);
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+      con = MyDatabase.getConnection();
+      pstmt = con.prepareStatement(query);
+      pstmt.setString(1, map.get("rowStart").toString());
+      pstmt.setString(2, map.get("rowEnd").toString());
       rs = pstmt.executeQuery();
 
       while (rs.next()) {

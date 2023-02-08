@@ -33,6 +33,7 @@
     request.setCharacterEncoding("utf-8");
     String searchWord = request.getParameter("searchWord");
     String category = request.getParameter("category");
+    pageContext.setAttribute("category", category);
     String startDate = request.getParameter("startDate");
     String endDate = request.getParameter("endDate");
 
@@ -53,7 +54,6 @@
     int totalCount = articleDAO.getArticleCount(param);
     int pageSize = 5;
     int blockPage = 10;
-    int totalPage = (int)Math.ceil((double)totalCount/pageSize);
 
     int pageNum = 1;
     String pageTemp = request.getParameter("pageNum");
@@ -76,20 +76,20 @@
     <table>
         <tr>
             <td>
-                <input type="date" name="startDate">
-                <input type="date" name="endDate">
+                <input type="date" name="startDate" value="<%= startDate%>">
+                <input type="date" name="endDate" value="<%= endDate%>">
             </td>
             <td>
                 <select name="category">
                     <option value="">카테고리</option>
 
                     <c:forEach items="${categoryList}" var="categoryDTO">
-                        <option value="${categoryDTO.getName()}">${categoryDTO.getName()}</option>
+                        <option value="${categoryDTO.getName()}" <c:if test="${categoryDTO.getName() eq category}">selected</c:if>>${categoryDTO.getName()}</option>
                     </c:forEach>
                 </select>
             </td>
             <td>
-                <input type="text" name="searchWord">
+                <input type="text" name="searchWord" value="<%= (searchWord != null && !searchWord.equals("")) ? searchWord : "" %>">
             </td>
             <td>
                 <input type="submit" value="검색">
@@ -143,7 +143,14 @@
                 <%= ArticlePage.pagingStr(totalCount,pageSize, blockPage,pageNum,request.getRequestURI(),param)%>
             </td>
             <td>
-                <a href="Write.jsp">글쓰기</a>
+                <form method="get" action="Write.jsp">
+                    <input type="hidden" name="searchWord" value="<%=searchWord%>">
+                    <input type="hidden" name="category" value="<%=category%>">
+                    <input type="hidden" name="startDate" value="<%=startDate%>">
+                    <input type="hidden" name="endDate" value="<%=endDate%>">
+                    <input type="hidden" name="pageNum" value="<%=pageNum%>">
+                    <input  type="submit" value="글쓰기">
+                </form>
             </td>
         </tr>
     </table>

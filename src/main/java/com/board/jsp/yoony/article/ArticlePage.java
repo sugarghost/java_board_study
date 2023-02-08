@@ -8,9 +8,9 @@ public class ArticlePage {
 
   private static Logger logger = LogManager.getLogger(ArticlePage.class);
   public static String pagingStr(int totalCount, int pageSize, int blockPage, int pageNum,
-      String reqUrl, Map<String, Object> paramMap) {
+      String requestUrl, Map<String, Object> paramMap) {
     logger.debug("pagingStr() : " + totalCount + ", " + pageSize + ", " + blockPage + ", " + pageNum
-        + ", " + reqUrl + ", " + paramMap
+        + ", " + requestUrl + ", " + paramMap
     );
 
     int totalPage = (int) Math.ceil((double) totalCount / pageSize);
@@ -30,9 +30,9 @@ public class ArticlePage {
     int pageTemp = (((pageNum - 1) / blockPage) * blockPage) + 1;
     String pagingStr = "";
     if(pageTemp != 1) {
-      pagingStr += "<a href='" + reqUrl + "?pageNum=" + 1 + params + "'><<</a>";
+      pagingStr += "<a href='" + requestUrl + "?pageNum=" + 1 + params + "'><<</a>";
       pagingStr += "&nbsp;&nbsp;";
-      pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1) + params + "'><</a>";
+      pagingStr += "<a href='" + requestUrl + "?pageNum=" + (pageTemp - 1) + params + "'><</a>";
     }
 
     int blockCount = 1;
@@ -40,16 +40,16 @@ public class ArticlePage {
       if (pageTemp == pageNum) {
         pagingStr += "&nbsp;<span style='color:red; font-weight:bold;'>" + pageTemp + "</span>&nbsp;";
       } else {
-        pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" + pageTemp + params + "'>" + pageTemp
+        pagingStr += "&nbsp;<a href='" + requestUrl + "?pageNum=" + pageTemp + params + "'>" + pageTemp
             + "</a>&nbsp;";
       }
       pageTemp++;
       blockCount++;
     }
     if(pageTemp <= totalPage) {
-      pagingStr += "<a href='" + reqUrl + "?pageNum=" + pageTemp + params + "'>></a>";
+      pagingStr += "<a href='" + requestUrl + "?pageNum=" + pageTemp + params + "'>></a>";
       pagingStr += "&nbsp;&nbsp;";
-      pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPage + params + "'>>></a>";
+      pagingStr += "<a href='" + requestUrl + "?pageNum=" + totalPage + params + "'>>></a>";
     }
     return pagingStr;
   }

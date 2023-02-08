@@ -66,7 +66,7 @@ public class ArticleDAO {
 
     String query = "SELECT COUNT(*) FROM article WHERE 1=1";
 
-    if (map.get("searchWord") != null) {
+    if (map.get("searchWord") != null && !map.get("searchWord").equals("")) {
       query += " AND ("
           + "title LIKE '%" + map.get("searchWord") + "%' "
           + "OR writer LIKE '%" + map.get("searchWord") + "%' "
@@ -74,10 +74,11 @@ public class ArticleDAO {
           + ")";
     }
 
-    if (map.get("category") != null) {
+    if (map.get("category") != null && !map.get("category").equals("")) {
       query += " AND category = '" + map.get("category") + "'";
     }
-    if (map.get("startDate") != null && map.get("endDate") != null) {
+    if (map.get("startDate") != null && map.get("endDate") != null && !map.get("startDate")
+        .equals("") && !map.get("endDate").equals("")) {
       query += " AND created_date BETWEEN date('" + map.get("startDate") + "')"
           + " AND date('" + map.get("endDate") + "')+1";
     }
@@ -103,12 +104,13 @@ public class ArticleDAO {
       return totalCount;
     }
   }
+
   public List<ArticleDTO> getArticleList(Map<String, Object> map) {
     logger.debug("getArticleList(Map map) : " + map.toString());
     List<ArticleDTO> articleList = new Vector<ArticleDTO>();
     String query = "SELECT Tb.* FROM (SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num FROM article, (SELECT @ROWNUM:=0) AS R WHERE 1=1";
 
-    if (map.get("searchWord") != null) {
+    if (map.get("searchWord") != null && !map.get("searchWord").equals("")) {
       query += " AND ("
           + "title LIKE '%" + map.get("searchWord") + "%' "
           + "OR writer LIKE '%" + map.get("searchWord") + "%' "
@@ -116,10 +118,11 @@ public class ArticleDAO {
           + ")";
     }
 
-    if (map.get("category") != null) {
+    if (map.get("category") != null && !map.get("category").equals("")) {
       query += " AND category = '" + map.get("category") + "'";
     }
-    if (map.get("startDate") != null && map.get("endDate") != null) {
+    if (map.get("startDate") != null && map.get("endDate") != null && !map.get("startDate")
+        .equals("") && !map.get("endDate").equals("")) {
       query += " AND created_date BETWEEN date('" + map.get("startDate") + "')"
           + " AND date('" + map.get("endDate") + "')+1";
     }

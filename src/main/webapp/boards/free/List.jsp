@@ -38,16 +38,28 @@
     String endDate = request.getParameter("endDate");
 
     if (searchWord != null && !searchWord.equals("")) {
-        param.put("searchWord", searchWord);
+        session.setAttribute("searchWord", searchWord);
+    } else {
+        searchWord = (String) session.getAttribute("searchWord");
+    }
+    param.put("searchWord", searchWord);
 
-    }
     if (category != null && !category.equals("")) {
-        param.put("category", category);
+        session.setAttribute("category", category);
+    } else {
+        category = (String) session.getAttribute("category");
     }
+    param.put("category", category);
+
     if (startDate != null && !startDate.equals("") && endDate != null && !endDate.equals("")) {
-        param.put("startDate", request.getParameter("startDate"));
-        param.put("endDate", request.getParameter("endDate"));
+        session.setAttribute("startDate", request.getParameter("startDate"));
+        session.setAttribute("endDate", request.getParameter("endDate"));
+    } else {
+        startDate = (String) session.getAttribute("startDate");
+        endDate = (String) session.getAttribute("endDate");
     }
+    param.put("startDate", request.getParameter("startDate"));
+    param.put("endDate", request.getParameter("endDate"));
 
     // 페이지네이션 구현
     ArticleDAO articleDAO = ArticleDAO.getInstance();
@@ -55,10 +67,13 @@
     int pageSize = 5;
     int blockPage = 10;
 
-    int pageNum = 1;
+    int pageNum;
     String pageTemp = request.getParameter("pageNum");
     if (pageTemp != null && !pageTemp.equals("")) {
         pageNum = Integer.parseInt(pageTemp);
+        session.setAttribute("pageNum", pageNum);
+    } else {
+        pageNum = (session.getAttribute("pageNum") == null) ? 1 : (int) session.getAttribute("pageNum");
     }
 
     int rowStart = (pageNum - 1) * pageSize + 1;
@@ -84,14 +99,17 @@
                     <option value="">카테고리</option>
 
                     <c:forEach items="${categoryList}" var="categoryDTO">
-                        <option value="${categoryDTO.getName()}" <c:if test="${categoryDTO.getName() eq category}">selected</c:if>>${categoryDTO.getName()}</option>
+                        <option value="${categoryDTO.getName()}"
+                                <c:if test="${categoryDTO.getName() eq category}">selected</c:if>>${categoryDTO.getName()}</option>
                     </c:forEach>
                 </select>
             </td>
             <td>
-                <input type="text" name="searchWord" value="<%= (searchWord != null && !searchWord.equals("")) ? searchWord : "" %>">
+                <input type="text" name="searchWord"
+                       value="<%= (searchWord != null && !searchWord.equals("")) ? searchWord : "" %>">
             </td>
             <td>
+                <input type="hidden" name="pageNum" value="1">
                 <input type="submit" value="검색">
             </td>
         </tr>
@@ -140,17 +158,10 @@
     <table>
         <tr>
             <td>
-                <%= ArticlePage.pagingStr(totalCount,pageSize, blockPage,pageNum,request.getRequestURI(),param)%>
+                <%= ArticlePage.pagingStr(totalCount, pageSize, blockPage, pageNum, request.getRequestURI(), param)%>
             </td>
             <td>
-                <form method="get" action="Write.jsp">
-                    <input type="hidden" name="searchWord" value="<%=searchWord%>">
-                    <input type="hidden" name="category" value="<%=category%>">
-                    <input type="hidden" name="startDate" value="<%=startDate%>">
-                    <input type="hidden" name="endDate" value="<%=endDate%>">
-                    <input type="hidden" name="pageNum" value="<%=pageNum%>">
-                    <input  type="submit" value="글쓰기">
-                </form>
+                <a href="Write.jsp">글쓰기</a>
             </td>
         </tr>
     </table>

@@ -51,7 +51,6 @@
         }
       }
     </script>
-    <%@ include file="SearchKepper.jsp" %>
 </head>
 <body>
 <%
@@ -99,7 +98,7 @@
         </tr>
     </table>
     <div>
-        <button type="button" onclick="backToList()">취소</button>
+        <button type="button" onclick="location.href = 'List.jsp'">취소</button>
     </div>
     <div>
         <button type="submit">저장</button>

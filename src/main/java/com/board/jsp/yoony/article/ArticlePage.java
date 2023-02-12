@@ -30,27 +30,40 @@ public class ArticlePage {
     int pageTemp = (((pageNum - 1) / blockPage) * blockPage) + 1;
     String pagingStr = "";
     if(pageTemp != 1) {
-      pagingStr += "<a href='" + requestUrl + "?pageNum=" + 1 + params + "'><<</a>";
-      pagingStr += "&nbsp;&nbsp;";
-      pagingStr += "<a href='" + requestUrl + "?pageNum=" + (pageTemp - 1) + params + "'><</a>";
+      pagingStr += "<li class='page-item'>";
+      pagingStr += "<a class='page-link' href='" + requestUrl + "?pageNum=" + 1 + params + "'><<</a>";
+      pagingStr += "</li>";
+
+      pagingStr += "<li class='page-item'>";
+      pagingStr += "<a class='page-link' href='" + requestUrl + "?pageNum=" + (pageTemp - 1) + params + "'><</a>";
+      pagingStr += "</li>";
     }
 
     int blockCount = 1;
     while (blockCount <= blockPage && pageTemp <= totalPage) {
       if (pageTemp == pageNum) {
-        pagingStr += "&nbsp;<span style='color:red; font-weight:bold;'>" + pageTemp + "</span>&nbsp;";
+        pagingStr += "<li class='page-item active'>";
+        pagingStr += "<span class='page-link'>" + pageTemp + "</span>";
+        pagingStr += "</li>";
       } else {
-        pagingStr += "&nbsp;<a href='" + requestUrl + "?pageNum=" + pageTemp + params + "'>" + pageTemp
-            + "</a>&nbsp;";
+        pagingStr += "<li class='page-item'>";
+        pagingStr += "<a class='page-link' href='" + requestUrl + "?pageNum=" + pageTemp + params + "'>" + pageTemp
+            + "</a>";
+        pagingStr += "</li>";
       }
       pageTemp++;
       blockCount++;
     }
     if(pageTemp <= totalPage) {
-      pagingStr += "<a href='" + requestUrl + "?pageNum=" + pageTemp + params + "'>></a>";
-      pagingStr += "&nbsp;&nbsp;";
-      pagingStr += "<a href='" + requestUrl + "?pageNum=" + totalPage + params + "'>>></a>";
+      pagingStr += "<li class='page-item'>";
+      pagingStr += "<a class='page-link' href='" + requestUrl + "?pageNum=" + pageTemp + params + "'>></a>";
+      pagingStr += "</li>";
+
+      pagingStr += "<li class='page-item'>";
+      pagingStr += "<a class='page-link' href='" + requestUrl + "?pageNum=" + totalPage + params + "'>>></a>";
+      pagingStr += "</li>";
     }
+    pagingStr += "";
     return pagingStr;
   }
 

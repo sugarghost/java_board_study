@@ -1,12 +1,15 @@
 package com.board.jsp.yoony.article.file;
 
+import java.sql.Date;
+
 public class FileDTO {
 
   private int fileId;
   private int articleId;
-  private String fileName;
-  private String filePath;
+  private String fileOriginName;
+  private String fileSaveName;
   private String fileType;
+  private Date createdDate;
 
   public int getFileId() {
     return fileId;
@@ -24,20 +27,12 @@ public class FileDTO {
     this.articleId = articleId;
   }
 
-  public String getFileName() {
-    return fileName;
+  public String getFileSaveName() {
+    return fileSaveName;
   }
 
-  public void setFileName(String fileName) {
-    this.fileName = fileName;
-  }
-
-  public String getFilePath() {
-    return filePath;
-  }
-
-  public void setFilePath(String filePath) {
-    this.filePath = filePath;
+  public void setFileSaveName(String fileSaveName) {
+    this.fileSaveName = fileSaveName;
   }
 
   public String getFileType() {
@@ -46,5 +41,21 @@ public class FileDTO {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getFileOriginName() {
+    return fileOriginName;
+  }
+
+  public void setFileOriginName(String fileOriginName) {
+    this.fileOriginName = fileOriginName;
+  }
+
+  public Date getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
   }
 }

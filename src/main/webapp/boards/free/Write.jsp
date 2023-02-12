@@ -14,43 +14,21 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
-    <title>게시물 - 등록</title>
-    <script>
-      function validateForm(form) {
-        if (form.category.value == "") {
-          alert("카테고리를 선택해주세요.");
-          form.category.focus();
-          return false;
-        }
-        if (form.writer.value == "" || !/^.{3,4}$/g.test(form.writer.value)) {
-          alert("작성자를 3글자 이상, 5글자 미만으로 입력해주세요.");
-          form.writer.focus();
-          return false;
-        }
-        if (form.password.value == ""
-            || !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,15}$/.test(
-                form.password.value)) {
-          alert("비밀번호를 영문, 숫자, 특수문자를 포함해 4글자 이상, 16글자 미만으로 입력해주세요.");
-          form.password.focus();
-          return false;
-        }
-        if (form.password.value != form.passwordCheck.value) {
-          alert("비밀번호가 일치하지 않습니다.");
-          form.password.focus();
-          return false;
-        }
-        if (form.title.value == "" || !/^.{4,99}$/g.test(form.title.value)) {
-          alert("제목을 4글자 이상, 100글자 미만으로 입력해주세요.");
-          form.title.focus();
-          return false;
-        }
-        if (form.content.value == "" || !/^.{4,1999}$/g.test(form.content.value)) {
-          alert("내용을 4글자 이상, 2000글자 미만으로 입력해주세요.");
-          form.content.focus();
-          return false;
-        }
-      }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>게시판 - 등록</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <%
@@ -58,51 +36,134 @@
     List<CategoryDTO> categoryList = categoryDAO.getCategoryList();
     pageContext.setAttribute("categoryList", categoryList);
 %>
-<h1>게시판 - 등록</h1>
-<form name="articleForm" method="post" action="WriteAction.jsp"
-      onsubmit="return validateForm(this);">
 
-    <table>
-        <tr>
-            <td>카테고리 *</td>
-            <td>
-                <select name="category">
-                    <option value="">카테고리</option>
-                    <c:forEach items="${categoryList}" var="categoryDTO">
-                        <option value="${categoryDTO.getName()}">${categoryDTO.getName()}</option>
-                    </c:forEach>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>작성자 *</td>
-            <td><input type="text" name="writer"/></td>
-        </tr>
+<div class="container">
+    <h1>게시판 - 등록</h1>
+    <form name="articleForm" method="post" action="WriteAction.jsp"
+          enctype="multipart/form-data"
+          onsubmit="return validateForm(this);">
 
-        <tr>
-            <td>비밀번호 *</td>
-            <td><input type="password" name="password"/><input type="password" name="passwordCheck">
-            </td>
-        </tr>
-        <tr>
-            <td>제목 *</td>
-            <td><input type="text" name="title"/></td>
-        </tr>
-        <tr>
-            <td>내용 *</td>
-            <td><textarea name="content"></textarea></td>
-        </tr>
-        <tr>
-            <td>파일첨부</td>
-            <td><input type="file" name="file"></td>
-        </tr>
-    </table>
-    <div>
-        <button type="button" onclick="location.href = 'List.jsp'">취소</button>
-    </div>
-    <div>
-        <button type="submit">저장</button>
-    </div>
-</form>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td class="bg-light">카테고리 *</td>
+                <td>
+                    <select class="form-control" name="category">
+                        <option value="">카테고리</option>
+                        <c:forEach items="${categoryList}" var="categoryDTO">
+                            <option value="${categoryDTO.getName()}">${categoryDTO.getName()}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-light">작성자 *</td>
+                <td><input type="text" class="form-control" name="writer"/></td>
+            </tr>
+
+            <tr>
+                <td class="bg-light">비밀번호 *</td>
+                <td>
+                    <input type="password" class="form-control" name="password" placeholder="비밀번호"/>
+                    <input type="password" class="form-control" name="passwordCheck"
+                           placeholder="비밀번호 확인">
+                </td>
+            </tr>
+            <tr>
+                <td class="bg-light">제목 *</td>
+                <td><input type="text" class="form-control" name="title"/></td>
+            </tr>
+            <tr>
+                <td class="bg-light">내용 *</td>
+                <td><textarea class="form-control" name="content"></textarea></td>
+            </tr>
+            <tr>
+                <td class="bg-light">파일첨부</td>
+                <td>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFileInput1"
+                                   name="file1">
+                            <label class="custom-file-label" for="customFileInput1"
+                                   aria-describedby="inputGroupFile1">파일 찾기</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFileInput2"
+                                   name="file2">
+                            <label class="custom-file-label" for="customFileInput2"
+                                   aria-describedby="inputGroupFile2">파일 찾기</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFileInput3"
+                                   name="file3">
+                            <label class="custom-file-label" for="customFileInput3"
+                                   aria-describedby="inputGroupFile3">파일 찾기</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="button" class="btn border float-left"
+                    onclick="location.href = 'List.jsp'">취소
+            </button>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary float-right">저장</button>
+        </div>
+    </form>
+</div>
+<script>
+  function validateForm(form) {
+    if (form.category.value == "") {
+      alert("카테고리를 선택해주세요.");
+      form.category.focus();
+      return false;
+    }
+    if (form.writer.value == "" || !/^.{3,4}$/g.test(form.writer.value)) {
+      alert("작성자를 3글자 이상, 5글자 미만으로 입력해주세요.");
+      form.writer.focus();
+      return false;
+    }
+    if (form.password.value == ""
+        || !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,15}$/.test(
+            form.password.value)) {
+      alert("비밀번호를 영문, 숫자, 특수문자를 포함해 4글자 이상, 16글자 미만으로 입력해주세요.");
+      form.password.focus();
+      return false;
+    }
+    if (form.password.value != form.passwordCheck.value) {
+      alert("비밀번호가 일치하지 않습니다.");
+      form.password.focus();
+      return false;
+    }
+    if (form.title.value == "" || !/^.{4,99}$/g.test(form.title.value)) {
+      alert("제목을 4글자 이상, 100글자 미만으로 입력해주세요.");
+      form.title.focus();
+      return false;
+    }
+    if (form.content.value == "" || !/^.{4,1999}$/g.test(form.content.value)) {
+      alert("내용을 4글자 이상, 2000글자 미만으로 입력해주세요.");
+      form.content.focus();
+      return false;
+    }
+  }
+
+  // custom file input을 사용하며 선택한 파일 명을 update하기 위한 리스너
+  document.querySelectorAll('.custom-file-input').forEach((target) => {
+    target.addEventListener('change', (e) => {
+      let fileName = e.target.files[0].name;
+      let nextSibling = e.target.nextElementSibling
+      nextSibling.innerText = fileName
+    })
+  })
+</script>
 </body>
 </html>

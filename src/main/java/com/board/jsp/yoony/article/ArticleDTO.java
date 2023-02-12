@@ -11,10 +11,12 @@ public class ArticleDTO {
   private String title;
   private String content;
   private int viewCount;
+
+  private boolean fileExistFlag;
   private Date createdDate;
   private Date modifiedDate;
 
-  public Number getArticleId() {
+  public int getArticleId() {
     return articleId;
   }
 
@@ -83,6 +85,14 @@ public class ArticleDTO {
     return content != null && !content.isEmpty() && content.matches("^.{4,1999}$");
   }
 
+  public boolean getFileExistFlag() {
+    return fileExistFlag;
+  }
+
+  public void setFileExistFlag(boolean fileExistFlag) {
+    this.fileExistFlag = fileExistFlag;
+  }
+
   public int getViewCount() {
     return viewCount;
   }
@@ -99,6 +109,10 @@ public class ArticleDTO {
     this.createdDate = createdDate;
   }
 
+  public boolean isCreatedDateValid() {
+    return createdDate != null;
+  }
+
   public Date getModifiedDate() {
     return modifiedDate;
   }
@@ -107,6 +121,9 @@ public class ArticleDTO {
     this.modifiedDate = modifiedDate;
   }
 
+  public boolean isModifiedDateValid() {
+    return modifiedDate != null;
+  }
   @Override
   public String toString() {
     return "ArticleDTO{" +

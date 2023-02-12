@@ -40,4 +40,14 @@ public class CommentDTO {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
+  @Override
+  public String toString() {
+    return "CommentDTO{" +
+        "commentId=" + commentId +
+        ", articleId=" + articleId +
+        ", content='" + content + '\'' +
+        ", createdDate=" + createdDate +
+        '}';
+  }
 }

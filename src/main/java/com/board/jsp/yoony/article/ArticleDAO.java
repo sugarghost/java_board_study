@@ -29,7 +29,7 @@ public class ArticleDAO {
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    String sql = "INSERT INTO article (category, writer, password, title, content) VALUES (?, ?, ?, ?, ?)";
+    String query = "INSERT INTO article (category, writer, password, title, content) VALUES (?, ?, ?, ?, ?)";
     if (!articleDTO.isCategoryValid() || !articleDTO.isWriterValid()
         || !articleDTO.isPasswordValid() || !articleDTO.isTitleValid()
         || !articleDTO.isContentValid()) {
@@ -42,7 +42,8 @@ public class ArticleDAO {
       articleDTO.setPassword(sha256.encrypt(articleDTO.getPassword()));
       con = MyDatabase.getConnection();
 
-      pstmt = con.prepareStatement(sql);
+      // insert 후 자동 증가된 ID값을 가져오기 위해 RETURN_GENERATED_KEYS 옵션을 사용
+      pstmt = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
       pstmt.setString(1, articleDTO.getCategory());
       pstmt.setString(2, articleDTO.getWriter());
       pstmt.setString(3, articleDTO.getPassword());
@@ -50,6 +51,13 @@ public class ArticleDAO {
       pstmt.setString(5, articleDTO.getContent());
       result = pstmt.executeUpdate();
       logger.debug("insertArticle() : " + result);
+
+      ResultSet generatedKeys = pstmt.getGeneratedKeys();
+      if (generatedKeys.next()) {
+        result = generatedKeys.getInt(1);
+      } else {
+        result = 0;
+      }
 
     } catch (Exception e) {
       logger.error("insertArticle() ERROR : " + e.getMessage());
@@ -148,6 +156,7 @@ public class ArticleDAO {
         articleDTO.setTitle(rs.getString("title"));
         articleDTO.setContent(rs.getString("content"));
         articleDTO.setViewCount(rs.getInt("view_count"));
+        articleDTO.setFileExistFlag((rs.getInt("file_exist_flag")==1)? true : false);
         articleDTO.setCreatedDate(rs.getDate("created_date"));
         articleDTO.setModifiedDate(rs.getDate("modified_date"));
         articleList.add(articleDTO);
@@ -160,6 +169,183 @@ public class ArticleDAO {
     } finally {
       MyDatabase.closeConnection(con, pstmt, rs);
       return articleList;
+    }
+  }
+
+  public ArticleDTO getArticle(int articleId) {
+    logger.debug("getArticle(int articleId) : " + articleId);
+    ArticleDTO articleDTO = new ArticleDTO();
+    String query = "SELECT * FROM article WHERE article_id = ?";
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+      con = MyDatabase.getConnection();
+      pstmt = con.prepareStatement(query);
+      pstmt.setInt(1, articleId);
+      rs = pstmt.executeQuery();
+      if (rs.next()) {
+        articleDTO.setArticleId(rs.getInt("article_id"));
+        articleDTO.setCategory(rs.getString("category"));
+        articleDTO.setWriter(rs.getString("writer"));
+        articleDTO.setTitle(rs.getString("title"));
+        articleDTO.setContent(rs.getString("content"));
+        articleDTO.setViewCount(rs.getInt("view_count"));
+        articleDTO.setCreatedDate(rs.getDate("created_date"));
+        articleDTO.setModifiedDate(rs.getDate("modified_date"));
+        articleDTO.setFileExistFlag(rs.getInt("file_exist_flag") == 1 ? true : false);
+
+        updateArticleViewCount(articleId);
+
+      }
+      logger.debug("getArticle() : " + articleDTO);
+    } catch (Exception e) {
+      logger.error("getArticle() ERROR : " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      MyDatabase.closeConnection(con, pstmt, rs);
+      return articleDTO;
+    }
+  }
+
+  public boolean getPasswordCheck(int articleId, String password) {
+    logger.debug("getPasswordCheck(int articleId, String password) : " + articleId + ", " + password);
+    boolean result = false;
+    String query = "SELECT * FROM article WHERE article_id = ? AND password = ?";
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+      SHA256 sha256 = new SHA256();
+      String encryptPassword = sha256.encrypt(password);
+
+      con = MyDatabase.getConnection();
+      pstmt = con.prepareStatement(query);
+      pstmt.setInt(1, articleId);
+      pstmt.setString(2, encryptPassword);
+      rs = pstmt.executeQuery();
+      if (rs.next()) {
+        result = true;
+      }
+      logger.debug("getPasswordCheck() : " + result);
+    } catch (Exception e) {
+      logger.error("getPasswordCheck() ERROR : " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      MyDatabase.closeConnection(con, pstmt, rs);
+      return result;
+    }
+  }
+
+  public int updateArticle(ArticleDTO articleDTO) {
+    logger.debug("updateArticle(ArticleDTO articleDTO) : " + articleDTO.toString());
+    int result = 0;
+    String query = "UPDATE article SET writer = ?, title = ?, content = ?, modified_date = current_timestamp() WHERE article_id = ? AND password = ?";
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    if (!articleDTO.isWriterValid()
+        || !articleDTO.isPasswordValid() || !articleDTO.isTitleValid()
+        || !articleDTO.isContentValid()) {
+      logger.debug("updateArticle() : invalid data");
+      return 0;
+    }
+
+    try {
+      SHA256 sha256 = new SHA256();
+      String encryptPassword = sha256.encrypt(articleDTO.getPassword());
+
+      con = MyDatabase.getConnection();
+      pstmt = con.prepareStatement(query);
+      pstmt.setString(1, articleDTO.getWriter());
+      pstmt.setString(2, articleDTO.getTitle());
+      pstmt.setString(3, articleDTO.getContent());
+      pstmt.setInt(4, articleDTO.getArticleId());
+      pstmt.setString(5, encryptPassword);
+      result = pstmt.executeUpdate();
+      logger.debug("updateArticle() : " + result);
+    } catch (Exception e) {
+      logger.error("updateArticle() ERROR : " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      MyDatabase.closeConnection(con, pstmt, rs);
+      return result;
+    }
+  }
+  public int updateArticleViewCount(int articleId) {
+    logger.debug("updateArticleViewCount(int articleId) : " + articleId);
+    int result = 0;
+    String query = "UPDATE article SET view_count = view_count + 1 WHERE article_id = ?";
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+      con = MyDatabase.getConnection();
+      pstmt = con.prepareStatement(query);
+      pstmt.setInt(1, articleId);
+      result = pstmt.executeUpdate();
+      logger.debug("updateArticleViewCount() : " + result);
+    } catch (Exception e) {
+      logger.error("updateArticleViewCount() ERROR : " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      MyDatabase.closeConnection(con, pstmt, rs);
+      return result;
+    }
+  }
+
+  public int updateArticleFileExist(int articleId, boolean fileExist ) {
+    logger.debug("updateArticleFileExist(int articleId, boolean fileExist) : " + articleId + ", "
+        + fileExist);
+    int result = 0;
+    String query = "UPDATE article SET file_exist_flag = ? WHERE article_id = ?";
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+      con = MyDatabase.getConnection();
+      pstmt = con.prepareStatement(query);
+      pstmt.setInt(1, fileExist ? 1 : 0);
+      pstmt.setInt(2, articleId);
+      result = pstmt.executeUpdate();
+      logger.debug("updateArticleFileExist() : " + result);
+    } catch (Exception e) {
+      logger.error("updateArticleFileExist() ERROR : " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      MyDatabase.closeConnection(con, pstmt, rs);
+      return result;
+    }
+  }
+  public int deleteArticle(int articleId, String password) {
+    logger.debug("deleteArticle(int articleId, String password) : " + articleId + ", " + password);
+    int result = 0;
+    String query = "DELETE FROM article WHERE article_id = ? AND password = ?";
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+      SHA256 sha256 = new SHA256();
+      String encryptPassword = sha256.encrypt(password);
+
+      con = MyDatabase.getConnection();
+      pstmt = con.prepareStatement(query);
+      pstmt.setInt(1, articleId);
+      pstmt.setString(2, encryptPassword);
+      result = pstmt.executeUpdate();
+      logger.debug("deleteArticle() : " + result);
+    } catch (Exception e) {
+      logger.error("deleteArticle() ERROR : " + e.getMessage());
+      e.printStackTrace();
+    } finally {
+      MyDatabase.closeConnection(con, pstmt, rs);
+      return result;
     }
   }
 }

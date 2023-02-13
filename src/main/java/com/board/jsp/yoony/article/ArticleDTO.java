@@ -124,6 +124,7 @@ public class ArticleDTO {
   public boolean isModifiedDateValid() {
     return modifiedDate != null;
   }
+
   @Override
   public String toString() {
     return "ArticleDTO{" +
@@ -137,5 +138,20 @@ public class ArticleDTO {
         ", createdDate=" + createdDate +
         ", modifiedDate=" + modifiedDate +
         '}';
+  }
+
+  public boolean isInsertArticleValid() {
+    return isCategoryValid()
+        && isWriterValid()
+        && isPasswordValid()
+        && isTitleValid()
+        && isContentValid();
+  }
+
+  public boolean isUpdateArticleValid() {
+    return isWriterValid()
+        && isPasswordValid()
+        && isTitleValid()
+        && isContentValid();
   }
 }

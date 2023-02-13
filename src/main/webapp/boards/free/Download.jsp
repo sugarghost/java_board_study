@@ -15,6 +15,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@ include file="/common/SearchKeeper.jsp" %>
 <%
     // String saveDirectory = application.getRealPath("/uploads");
     // 디렉토리등 공통적으로 쓰는 경우는 프로퍼티로 따로 빼는게 좋음

@@ -6,7 +6,8 @@
 <%@ page import="java.io.File" %>
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="com.board.jsp.yoony.article.file.FileDTO" %>
-<%@ page import="com.board.jsp.yoony.article.file.FileDAO" %><%--
+<%@ page import="com.board.jsp.yoony.article.file.FileDAO" %>
+<%@ page import="java.util.UUID" %><%--
   Created by IntelliJ IDEA.
   User: YK
   Date: 2023-02-06
@@ -16,8 +17,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
+    <%@ include file="/common/Encode.jsp" %>
     <title>게시판 - 등록</title>
     <script>
       function articleInsertSuccess() {
@@ -32,6 +32,7 @@
     </script>
 </head>
 <body>
+<%@ include file="/common/SearchKeeper.jsp" %>
 <%
     ArticleDTO articleDTO = new ArticleDTO();
     ArticleDAO articleDAO = ArticleDAO.getInstance();
@@ -71,10 +72,7 @@
                 System.out.println("realFileName : " + realFileName);
                 String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-                // 파일을 밀리세컨으로 처리하는 경우 중복이 발생할 수 있음으로 추천하지 않는 방식임
-                // UUID 랜덤을 활용하는 방안을 고려
-                String nowDate = new SimpleDateFormat("yyyyMMdd_HmsS").format(System.currentTimeMillis());
-                String newFileName = nowDate + "." + ext;
+                String newFileName = UUID.randomUUID() + "." + ext;
 
                 File oldFile = new File(saveDirectory + File.separator + realFileName);
                 File newFile = new File(saveDirectory + File.separator + newFileName);
@@ -90,17 +88,18 @@
                 int fileInsertResult = fileDAO.insertFile(fileDTO);
 
                 if (fileInsertResult == 0) {
-                  // 자바쪽에서 스크립트 호출 방식은 안좋은 방식
-                    out.println("<script>alert('"+fileName+" 파일 등록 실패!')</script>");
+                    // TODO: 자바쪽에서 스크립트 호출 방식은 안좋은 방식
+                    // COMMENT: 다음 Servlet 방식에서 파일 등록시 실패에 대한 분기를 마련하는 방안으로 고려
+                    out.println("<script>alert('" + fileName + " 파일 등록 실패!')</script>");
                 }
             }
 
             if (isFileExist) {
-              articleDAO.updateArticleFileExist(articleInsertResult,true);
+                articleDAO.updateArticleFileExist(articleInsertResult, true);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            request.getRequestDispatcher("Write.jsp").forward(request, response);
+            request.getRequestDispatcher("Write.jsp?" + searchKeeperSearchParams).forward(request, response);
         }
         out.println("<script>articleInsertSuccess()</script>");
     } else {

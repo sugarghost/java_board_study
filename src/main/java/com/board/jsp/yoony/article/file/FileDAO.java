@@ -5,14 +5,15 @@ import com.board.jsp.yoony.database.MyDatabase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class FileDAO {
 
   private Logger logger = LogManager.getLogger(FileDAO.class);
+  private MyDatabase myDatabase = MyDatabase.getInstance();
   private static FileDAO fileDAO = new FileDAO();
 
   private FileDAO() {
@@ -33,7 +34,7 @@ public class FileDAO {
     String sql = "INSERT INTO article_file (article_id, file_origin_name, file_save_name, file_type) VALUES (?, ?, ?, ?)";
 
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(sql);
       pstmt.setInt(1, fileDTO.getArticleId());
       pstmt.setString(2, fileDTO.getFileOriginName());
@@ -45,21 +46,21 @@ public class FileDAO {
       logger.error("insertFile() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return applyResult;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return applyResult;
   }
 
   public List<FileDTO> getFileList(int articleId) {
     logger.debug("getFileList() : " + articleId);
-    List<FileDTO> fileList = new Vector<FileDTO>();
+    List<FileDTO> fileList = new ArrayList<FileDTO>();
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String sql = "SELECT * FROM article_file WHERE article_id = ?";
 
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(sql);
       pstmt.setInt(1, articleId);
       rs = pstmt.executeQuery();
@@ -77,9 +78,9 @@ public class FileDAO {
       logger.error("getFileList() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return fileList;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return fileList;
   }
 
   public int getFileCount(int articleId) {
@@ -90,7 +91,7 @@ public class FileDAO {
     ResultSet rs = null;
     String sql = "SELECT COUNT(*) FROM article_file WHERE article_id = ?";
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(sql);
       pstmt.setInt(1, articleId);
       rs = pstmt.executeQuery();
@@ -102,9 +103,9 @@ public class FileDAO {
       logger.error("getFileCount() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return fileCount;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return fileCount;
   }
 
   public int deleteFile(int fileId, int articleId) {
@@ -115,7 +116,7 @@ public class FileDAO {
     ResultSet rs = null;
     String sql = "DELETE FROM article_file WHERE file_id = ? AND article_id = ?";
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(sql);
       pstmt.setInt(1, fileId);
       pstmt.setInt(2, articleId);
@@ -125,9 +126,9 @@ public class FileDAO {
       logger.error("deleteFile() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
 
   public int deleteAllFile(int articleId) {
@@ -138,7 +139,7 @@ public class FileDAO {
     ResultSet rs = null;
     String sql = "DELETE FROM article_file WHERE article_id = ?";
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(sql);
       pstmt.setInt(1, articleId);
       result = pstmt.executeUpdate();
@@ -147,8 +148,8 @@ public class FileDAO {
       logger.error("deleteAllFile() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
 }

@@ -10,15 +10,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <%@ include file="/common/Encode.jsp" %>
+    <title>게시판 - 댓글</title>
     <!--
     articleInsertSuccess() 등의 사후 처리 function을 사용해봤지만, JSP, HTML 실행 순서로 오류남
     JAVA단에서 sendRedirect 사용하는 방향으로 변경
     -->
 </head>
 <body>
+<%@ include file="/common/SearchKeeper.jsp" %>
 <%
-    request.setCharacterEncoding("UTF-8");
     ArticleDAO articleDAO = ArticleDAO.getInstance();
     int articleId = Integer.parseInt(request.getParameter("articleId"));
     String content = request.getParameter("content");
@@ -29,7 +30,7 @@
     commentDTO.setContent(content);
     int result = commentDAO.insertComment(commentDTO);
     if (result != 0) {
-        response.sendRedirect("View.jsp?articleId=" + articleId);
+        response.sendRedirect("View.jsp?articleId=" + articleId + searchKeeperSearchParams);
     } else {
         response.sendRedirect(request.getHeader("referer") + "&commentError=1");
     }

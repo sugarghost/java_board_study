@@ -12,25 +12,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%@ include file="/common/Encode.jsp" %>
     <title>게시판 - 등록</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-          crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
-            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
-            crossorigin="anonymous"></script>
+    <%@ include file="/common/Bootstrap.jsp" %>
 </head>
 <body>
+<%@ include file="/common/SearchKeeper.jsp" %>
 <%
     CategoryDAO categoryDAO = CategoryDAO.getInstance();
     List<CategoryDTO> categoryList = categoryDAO.getCategoryList();
@@ -39,7 +26,7 @@
 
 <div class="container">
     <h1>게시판 - 등록</h1>
-    <form name="articleForm" method="post" action="WriteAction.jsp"
+    <form name="articleForm" method="post" action="WriteAction.jsp?${searchKeeperSearchParams}"
           enctype="multipart/form-data"
           onsubmit="return validateForm(this);">
 
@@ -112,7 +99,7 @@
         </table>
         <div>
             <button type="button" class="btn border float-left"
-                    onclick="location.href = 'List.jsp'">취소
+                    onclick="location.href = 'List.jsp?${searchKeeperSearchParams}'">취소
             </button>
         </div>
         <div>

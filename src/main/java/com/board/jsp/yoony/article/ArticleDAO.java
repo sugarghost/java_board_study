@@ -2,18 +2,23 @@ package com.board.jsp.yoony.article;
 
 import com.board.jsp.yoony.database.MyDatabase;
 import com.board.jsp.yoony.utill.SHA256;
+import com.board.jsp.yoony.utill.ValidationChecker;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class ArticleDAO {
 
   private Logger logger = LogManager.getLogger(ArticleDAO.class);
+
+  private MyDatabase myDatabase = MyDatabase.getInstance();
+
+  private ValidationChecker validationChecker = ValidationChecker.getInstance();
   private static ArticleDAO articleDAO = new ArticleDAO();
 
   private ArticleDAO() {
@@ -31,11 +36,8 @@ public class ArticleDAO {
     ResultSet rs = null;
     String query = "INSERT INTO article (category, writer, password, title, content) VALUES (?, ?, ?, ?, ?)";
 
-    // 필드별, 서비스별 유효성 검증을 별도로 구분하기
     // insert 유효성과 update 유효성은 따로 고민해야함.
-    if (!articleDTO.isCategoryValid() || !articleDTO.isWriterValid()
-        || !articleDTO.isPasswordValid() || !articleDTO.isTitleValid()
-        || !articleDTO.isContentValid()) {
+    if (!articleDTO.isInsertArticleValid()) {
       logger.debug("insertArticle() : invalid data");
       return 0;
     }
@@ -43,7 +45,7 @@ public class ArticleDAO {
     try {
       SHA256 sha256 = new SHA256();
       articleDTO.setPassword(sha256.encrypt(articleDTO.getPassword()));
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
 
       // insert 후 자동 증가된 ID값을 가져오기 위해 RETURN_GENERATED_KEYS 옵션을 사용
       pstmt = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -66,9 +68,9 @@ public class ArticleDAO {
       logger.error("insertArticle() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
 
   public int getArticleCount(Map<String, Object> map) {
@@ -77,7 +79,7 @@ public class ArticleDAO {
 
     String query = "SELECT COUNT(*) FROM article WHERE 1=1";
 
-    if (map.get("searchWord") != null && !map.get("searchWord").equals("")) {
+    if (!validationChecker.CheckStringIsNullOrEmpty(map.get("searchWord"))) {
       query += " AND ("
           + "title LIKE '%" + map.get("searchWord") + "%' "
           + "OR writer LIKE '%" + map.get("searchWord") + "%' "
@@ -85,11 +87,11 @@ public class ArticleDAO {
           + ")";
     }
 
-    if (map.get("category") != null && !map.get("category").equals("")) {
+    if (!validationChecker.CheckStringIsNullOrEmpty(map.get("category"))) {
       query += " AND category = '" + map.get("category") + "'";
     }
-    if (map.get("startDate") != null && map.get("endDate") != null && !map.get("startDate")
-        .equals("") && !map.get("endDate").equals("")) {
+    if (!validationChecker.CheckStringIsNullOrEmpty(map.get("startDate")) &&
+        !validationChecker.CheckStringIsNullOrEmpty(map.get("endDate"))) {
       query += " AND created_date BETWEEN date('" + map.get("startDate") + "')"
           + " AND date('" + map.get("endDate") + "')+1";
     }
@@ -100,7 +102,7 @@ public class ArticleDAO {
     ResultSet rs = null;
 
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       rs = pstmt.executeQuery();
       if (rs.next()) {
@@ -111,17 +113,17 @@ public class ArticleDAO {
       logger.error("getArticleCount() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return totalCount;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return totalCount;
   }
 
   public List<ArticleDTO> getArticleList(Map<String, Object> map) {
     logger.debug("getArticleList(Map map) : " + map.toString());
-    List<ArticleDTO> articleList = new Vector<ArticleDTO>();
-    String query = "SELECT Tb.* FROM (SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num FROM article, (SELECT @ROWNUM:=0) AS R WHERE 1=1";
+    List<ArticleDTO> articleList = new ArrayList<ArticleDTO>();
+    String query = "SELECT row_numbering_article_sub_table.* FROM (SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num FROM article, (SELECT @ROWNUM:=0) AS R WHERE 1=1";
 
-    if (map.get("searchWord") != null && !map.get("searchWord").equals("")) {
+    if (!validationChecker.CheckStringIsNullOrEmpty(map.get("searchWord"))) {
       query += " AND ("
           + "title LIKE '%" + map.get("searchWord") + "%' "
           + "OR writer LIKE '%" + map.get("searchWord") + "%' "
@@ -129,34 +131,23 @@ public class ArticleDAO {
           + ")";
     }
 
-
-    /*
-    SELECT Tb.* FROM (
-      SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num
-      FROM article, (SELECT @ROWNUM:=0) AS R
-      WHERE 1=1 ORDER BY article_id DESC
-    ) Tb
-    WHERE row_num BETWEEN ? AND ?
-
-    테이블 별칭 바꾸기(너무 축약적)
-     */
-    if (map.get("category") != null && !map.get("category").equals("")) {
+    if (!validationChecker.CheckStringIsNullOrEmpty(map.get("category"))) {
       query += " AND category = '" + map.get("category") + "'";
     }
-    if (map.get("startDate") != null && map.get("endDate") != null && !map.get("startDate")
-        .equals("") && !map.get("endDate").equals("")) {
+    if (!validationChecker.CheckStringIsNullOrEmpty(map.get("startDate")) &&
+        !validationChecker.CheckStringIsNullOrEmpty(map.get("endDate"))) {
       query += " AND created_date BETWEEN date('" + map.get("startDate") + "')"
           + " AND date('" + map.get("endDate") + "')+1";
     }
     query += " ORDER BY article_id DESC"
-        + ") Tb WHERE row_num BETWEEN ? AND ?";
+        + ") row_numbering_article_sub_table WHERE row_num BETWEEN ? AND ?";
     logger.debug("getArticleList query : " + query);
     Connection con = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       pstmt.setString(1, map.get("rowStart").toString());
       pstmt.setString(2, map.get("rowEnd").toString());
@@ -170,7 +161,7 @@ public class ArticleDAO {
         articleDTO.setTitle(rs.getString("title"));
         articleDTO.setContent(rs.getString("content"));
         articleDTO.setViewCount(rs.getInt("view_count"));
-        articleDTO.setFileExistFlag((rs.getInt("file_exist_flag")==1)? true : false);
+        articleDTO.setFileExistFlag((rs.getInt("file_exist_flag") == 1) ? true : false);
         articleDTO.setCreatedDate(rs.getDate("created_date"));
         articleDTO.setModifiedDate(rs.getDate("modified_date"));
         articleList.add(articleDTO);
@@ -181,9 +172,9 @@ public class ArticleDAO {
       logger.error("getArticleList() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return articleList;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return articleList;
   }
 
   public ArticleDTO getArticle(int articleId) {
@@ -195,7 +186,7 @@ public class ArticleDAO {
     ResultSet rs = null;
 
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       pstmt.setInt(1, articleId);
       rs = pstmt.executeQuery();
@@ -218,13 +209,14 @@ public class ArticleDAO {
       logger.error("getArticle() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return articleDTO;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return articleDTO;
   }
 
   public boolean getPasswordCheck(int articleId, String password) {
-    logger.debug("getPasswordCheck(int articleId, String password) : " + articleId + ", " + password);
+    logger.debug(
+        "getPasswordCheck(int articleId, String password) : " + articleId + ", " + password);
     boolean result = false;
     String query = "SELECT * FROM article WHERE article_id = ? AND password = ?";
     Connection con = null;
@@ -235,7 +227,7 @@ public class ArticleDAO {
       SHA256 sha256 = new SHA256();
       String encryptPassword = sha256.encrypt(password);
 
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       pstmt.setInt(1, articleId);
       pstmt.setString(2, encryptPassword);
@@ -248,9 +240,9 @@ public class ArticleDAO {
       logger.error("getPasswordCheck() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
 
   public int updateArticle(ArticleDTO articleDTO) {
@@ -261,9 +253,7 @@ public class ArticleDAO {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
-    if (!articleDTO.isWriterValid()
-        || !articleDTO.isPasswordValid() || !articleDTO.isTitleValid()
-        || !articleDTO.isContentValid()) {
+    if (!articleDTO.isUpdateArticleValid()) {
       logger.debug("updateArticle() : invalid data");
       return 0;
     }
@@ -272,7 +262,7 @@ public class ArticleDAO {
       SHA256 sha256 = new SHA256();
       String encryptPassword = sha256.encrypt(articleDTO.getPassword());
 
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       pstmt.setString(1, articleDTO.getWriter());
       pstmt.setString(2, articleDTO.getTitle());
@@ -285,10 +275,11 @@ public class ArticleDAO {
       logger.error("updateArticle() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
+
   public int updateArticleViewCount(int articleId) {
     logger.debug("updateArticleViewCount(int articleId) : " + articleId);
     int result = 0;
@@ -298,7 +289,7 @@ public class ArticleDAO {
     ResultSet rs = null;
 
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       pstmt.setInt(1, articleId);
       result = pstmt.executeUpdate();
@@ -307,12 +298,12 @@ public class ArticleDAO {
       logger.error("updateArticleViewCount() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
 
-  public int updateArticleFileExist(int articleId, boolean fileExist ) {
+  public int updateArticleFileExist(int articleId, boolean fileExist) {
     logger.debug("updateArticleFileExist(int articleId, boolean fileExist) : " + articleId + ", "
         + fileExist);
     int result = 0;
@@ -322,7 +313,7 @@ public class ArticleDAO {
     ResultSet rs = null;
 
     try {
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       pstmt.setInt(1, fileExist ? 1 : 0);
       pstmt.setInt(2, articleId);
@@ -332,10 +323,11 @@ public class ArticleDAO {
       logger.error("updateArticleFileExist() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
+
   public int deleteArticle(int articleId, String password) {
     logger.debug("deleteArticle(int articleId, String password) : " + articleId + ", " + password);
     int result = 0;
@@ -348,7 +340,7 @@ public class ArticleDAO {
       SHA256 sha256 = new SHA256();
       String encryptPassword = sha256.encrypt(password);
 
-      con = MyDatabase.getConnection();
+      con = myDatabase.getConnection();
       pstmt = con.prepareStatement(query);
       pstmt.setInt(1, articleId);
       pstmt.setString(2, encryptPassword);
@@ -358,8 +350,8 @@ public class ArticleDAO {
       logger.error("deleteArticle() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(con, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(con, pstmt, rs);
     }
+    return result;
   }
 }

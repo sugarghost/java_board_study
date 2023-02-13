@@ -19,6 +19,7 @@
     <title>Title</title>
 </head>
 <body>
+<%@ include file="/common/SearchKeeper.jsp" %>
 <%
 
     ArticleDAO articleDAO = ArticleDAO.getInstance();
@@ -54,8 +55,9 @@
         if (files != null) {
             for (String file : files) {
                 // 시간 관계상 처리가 안된 File에 대한 분기를 생략
-                int fileDeleteResult = fileDAO.deleteFile(Integer.parseInt(file), articleDTO.getArticleId());
-                if (fileDeleteResult > 0 ) {
+                int fileDeleteResult = fileDAO.deleteFile(Integer.parseInt(file),
+                        articleDTO.getArticleId());
+                if (fileDeleteResult > 0) {
                     // 실제 파일 삭제(보류)
                     // File deleteFile = new File(saveDirectory + File.separator + 실제 저장 파일 이름);
                     // deleteFile.delete();
@@ -64,8 +66,8 @@
 
             // 삭제 후 파일이 없는 경우 article 테이블의 fileExist를 false로 변경
             int fileCount = fileDAO.getFileCount(articleDTO.getArticleId());
-            if (fileCount == 0 ) {
-               articleDAO.updateArticleFileExist(articleDTO.getArticleId(), false);
+            if (fileCount == 0) {
+                articleDAO.updateArticleFileExist(articleDTO.getArticleId(), false);
             }
         }
 
@@ -86,7 +88,8 @@
                 System.out.println("realFileName : " + realFileName);
                 String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-                String nowDate = new SimpleDateFormat("yyyyMMdd_HmsS").format(System.currentTimeMillis());
+                String nowDate = new SimpleDateFormat("yyyyMMdd_HmsS").format(
+                        System.currentTimeMillis());
                 String newFileName = nowDate + "." + ext;
 
                 File oldFile = new File(saveDirectory + File.separator + realFileName);
@@ -102,19 +105,20 @@
                 int fileInsertResult = fileDAO.insertFile(fileDTO);
 
                 if (fileInsertResult == 0) {
-                    out.println("<script>alert('"+fileName+" 파일 등록 실패!')</script>");
+                    out.println("<script>alert('" + fileName + " 파일 등록 실패!')</script>");
                 }
             }
 
             if (isFileExist) {
-                articleDAO.updateArticleFileExist(articleDTO.getArticleId(),true);
+                articleDAO.updateArticleFileExist(articleDTO.getArticleId(), true);
             }
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect(request.getHeader("referer") + "&fileError=1");
         }
 
-        response.sendRedirect("View.jsp?articleId=" + articleDTO.getArticleId());
+        response.sendRedirect(
+                "View.jsp?articleId=" + articleDTO.getArticleId() + searchKeeperSearchParams);
     } else {
         // 패스워드가 일치하지 않는 경우로 passwordError와 함께 이전 요청페이지로 복귀
         // 복귀하면 작성중 내용이 다 초기화 되는데 마음에 안듬(일단 보류)

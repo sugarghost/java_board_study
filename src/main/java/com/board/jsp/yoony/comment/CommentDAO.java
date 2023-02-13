@@ -4,14 +4,15 @@ import com.board.jsp.yoony.database.MyDatabase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CommentDAO {
 
   private Logger logger = LogManager.getLogger(CommentDAO.class);
+  private MyDatabase myDatabase = MyDatabase.getInstance();
   private static CommentDAO instance = new CommentDAO();
 
   private CommentDAO() {
@@ -27,7 +28,7 @@ public class CommentDAO {
     ResultSet rs = null;
     String sql = "INSERT INTO comment (article_id, content) VALUES (?, ?)";
     try {
-      conn = MyDatabase.getConnection();
+      conn = myDatabase.getConnection();
       pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, commentDTO.getArticleId());
       pstmt.setString(2, commentDTO.getContent());
@@ -37,20 +38,20 @@ public class CommentDAO {
       logger.error("insertComment() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(conn, pstmt, rs);
-      return result;
+      myDatabase.closeConnection(conn, pstmt, rs);
     }
+    return result;
   }
 
   public List<CommentDTO> getCommentList(int articleId) {
     logger.debug("getCommentList() : " + articleId);
-    List<CommentDTO> commentList = new Vector<CommentDTO>();
+    List<CommentDTO> commentList = new ArrayList<CommentDTO>();
     Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String sql = "SELECT * FROM comment WHERE article_id = ?";
     try {
-      conn = MyDatabase.getConnection();
+      conn = myDatabase.getConnection();
       pstmt = conn.prepareStatement(sql);
       pstmt.setInt(1, articleId);
       rs = pstmt.executeQuery();
@@ -66,9 +67,9 @@ public class CommentDAO {
       logger.error("getCommentList() ERROR : " + e.getMessage());
       e.printStackTrace();
     } finally {
-      MyDatabase.closeConnection(conn, pstmt, rs);
-      return commentList;
+      myDatabase.closeConnection(conn, pstmt, rs);
     }
+    return commentList;
   }
 
 }

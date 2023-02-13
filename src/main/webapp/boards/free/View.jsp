@@ -17,25 +17,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%@ include file="/common/Encode.jsp" %>
     <title>게시판 - 보기</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-          crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
-            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
-            crossorigin="anonymous"></script>
+    <%@ include file="/common/Bootstrap.jsp" %>
 </head>
 <body>
+<%@ include file="/common/SearchKeeper.jsp" %>
 <%
 
     // CommentAction.jsp에서 오류가 발생하면 복귀하며 가져오는 Error Parameter
@@ -120,7 +107,8 @@
                 </div>
             </c:forEach>
 
-            <form action="CommentAction.jsp" method="post" class="w-100" id="commentForm">
+            <form action="CommentAction.jsp?${searchKeeperSearchParams}" method="post" class="w-100"
+                  id="commentForm">
                 <div class="row py-3">
                     <div class="col-10">
                         <input type="hidden" name="articleId" value="${articleDTO.articleId}">
@@ -139,10 +127,12 @@
     </div>
     <div class="row">
         <div class="w-100 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary" onclick="location.href = 'List.jsp'">목록
+            <button type="button" class="btn btn-primary"
+                    onclick="location.href = 'List.jsp?${searchKeeperSearchParams}'">목록
             </button>
             <button type="button" class="btn border"
-                    onclick="location.href = 'Modify.jsp?articleId=${articleDTO.articleId}'">수정
+                    onclick="location.href = 'Modify.jsp?articleId=${articleDTO.articleId}${searchKeeperSearchParams}'">
+                수정
             </button>
             <button type="button" class="btn border" data-toggle="modal"
                     data-target="#passwordCheckModal">삭제
@@ -155,7 +145,8 @@
 <div class="modal fade" id="passwordCheckModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="DeleteAction.jsp" method="post" class="w-100">
+            <form action="DeleteAction.jsp?<%=searchKeeperSearchParams%>" method="post"
+                  class="w-100">
                 <input type="hidden" name="articleId" value="${articleDTO.articleId}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="passwordCheckModalTitle">비밀번호 확인</h5>

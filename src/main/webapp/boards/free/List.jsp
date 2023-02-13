@@ -6,6 +6,7 @@
 <%@ page import="com.board.jsp.yoony.category.CategoryDAO" %>
 <%@ page import="com.board.jsp.yoony.category.CategoryDTO" %>
 <%@ page import="com.board.jsp.yoony.article.ArticlePage" %>
+<%@ page import="com.board.jsp.yoony.utill.ValidationChecker" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -17,26 +18,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%@ include file="/common/Encode.jsp" %>
     <title>자유 게시판 - 등록</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-          crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
-            integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
-            crossorigin="anonymous"></script>
+    <%@ include file="/common/Bootstrap.jsp" %>
 </head>
 <body>
+<%@ include file="/common/SearchKeeper.jsp" %>
 <%
+    // 유효성 체크를 위한 모듈
+    ValidationChecker validationChecker = ValidationChecker.getInstance();
+
     // 검색조건 지정을 위한 category 가져옴
     CategoryDAO categoryDAO = CategoryDAO.getInstance();
     List<CategoryDTO> categoryList = categoryDAO.getCategoryList();
@@ -44,40 +35,14 @@
 
     // 검색을 위한 param 설정
     Map<String, Object> param = new HashMap<String, Object>();
-    // 인코딩같은 메터적인 것들은 따로 상위에 빼서 사용하는걸 추천함
-    request.setCharacterEncoding("utf-8");
     String searchWord = request.getParameter("searchWord");
     String category = request.getParameter("category");
     pageContext.setAttribute("category", category);
     String startDate = request.getParameter("startDate");
     String endDate = request.getParameter("endDate");
 
-    // 공통적인 NUll 체크 기능은 Util로 따로 뺴서 사용하는게 좋음
-    // equals 체크시 변수를 먼저 체크하기보단 ""을 기준을 Equals 체크하는게 좋음
-    if (searchWord != null && !searchWord.equals("")) {
-        // 세션은 동일한 브라우저에서 페이지를 새로 켜도 조건이 계속 물려져서 감
-        // 검색 조건은 session을 사용하면 안됨
-        // 검색 조건은 request 컨텍스트에서 넘어가면 안됨
-        session.setAttribute("searchWord", searchWord);
-    } else {
-        searchWord = (String) session.getAttribute("searchWord");
-    }
     param.put("searchWord", searchWord);
-
-    if (category != null && !category.equals("")) {
-        session.setAttribute("category", category);
-    } else {
-        category = (String) session.getAttribute("category");
-    }
     param.put("category", category);
-
-    if (startDate != null && !startDate.equals("") && endDate != null && !endDate.equals("")) {
-        session.setAttribute("startDate", request.getParameter("startDate"));
-        session.setAttribute("endDate", request.getParameter("endDate"));
-    } else {
-        startDate = (String) session.getAttribute("startDate");
-        endDate = (String) session.getAttribute("endDate");
-    }
     param.put("startDate", request.getParameter("startDate"));
     param.put("endDate", request.getParameter("endDate"));
 
@@ -89,12 +54,11 @@
 
     int pageNum;
     String pageTemp = request.getParameter("pageNum");
-    if (pageTemp != null && !pageTemp.equals("")) {
+    if (!validationChecker.CheckStringIsNullOrEmpty(pageTemp)) {
         pageNum = Integer.parseInt(pageTemp);
-        session.setAttribute("pageNum", pageNum);
+        //session.setAttribute("pageNum", pageNum);
     } else {
-        pageNum = (session.getAttribute("pageNum") == null) ? 1
-                : (int) session.getAttribute("pageNum");
+        pageNum = 1;
     }
 
     int rowStart = (pageNum - 1) * pageSize + 1;
@@ -136,7 +100,7 @@
             <div class="col-2">
                 <input type="text" class="form-control" name="searchWord"
                        placeholder="검색어 입력(제목+작성자+내용)"
-                       value="<%= (searchWord != null && !searchWord.equals("")) ? searchWord : "" %>">
+                       value="<%= (!validationChecker.CheckStringIsNullOrEmpty(searchWord)) ? searchWord : "" %>">
             </div>
             <div class="col-2">
                 <input type="hidden" name="pageNum" value="1">
@@ -179,9 +143,10 @@
                         <td><%= articleDTO.getCategory() %>
                         </td>
                         <td>
-                            <a href="View.jsp?articleId=<%= articleDTO.getArticleId() %>">
+                            <a href="View.jsp?articleId=<%= articleDTO.getArticleId() %>${searchKeeperSearchParams}">
                                 <%
-                                    // 모든 처리 부분은 가급적이면 유틸로 처리하기
+                                    // TODO: 모든 처리 부분은 가급적이면 유틸로 처리하기
+                                    // COMMENT: 일단 사용 부분이 이곳 하나, 여기서는 보류하고 Servlet 방식에서 새롭게 고민
                                     if (articleDTO.getTitle().length() > 80) {
                                         out.print(articleDTO.getTitle().substring(0, 80) + "...");
                                     } else {
@@ -225,7 +190,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
                 <input type="button" class="btn btn-primary" value="글쓰기"
-                       onclick="location.href='Write.jsp'">
+                       onclick="location.href='Write.jsp?${searchKeeperSearchParams}'">
             </div>
         </div>
     </form>

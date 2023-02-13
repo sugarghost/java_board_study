@@ -30,6 +30,9 @@ public class ArticleDAO {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     String query = "INSERT INTO article (category, writer, password, title, content) VALUES (?, ?, ?, ?, ?)";
+
+    // 필드별, 서비스별 유효성 검증을 별도로 구분하기
+    // insert 유효성과 update 유효성은 따로 고민해야함.
     if (!articleDTO.isCategoryValid() || !articleDTO.isWriterValid()
         || !articleDTO.isPasswordValid() || !articleDTO.isTitleValid()
         || !articleDTO.isContentValid()) {
@@ -126,6 +129,17 @@ public class ArticleDAO {
           + ")";
     }
 
+
+    /*
+    SELECT Tb.* FROM (
+      SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num
+      FROM article, (SELECT @ROWNUM:=0) AS R
+      WHERE 1=1 ORDER BY article_id DESC
+    ) Tb
+    WHERE row_num BETWEEN ? AND ?
+
+    테이블 별칭 바꾸기(너무 축약적)
+     */
     if (map.get("category") != null && !map.get("category").equals("")) {
       query += " AND category = '" + map.get("category") + "'";
     }

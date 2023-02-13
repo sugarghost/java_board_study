@@ -28,6 +28,7 @@
             fileDAO.deleteAllFile(articleId);
             response.sendRedirect("List.jsp");
         } else {
+          // model2에서는 예외처리를 공통적으로 처리할 수 있는 부분을 고민하기
             response.sendRedirect(request.getHeader("referer") + "&deleteError=1");
         }
     } else {

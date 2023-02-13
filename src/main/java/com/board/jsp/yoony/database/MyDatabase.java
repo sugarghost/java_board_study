@@ -16,6 +16,9 @@ public class MyDatabase {
   public static Connection getConnection() throws Exception {
     Connection con = null;
 
+    // Class Loader가 계속 호출되면서 낭비가됨
+    // 싱글톤으로 한다고 하면 인스턴스를 한번 생성할떄만 올려주는 방식으로 가야함.
+    // 한번쯤 공부를 해야함
     Class.forName(DRIVER_NAME);
     con = DriverManager.getConnection(URL, USER, PASSWORD);
     return con;

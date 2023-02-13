@@ -44,6 +44,7 @@
 
     // 검색을 위한 param 설정
     Map<String, Object> param = new HashMap<String, Object>();
+    // 인코딩같은 메터적인 것들은 따로 상위에 빼서 사용하는걸 추천함
     request.setCharacterEncoding("utf-8");
     String searchWord = request.getParameter("searchWord");
     String category = request.getParameter("category");
@@ -51,7 +52,12 @@
     String startDate = request.getParameter("startDate");
     String endDate = request.getParameter("endDate");
 
+    // 공통적인 NUll 체크 기능은 Util로 따로 뺴서 사용하는게 좋음
+    // equals 체크시 변수를 먼저 체크하기보단 ""을 기준을 Equals 체크하는게 좋음
     if (searchWord != null && !searchWord.equals("")) {
+        // 세션은 동일한 브라우저에서 페이지를 새로 켜도 조건이 계속 물려져서 감
+        // 검색 조건은 session을 사용하면 안됨
+        // 검색 조건은 request 컨텍스트에서 넘어가면 안됨
         session.setAttribute("searchWord", searchWord);
     } else {
         searchWord = (String) session.getAttribute("searchWord");
@@ -175,6 +181,7 @@
                         <td>
                             <a href="View.jsp?articleId=<%= articleDTO.getArticleId() %>">
                                 <%
+                                    // 모든 처리 부분은 가급적이면 유틸로 처리하기
                                     if (articleDTO.getTitle().length() > 80) {
                                         out.print(articleDTO.getTitle().substring(0, 80) + "...");
                                     } else {

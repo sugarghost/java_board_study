@@ -17,6 +17,8 @@
 <body>
 <%
     // String saveDirectory = application.getRealPath("/uploads");
+    // 디렉토리등 공통적으로 쓰는 경우는 프로퍼티로 따로 빼는게 좋음
+    // 첨부파일 다운로드 취약점 생각해야함
     String saveDirectory = "C:\\tempUploads";
     String fileSaveName = request.getParameter("fileSaveName");
     String fileOriginName = request.getParameter("fileOriginName");

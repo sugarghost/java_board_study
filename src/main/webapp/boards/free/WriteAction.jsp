@@ -59,6 +59,7 @@
             Enumeration files = multi.getFileNames();
             while (files.hasMoreElements()) {
                 String file = (String) files.nextElement();
+                // System.out.prinln은 가져다 치우기.
                 System.out.println("file : " + file);
                 String fileName = multi.getOriginalFileName(file);
                 if (fileName == null) {
@@ -70,6 +71,8 @@
                 System.out.println("realFileName : " + realFileName);
                 String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
+                // 파일을 밀리세컨으로 처리하는 경우 중복이 발생할 수 있음으로 추천하지 않는 방식임
+                // UUID 랜덤을 활용하는 방안을 고려
                 String nowDate = new SimpleDateFormat("yyyyMMdd_HmsS").format(System.currentTimeMillis());
                 String newFileName = nowDate + "." + ext;
 
@@ -87,6 +90,7 @@
                 int fileInsertResult = fileDAO.insertFile(fileDTO);
 
                 if (fileInsertResult == 0) {
+                  // 자바쪽에서 스크립트 호출 방식은 안좋은 방식
                     out.println("<script>alert('"+fileName+" 파일 등록 실패!')</script>");
                 }
             }

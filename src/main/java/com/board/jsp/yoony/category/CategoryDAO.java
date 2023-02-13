@@ -23,6 +23,8 @@ public class CategoryDAO {
 
   public List<CategoryDTO> getCategoryList() {
     logger.debug("getCategoryList()");
+    // Vetor는 기본 ArrayList보다 크고 무겁기 때문에 Tread safe 한 경우에만 사용한다.
+    // 보통 작은 규모의 프로젝트에서는 ArrayList를 사용한다.
     List<CategoryDTO> categoryList = new Vector<CategoryDTO>();
     String query = "SELECT * FROM category";
     logger.debug("query : " + query);
@@ -50,5 +52,7 @@ public class CategoryDAO {
       MyDatabase.closeConnection(con, pstmt, rs);
       return categoryList;
     }
+    // return Finally에 있으면 안됨(오류가 발생해도 return을 해버리기때문임)
+
   }
 }

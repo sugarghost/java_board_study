@@ -17,6 +17,7 @@ public class CategoryDAO {
   private CategoryDAO() {
   }
 
+
   public static CategoryDAO getInstance() {
     return categoryDAO;
   }

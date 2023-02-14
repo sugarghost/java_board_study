@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="servlet 구성 commit">
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="servlet 구성중 commit">
       <change afterPath="$PROJECT_DIR$/../.idea/java_board_study.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/CommandHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/UnknownCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/common/Bootstrap.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/common/Encode.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/common/SearchKeeper.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java_board_jsp/src/main/webapp/boards/free/WriteAction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../java_board_jsp/src/main/webapp/boards/free/WriteAction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/HelloServlet.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +192,7 @@
       <updated>1676345385147</updated>
       <workItem from="1676345386343" duration="814000" />
       <workItem from="1676346241923" duration="990000" />
-      <workItem from="1676347875088" duration="6859000" />
+      <workItem from="1676347875088" duration="8153000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -214,7 +201,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676347506392</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="servlet 구성중 commit">
+      <created>1676357757786</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1676357757786</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +227,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="servlet 구성 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="servlet 구성 commit" />
+    <MESSAGE value="servlet 구성중 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="servlet 구성중 commit" />
   </component>
 </project>

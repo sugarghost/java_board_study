@@ -39,7 +39,6 @@
 
     // String saveDirectory = application.getRealPath("/uploads");
     String saveDirectory = "C:\\tempUploads";
-    System.out.println("saveDirectory : " + saveDirectory);
     int maxPostSize = 10 * 1024 * 1024; // 10MB 제한
     String encoding = "UTF-8";
 
@@ -52,7 +51,6 @@
     articleDTO.setPassword(multi.getParameter("password"));
 
     int articleInsertResult = articleDAO.insertArticle(articleDTO);
-    System.out.println("articleInsertResult : " + articleInsertResult);
     boolean isFileExist = false;
     if (articleInsertResult != 0) {
 
@@ -60,16 +58,12 @@
             Enumeration files = multi.getFileNames();
             while (files.hasMoreElements()) {
                 String file = (String) files.nextElement();
-                // System.out.prinln은 가져다 치우기.
-                System.out.println("file : " + file);
                 String fileName = multi.getOriginalFileName(file);
                 if (fileName == null) {
                     continue;
                 }
                 isFileExist = true;
-                System.out.println("fileName : " + fileName);
                 String realFileName = multi.getFilesystemName(file);
-                System.out.println("realFileName : " + realFileName);
                 String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
                 String newFileName = UUID.randomUUID() + "." + ext;

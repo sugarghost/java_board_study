@@ -27,7 +27,6 @@
 
     // String saveDirectory = application.getRealPath("/uploads");
     String saveDirectory = "C:\\tempUploads";
-    System.out.println("saveDirectory : " + saveDirectory);
     int maxPostSize = 10 * 1024 * 1024; // 10MB 제한
     String encoding = "UTF-8";
 
@@ -77,15 +76,12 @@
             Enumeration uploadfiles = multi.getFileNames();
             while (uploadfiles.hasMoreElements()) {
                 String file = (String) uploadfiles.nextElement();
-                System.out.println("file : " + file);
                 String fileName = multi.getOriginalFileName(file);
                 if (fileName == null) {
                     continue;
                 }
                 isFileExist = true;
-                System.out.println("fileName : " + fileName);
                 String realFileName = multi.getFilesystemName(file);
-                System.out.println("realFileName : " + realFileName);
                 String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
                 String nowDate = new SimpleDateFormat("yyyyMMdd_HmsS").format(

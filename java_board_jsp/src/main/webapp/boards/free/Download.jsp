@@ -24,7 +24,6 @@
     String fileSaveName = request.getParameter("fileSaveName");
     String fileOriginName = request.getParameter("fileOriginName");
 
-    System.out.println("saveDirectory : " + saveDirectory);
     try {
         File file = new File(saveDirectory + File.separator + fileSaveName);
         InputStream inStream = new FileInputStream(file);

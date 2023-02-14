@@ -1,1 +1,1 @@
-# Java_board
+# Java_board_JSP

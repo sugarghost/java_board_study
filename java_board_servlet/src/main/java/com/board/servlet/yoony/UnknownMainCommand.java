@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author yoony
  * @since 2023. 02. 14.
  * @version 1.0
- * @see Command
- * @see CommandHelper
+ * @see MainCommand
+ * @see MainCommandHelper
  */
-public class UnknownCommand implements Command {
+public class UnknownMainCommand implements MainCommand {
 
   /**
    * request에 errorMessage를 담아서 error.jsp로 forward
@@ -29,7 +29,7 @@ public class UnknownCommand implements Command {
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     // Handle the case where the action parameter is not recognized
     request.setAttribute("errorMessage", "알수없는 요청입니다: " + request.getParameter("action"));
-    request.getRequestDispatcher("/error.jsp").forward(request, response);
+    request.getRequestDispatcher("/Error.jsp").forward(request, response);
   }
 
 }

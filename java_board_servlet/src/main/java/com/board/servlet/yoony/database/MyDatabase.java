@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class MyDatabase {
 
   private static final String DRIVER_NAME = "org.mariadb.jdbc.Driver";
-  private static final String URL = "jdbc:mariadb://127.0.0.1:33020/yoony_board";
+  private static final String URL = "jdbc:mariadb://127.0.0.1:33020/yoony_board_v2";
   private static final String USER = "root";
   private static final String PASSWORD = "system1";
 
@@ -71,7 +71,7 @@ public class MyDatabase {
 
 
   /**
-   * DAO에서 getConnection을 통해 가져온 Connection, PreparedStatement, ResultSet을 닫기 위한 메소드
+   * DAO에서 #getConnection()을 통해 가져온 Connection, PreparedStatement, ResultSet을 닫기 위한 메소드
    * @author yoony
    * @version 1.0
    * @since 2023. 02. 14.

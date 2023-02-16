@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Mybatis.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="검색 조건 유지 Servlet 형태로 변경, mybatis 적용">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/search/SearchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/search/SearchManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/SearchKeeper.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Mybatis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Mybatis.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +88,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/java_board_study/java_board_servlet/src/main/resources",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "last_opened_file_path": "C:/Project/java_board_study/java_board_jsp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -113,6 +110,7 @@
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\webapp\common" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.board.servlet.yoony.file" />
       <recent name="com.board.servlet.yoony.util" />
       <recent name="com.board.servlet.yoony.article" />
       <recent name="com.board.servlet.yoony.database" />
@@ -223,7 +221,7 @@
       <workItem from="1676447260089" duration="36000" />
       <workItem from="1676447370595" duration="6598000" />
       <workItem from="1676511559310" duration="1852000" />
-      <workItem from="1676514455006" duration="7319000" />
+      <workItem from="1676514455006" duration="13580000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -253,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676447508322</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="검색 조건 유지 Servlet 형태로 변경, mybatis 적용">
+      <created>1676522071002</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1676522071002</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +280,7 @@
     <MESSAGE value="servlet 구성중 commit" />
     <MESSAGE value="기타 환경 commit" />
     <MESSAGE value="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬" />
+    <MESSAGE value="검색 조건 유지 Servlet 형태로 변경, mybatis 적용" />
+    <option name="LAST_COMMIT_MESSAGE" value="검색 조건 유지 Servlet 형태로 변경, mybatis 적용" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.servlet.yoony.article.ArticleDAO">
   <resultMap id="articleResultMap" type="com.board.servlet.yoony.article.ArticleDTO">
     <id property="articleId" column="article_id"/>
@@ -14,14 +15,16 @@
   </resultMap>
   <select id="selectArticleCount" resultType="int" parameterType="Map">
     SELECT COUNT(article_id) FROM article WHERE 1=1
-    <if test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(searchWord)">
+    <if
+      test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(searchWord)">
       AND (
       title like CONCAT('%',#{searchWord},'%')
       OR content like CONCAT('%',#{searchWord},'%')
       OR writer like CONCAT('%',#{searchWord},'%')
       )
     </if>
-    <if test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(categoryId)">
+    <if
+      test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(categoryId)">
       AND category_id = #{categoryId}
     </if>
     <if test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(startDate) and
@@ -33,26 +36,28 @@
   <select id="selectArticleList" resultMap="articleResultMap" parameterType="Map">
     SELECT row_numbering_article_sub_table.*
     FROM (
-        SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num
-        FROM article, (
-              SELECT @ROWNUM:=0
-              ) AS R
-        WHERE 1=1
-      <if test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(searchWord)">
-        AND (
-        title like CONCAT('%',#{searchWord},'%')
-        OR content like CONCAT('%',#{searchWord},'%')
-        OR writer like CONCAT('%',#{searchWord},'%')
-        )
-      </if>
-      <if test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(categoryId)">
-        AND category_id = #{categoryId}
-      </if>
-      <if test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(startDate) and
+      SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num
+      FROM article, (
+        SELECT @ROWNUM:=0
+      ) AS R
+      WHERE 1=1
+    <if
+      test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(searchWord)">
+      AND (
+      title like CONCAT('%',#{searchWord},'%')
+      OR content like CONCAT('%',#{searchWord},'%')
+      OR writer like CONCAT('%',#{searchWord},'%')
+      )
+    </if>
+    <if
+      test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(categoryId)">
+      AND category_id = #{categoryId}
+    </if>
+    <if test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(startDate) and
       !@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(endDate)">
-        AND created_date BETWEEN date(#{startDate}) AND date(#{endDate})+1
-      </if>
-        ORDER BY article_id DESC
+      AND created_date BETWEEN date(#{startDate}) AND date(#{endDate})+1
+    </if>
+      ORDER BY article_id DESC
     ) row_numbering_article_sub_table
     WHERE row_num BETWEEN #{rowStart} AND #{rowEnd}
   </select>

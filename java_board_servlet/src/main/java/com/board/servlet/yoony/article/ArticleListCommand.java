@@ -13,6 +13,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 게시글 목록을 보여주는 커맨드
@@ -22,6 +24,8 @@ import org.apache.ibatis.session.SqlSession;
  * @see MainCommand
  */
 public class ArticleListCommand implements MainCommand {
+
+  private Logger logger = LogManager.getLogger(ArticleListCommand.class);
 
   /**
    * 게시글 목록을 가져옴
@@ -44,28 +48,28 @@ public class ArticleListCommand implements MainCommand {
    */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
-
+    logger.debug("ArticleListCommand.execute()");
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
     // auto close를 위한 try-with-resource
-    try (SqlSession sqlSession = myBatisConfig.getSqlSessionFactory().openSession()) {
+    try (
+        SqlSession articleSqlSession = myBatisConfig.getSqlSessionFactory().openSession();
+        SqlSession categorySqlSession = myBatisConfig.getSqlSessionFactory().openSession();
+    ) {
       // MyBatis Mapper 가져옴
-      ArticleDAO articleDAO = sqlSession.getMapper(ArticleDAO.class);
-      CategoryDAO categoryDAO = sqlSession.getMapper(CategoryDAO.class);
+      ArticleDAO articleDAO = articleSqlSession.getMapper(ArticleDAO.class);
+      CategoryDAO categoryDAO = categorySqlSession.getMapper(CategoryDAO.class);
 
       // categoryList를 가져와 Map 형태로 변환
       // Mybatis에서 자체적으로 해결하면 좋지만 고민 시간이 너무 길어져서 일단 비효율적이라도 진행
       // TODO: List => Map 변환을 거치지 않고 Mybatis 자체적으로 Map 리턴 고려
       List<CategoryDTO> categoryList = categoryDAO.selectCategoryList();
-
       Map<Integer, String> categoryMap = new HashMap<>();
-      for (CategoryDTO categoryDTO : categoryList) {
-        categoryMap.put(categoryDTO.getCategoryId(), categoryDTO.getName());
+      for (CategoryDTO category : categoryList) {
+        categoryMap.put(category.getCategoryId(), category.getName());
       }
+      logger.debug("categoryMap size: " + categoryMap.size());
       request.setAttribute("categoryMap", categoryMap);
-
-      // 검색을 위한 param 설정
-
 
       // 검색을 위한 param 설정
       // TODO: 새롭게 SearchManager를 만들었지만 List부분은 기존 방식을 유지하다가 나중에 변경할 예정
@@ -88,6 +92,7 @@ public class ArticleListCommand implements MainCommand {
 
       // 페이지네이션 구현
       int totalCount = articleDAO.selectArticleCount(param);
+      logger.debug("selectArticleCount: " + totalCount);
       int pageSize = 5;
       int blockSize = 10;
 
@@ -101,13 +106,13 @@ public class ArticleListCommand implements MainCommand {
       PageDTO pageDTO = new PageDTO(pageNum, pageSize, blockSize, totalCount);
       request.setAttribute("pageDTO", pageDTO);
 
-      int rowStart = (pageNum - 1) * pageSize + 1;
-      int rowEnd = rowStart + pageSize - 1;
+      int rowStart = (pageNum - 1) * pageSize;
       param.put("rowStart", rowStart);
-      param.put("rowEnd", rowEnd);
+      param.put("pageSize", pageSize);
 
       // 검색조건에 따른 게시글 가져옴
       List<ArticleDTO> articleList = articleDAO.selectArticleList(param);
+      logger.debug("articleList size: " + articleList.size());
       request.setAttribute("articleList",articleList);
     } catch (Exception e) {
       e.printStackTrace();

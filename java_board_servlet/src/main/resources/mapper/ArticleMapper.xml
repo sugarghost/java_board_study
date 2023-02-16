@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.servlet.yoony.article.ArticleDAO">
+  <parameterMap id="articleParameterMap" type="com.board.servlet.yoony.article.ArticleDTO"/>
   <resultMap id="articleResultMap" type="com.board.servlet.yoony.article.ArticleDTO">
     <id property="articleId" column="article_id"/>
     <result property="categoryId" column="category_id"/>
@@ -13,6 +14,12 @@
     <result property="createdDate" column="created_date"/>
     <result property="modifiedDate" column="modified_date"/>
   </resultMap>
+  <insert id="insertArticle" parameterMap="articleParameterMap" useGeneratedKeys="true"
+    keyProperty="articleId" keyColumn="article_id">
+    INSERT INTO article
+      (category_id, writer, password, title, content)
+    VALUES (#{categoryId}, #{writer}, #{password}, #{title}, #{content})
+  </insert>
   <select id="selectArticleCount" resultType="int" parameterType="Map">
     SELECT COUNT(article_id) FROM article WHERE 1=1
     <if
@@ -34,13 +41,10 @@
     ORDER BY article_id DESC
   </select>
   <select id="selectArticleList" resultMap="articleResultMap" parameterType="Map">
-    SELECT row_numbering_article_sub_table.*
-    FROM (
-      SELECT *, @ROWNUM:=@ROWNUM+1 AS row_num
-      FROM article, (
-        SELECT @ROWNUM:=0
-      ) AS R
-      WHERE 1=1
+    SELECT
+      article_id, category_id, writer, password, title, content, view_count, created_date, modified_date
+    FROM article
+    WHERE 1=1
     <if
       test="!@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(searchWord)">
       AND (
@@ -57,8 +61,39 @@
       !@com.board.servlet.yoony.util.ValidationChecker@CheckStringIsNullOrEmpty(endDate)">
       AND created_date BETWEEN date(#{startDate}) AND date(#{endDate})+1
     </if>
-      ORDER BY article_id DESC
-    ) row_numbering_article_sub_table
-    WHERE row_num BETWEEN #{rowStart} AND #{rowEnd}
+    ORDER BY article_id DESC
+    LIMIT #{pageSize} OFFSET #{rowStart}
   </select>
+  <select id="selectArticle" resultMap="articleResultMap" parameterType="int">
+    SELECT *
+    FROM article
+    WHERE article_id = #{articleId}
+  </select>
+  <select id="selectPasswordCheck" resultType="int" parameterType="Map">
+    SELECT COUNT(article_id)
+    FROM article
+    WHERE article_id = #{articleId}
+      AND password = #{password}
+  </select>
+  <update id="updateArticle" parameterMap="articleParameterMap">
+    UPDATE article
+    SET writer        = #{writer},
+        password      = #{password},
+        title         = #{title},
+        content       = #{content},
+        modified_date = current_timestamp()
+    WHERE article_id = #{articleId}
+      AND password = #{password}
+  </update>
+  <update id="updateArticleViewCount" parameterType="int">
+    UPDATE article
+    SET view_count = view_count + 1
+    WHERE article_id = #{articleId}
+  </update>
+  <delete id="deleteArticle" parameterType="Map">
+    DELETE
+    FROM article
+    WHERE article_id = #{articleId}
+      AND password = #{password}
+  </delete>
 </mapper>

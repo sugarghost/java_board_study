@@ -39,6 +39,13 @@ dependencies {
     // 파일 upload를 위해 추가
     implementation group: 'servlets.com', name: 'cos', version: '05Nov2002'
 
+    // lombok을 사용하기 위해 추가
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.26'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

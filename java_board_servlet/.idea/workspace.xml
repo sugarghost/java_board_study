@@ -4,16 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="검색 조건 유지 Servlet 형태로 변경, mybatis 적용">
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="mybatis 적용 완료, 주석 강화, 예외처리 강화">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDAO.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap-grid.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap-grid.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap-reboot.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap-reboot.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/CommentMapper.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Mybatis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Mybatis.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CategoryMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +103,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Project/java_board_study/java_board_jsp",
+    "last_opened_file_path": "C:/Project/java_board_study/java_board_servlet/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,12 +118,14 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\resources" />
+      <recent name="C:\Project\java_board_study\java_board_servlet\src\main\resources\mapper" />
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\webapp\common" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\webapp\common" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.board.servlet.yoony.comment" />
       <recent name="com.board.servlet.yoony.file" />
       <recent name="com.board.servlet.yoony.util" />
       <recent name="com.board.servlet.yoony.article" />
@@ -221,7 +237,8 @@
       <workItem from="1676447260089" duration="36000" />
       <workItem from="1676447370595" duration="6598000" />
       <workItem from="1676511559310" duration="1852000" />
-      <workItem from="1676514455006" duration="13580000" />
+      <workItem from="1676514455006" duration="18836000" />
+      <workItem from="1676533752698" duration="4398000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -258,7 +275,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676522071002</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="mybatis 적용 완료, 주석 강화, 예외처리 강화">
+      <created>1676528371427</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1676528371427</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,6 +305,7 @@
     <MESSAGE value="기타 환경 commit" />
     <MESSAGE value="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬" />
     <MESSAGE value="검색 조건 유지 Servlet 형태로 변경, mybatis 적용" />
-    <option name="LAST_COMMIT_MESSAGE" value="검색 조건 유지 Servlet 형태로 변경, mybatis 적용" />
+    <MESSAGE value="mybatis 적용 완료, 주석 강화, 예외처리 강화" />
+    <option name="LAST_COMMIT_MESSAGE" value="mybatis 적용 완료, 주석 강화, 예외처리 강화" />
   </component>
 </project>

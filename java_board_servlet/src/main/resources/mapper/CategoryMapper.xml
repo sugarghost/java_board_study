@@ -2,11 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.servlet.yoony.category.CategoryDAO">
+  <parameterMap id="categoryParameterMap" type="com.board.servlet.yoony.category.CategoryDTO"></parameterMap>
+  <resultMap id="map" type="java.util.Map">
+    <id property="key" column="category_id"/>
+    <result property="value" column="name"/>
+  </resultMap>
   <resultMap id="categoryResultMap" type="com.board.servlet.yoony.category.CategoryDTO">
     <id property="categoryId" column="category_id"/>
     <result property="name" column="name"/>
   </resultMap>
   <select id="selectCategoryList" resultMap="categoryResultMap">
+    SELECT category_id, name
+    FROM category
+    ORDER BY category_id ASC
+  </select>
+  <!-- map<Integer, String> 반환 고려 흔적(작동은 안함)-->
+  <select id="selectCategoryMap" resultMap="map">
     SELECT category_id, name
     FROM category
     ORDER BY category_id ASC

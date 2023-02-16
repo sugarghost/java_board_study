@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.servlet.yoony.comment.CommentDAO">
+  <parameterMap id="commentParameterMap" type="com.board.servlet.yoony.comment.CommentDTO"/>
+  <resultMap id="commentResultMap" type="com.board.servlet.yoony.comment.CommentDTO">
+    <id property="commentId" column="comment_id"/>
+    <result property="articleId" column="article_id"/>
+    <result property="content" column="content"/>
+    <result property="createdDate" column="created_date"/>
+  </resultMap>
+  <insert id="insertComment" parameterMap="commentParameterMap">
+    INSERT INTO comment
+    (article_id, content)
+    VALUES
+    (#{articleId}, #{content})
+  </insert>
+  <select id="selectCommentList" resultMap="commentResultMap" parameterType="int">
+    SELECT * FROM comment WHERE article_id = #{articleId}
+  </select>
+</mapper>

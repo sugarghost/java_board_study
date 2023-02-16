@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.servlet.yoony.file.FileDAO">
+  <parameterMap id="fileParameterMap" type="com.board.servlet.yoony.file.FileDTO"/>
+  <resultMap id="fileResultMap" type="com.board.servlet.yoony.file.FileDTO">
+    <id property="fileId" column="file_id"/>
+    <result property="articleId" column="article_id"/>
+    <result property="fileOriginName" column="file_origin_name"/>
+    <result property="fileSaveName" column="file_save_name"/>
+    <result property="fileType" column="file_type"/>
+    <result property="filePath" column="file_path"/>
+    <result property="createdDate" column="created_date"/>
+  </resultMap>
+  <insert id="insertFile" parameterMap="fileParameterMap">
+    INSERT INTO file
+    (article_id, file_origin_name, file_save_name, file_type, file_path)
+    VALUES (#{articleId}, #{fileOriginName}, #{fileSaveName}, #{fileType}, #{filePath})
+  </insert>
+  <select id="selectFileList" resultMap="fileResultMap" parameterType="int">
+    SELECT *
+    FROM file
+    WHERE article_id = #{articleId}
+  </select>
+  <select id="selectFileCount" resultType="int" parameterType="int">
+    SELECT COUNT(file_id)
+    FROM file
+    WHERE article_id = #{articleId}
+  </select>
+  <delete id="deleteFile" parameterType="int">
+    DELETE
+    FROM article_file
+    WHERE file_id = #{fileId}
+      AND article_id = #{articleId}
+  </delete>
+  <delete id="deleteAllFile" parameterType="int">
+    DELETE
+    FROM file
+    WHERE article_id = #{articleId}
+  </delete>
+</mapper>

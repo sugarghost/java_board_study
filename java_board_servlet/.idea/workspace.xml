@@ -5,24 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/category/CategoryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/Security.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/common/Paging.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Mybatis.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/CommandHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/UnknownCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/UnknownMainCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/search/SearchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/search/SearchManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/SearchKeeper.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +49,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -97,17 +92,21 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Project/java_board_study",
+    "last_opened_file_path": "C:/Project/java_board_study/java_board_servlet/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.5275862",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\java_board_study\java_board_servlet\src\main\resources" />
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\webapp\common" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -222,6 +221,9 @@
       <workItem from="1676347875088" duration="12731000" />
       <workItem from="1676426321883" duration="20556000" />
       <workItem from="1676447260089" duration="36000" />
+      <workItem from="1676447370595" duration="6598000" />
+      <workItem from="1676511559310" duration="1852000" />
+      <workItem from="1676514455006" duration="7319000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -244,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676359371836</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬">
+      <created>1676447508322</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1676447508322</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,6 +274,7 @@
     <MESSAGE value="servlet 구성 commit" />
     <MESSAGE value="servlet 구성중 commit" />
     <MESSAGE value="기타 환경 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="기타 환경 commit" />
+    <MESSAGE value="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬" />
   </component>
 </project>

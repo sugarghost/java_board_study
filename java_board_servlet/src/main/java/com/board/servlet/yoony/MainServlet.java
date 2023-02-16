@@ -1,6 +1,5 @@
 package com.board.servlet.yoony;
 
-import com.board.servlet.yoony.article.ArticleDAO;
 import com.board.servlet.yoony.article.search.SearchManager;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -23,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 @WebServlet("*.do")
 public class MainServlet extends HttpServlet {
 
-  private Logger logger = LogManager.getLogger(ArticleDAO.class);
+  private Logger logger = LogManager.getLogger(MainServlet.class);
 
   /**
    * 서블릿의 doGet 메소드로 get 요청을 수신해 처리함 Command 패턴을 사용하기 떄문에 processRequest 메소드를 통해 요청을 처리함

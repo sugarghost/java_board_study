@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class SearchManager {
   private String pageNum;
   private String searchWord;
-  private String category;
+  private String categoryId;
   private String startDate;
   private String endDate;
 
@@ -29,7 +29,7 @@ public class SearchManager {
   public SearchManager(HttpServletRequest request) {
     this.pageNum = (request.getParameter("pageNum") != null) ? request.getParameter("pageNum") : "";
     this.searchWord = (request.getParameter("searchWord") != null) ? request.getParameter("searchWord") : "";
-    this.category = (request.getParameter("category") != null) ? request.getParameter("category") : "";
+    this.categoryId = (request.getParameter("categoryId") != null) ? request.getParameter("categoryId") : "";
     this.startDate = (request.getParameter("startDate") != null) ? request.getParameter("startDate") : "";
     this.endDate = (request.getParameter("endDate") != null) ? request.getParameter("endDate") : "";
   }
@@ -50,8 +50,8 @@ public class SearchManager {
     if(!searchWord.equals("")) {
       searchParams += "&searchWord=" + URLEncoder.encode(searchWord, "UTF-8");
     }
-    if(!category.equals("")) {
-      searchParams += "&category=" + category;
+    if(!categoryId.equals("")) {
+      searchParams += "&categoryId=" + categoryId;
     }
     if(!startDate.equals("")) {
       searchParams += "&startDate=" + startDate;
@@ -79,8 +79,8 @@ public class SearchManager {
     if(!searchWord.equals("")) {
       searchParams += "&searchWord=" + URLEncoder.encode(searchWord, "UTF-8");
     }
-    if(!category.equals("")) {
-      searchParams += "&category=" + category;
+    if(!categoryId.equals("")) {
+      searchParams += "&categoryId=" + categoryId;
     }
     if(!startDate.equals("")) {
       searchParams += "&startDate=" + startDate;
@@ -89,5 +89,45 @@ public class SearchManager {
       searchParams += "&endDate=" + endDate;
     }
     return searchParams;
+  }
+
+  public String getPageNum() {
+    return pageNum;
+  }
+
+  public void setPageNum(String pageNum) {
+    this.pageNum = pageNum;
+  }
+
+  public String getSearchWord() {
+    return searchWord;
+  }
+
+  public void setSearchWord(String searchWord) {
+    this.searchWord = searchWord;
+  }
+
+  public String getCategoryId() {
+    return categoryId;
+  }
+
+  public void setCategoryId(String categoryId) {
+    this.categoryId = categoryId;
+  }
+
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
   }
 }

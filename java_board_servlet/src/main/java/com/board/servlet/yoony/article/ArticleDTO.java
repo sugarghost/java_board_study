@@ -179,7 +179,6 @@ public class ArticleDTO {
   /**
    * 게시글 등록이 유효한지 검사
    * @return 유효하면 true, 아니면 false
-   * @see ArticleDAO#insertArticle(ArticleDTO)
    * @see #isWriterValid()
    * @see #isPasswordValid()
    * @see #isTitleValid()
@@ -195,7 +194,6 @@ public class ArticleDTO {
   /**
    * 게시글 수정이 유효한지 검사
    * @return 유효하면 true, 아니면 false
-   * @see ArticleDAO#updateArticle(ArticleDTO)
    * @see #isWriterValid()
    * @see #isPasswordValid()
    * @see #isTitleValid()

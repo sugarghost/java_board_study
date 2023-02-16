@@ -32,12 +32,12 @@
                 <input type="date" class="form-control" name="endDate" value="${endDate}">
             </div>
             <div class="col-2">
-                <select class="form-control" name="category">
+                <select class="form-control" name="categoryId">
                     <option value="">카테고리</option>
 
                     <c:forEach items="${categoryMap}" var="category">
                         <option value="${category.key}"
-                                <c:if test="${category.value eq category}">selected</c:if>>${category.value}</option>
+                                <c:if test="${category.key eq categoryId}">selected</c:if>>${category.value}</option>
                     </c:forEach>
                 </select>
             </div>

@@ -11,16 +11,6 @@ import org.apache.logging.log4j.Logger;
  */
 public class ValidationChecker {
 
-  private Logger logger = LogManager.getLogger(ValidationChecker.class);
-  private static ValidationChecker validationChecker = new ValidationChecker();
-
-  private ValidationChecker() {
-  }
-
-  public static ValidationChecker getInstance() {
-    return validationChecker;
-  }
-
   /**
    * String이 null이거나 빈 문자열인지 확인
    * @author yoony
@@ -29,7 +19,7 @@ public class ValidationChecker {
    * @param targetString 확인할 String
    * @return boolean null이거나 빈 문자열이면 true, 아니면 false
    */
-  public boolean CheckStringIsNullOrEmpty(String targetString){
+  public static boolean CheckStringIsNullOrEmpty(String targetString){
     return targetString == null || "".equals(targetString) || targetString.isEmpty();
   }
 
@@ -42,7 +32,7 @@ public class ValidationChecker {
    * @param targetObject 확인할 Object
    * @return boolean null이면 true, 아니면 false
    */
-  public boolean CheckStringIsNullOrEmpty(Object targetObject){
+  public static boolean CheckStringIsNullOrEmpty(Object targetObject){
     return targetObject == null || "".equals(targetObject);
   }
 }

@@ -36,7 +36,7 @@ public class ArticleListCommand implements MainCommand {
    *
    * @param request  HttpServletRequest
    * @param response HttpServletResponse
-   * @throws IOException
+   * @throws Exception
    * @author yoony
    * @version 1.0
    * @see MainCommand
@@ -51,6 +51,7 @@ public class ArticleListCommand implements MainCommand {
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
     // auto close를 위한 try-with-resource
+    // session을 DAO별로 따로 생성했는데, 굳이 이럴 필요는 없을 것 같음
     try (
         SqlSession articleSqlSession = myBatisConfig.getSqlSessionFactory().openSession();
         SqlSession categorySqlSession = myBatisConfig.getSqlSessionFactory().openSession();

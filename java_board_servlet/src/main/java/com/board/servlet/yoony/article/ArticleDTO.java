@@ -24,6 +24,8 @@ public class ArticleDTO {
   private int articleId;
   // 카테고리 ID(foreign key: category table)
   private int categoryId;
+  // 카테고리 이름(DB상에 컬럼은 존재하지 않고 DTO에만 존재)
+  private String categoryName;
   // 작성자(3~4자)
   private String writer;
   // 비밀번호(4~15자, 영문, 숫자, 특수문자 조합)

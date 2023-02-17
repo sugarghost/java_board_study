@@ -35,5 +35,5 @@ public interface CommentDAO {
    * @version 1.0
    * @since 2023. 02. 17.
    */
-  public List<CommentDTO> getCommentList(int articleId);
+  public List<CommentDTO> selectCommentList(int articleId);
 }

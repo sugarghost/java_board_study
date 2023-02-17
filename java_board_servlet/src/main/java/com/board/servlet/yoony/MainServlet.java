@@ -104,6 +104,13 @@ public class MainServlet extends HttpServlet {
       viewPage = "/list.do";
       request.setAttribute("command", "articleWriteAction");
     }
+    if ("/view.do".equals(servletPath)) {
+      viewPage = "/boards/free/View.jsp";
+      request.setAttribute("command", "articleView");
+      errorMessages.put("1", "비밀번호가 일치하지 않습니다!");
+      errorMessages.put("2", "댓글 등록에 실패했습니다!");
+      errorMessages.put("3", "삭제에 실패했습니다!");
+    }
     if (viewPage == null) {
       viewPage = "/Error.jsp";
       request.setAttribute("errorMessage", "알수없는 엔드 포인트입니다: " + servletPath);

@@ -40,6 +40,7 @@ public class ArticleWriteActionCommand implements MainCommand {
     ArticleDTO articleDTO = new ArticleDTO();
 
     // auto close를 위한 try-with-resource
+    // 트랜잭션 처리를 위해 sqlSession을 하나 생성하고 Article과 File이 같이 사용
     try (
         SqlSession sqlSession = myBatisConfig.getSqlSessionFactory().openSession();
     ) {

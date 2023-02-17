@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="주석 강화 및 WriteAction 처리 후 페이지 이동 에러 해결">
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="Article List 조회시 File 여부 확인 기능 추가">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleViewCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CommentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +92,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Project/java_board_study/java_board_servlet/src/main/resources",
+    "last_opened_file_path": "C:/Project/java_board_study/java_board_servlet/src/main/webapp/boards/free",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,6 +111,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Project\java_board_study\java_board_servlet\src\main\webapp\boards\free" />
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\resources" />
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\resources\mapper" />
       <recent name="C:\Project\java_board_study\java_board_servlet\src\main\webapp\common" />
@@ -228,7 +234,7 @@
       <workItem from="1676447370595" duration="6598000" />
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
-      <workItem from="1676533752698" duration="34996000" />
+      <workItem from="1676533752698" duration="38836000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -293,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676615132467</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Article List 조회시 File 여부 확인 기능 추가">
+      <created>1676617159726</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1676617159726</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +333,9 @@
     <MESSAGE value="기존 JSP 방식에 쿼리를 Mybatis 형식으로 이식" />
     <MESSAGE value="글 쓰기 페이지 추가 및 command, JSP간 Error 핸들링 구현, web.xml에 resource 경로 설정" />
     <MESSAGE value="주석 강화 및 WriteAction 처리 후 페이지 이동 에러 해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="주석 강화 및 WriteAction 처리 후 페이지 이동 에러 해결" />
+    <MESSAGE value="List 조회시 File 여부 확인 기능 추가" />
+    <MESSAGE value="Article List 조회시 File 여부 확인 기능 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="Article List 조회시 File 여부 확인 기능 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

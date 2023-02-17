@@ -16,6 +16,8 @@
     (#{articleId}, #{content})
   </insert>
   <select id="selectCommentList" resultMap="commentResultMap" parameterType="int">
-    SELECT * FROM comment WHERE article_id = #{articleId}
+    SELECT comment_id, article_id, content, created_date
+    FROM comment
+    WHERE article_id = #{articleId}
   </select>
 </mapper>

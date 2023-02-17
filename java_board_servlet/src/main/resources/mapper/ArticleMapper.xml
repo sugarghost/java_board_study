@@ -6,6 +6,7 @@
   <resultMap id="articleResultMap" type="com.board.servlet.yoony.article.ArticleDTO">
     <id property="articleId" column="article_id"/>
     <result property="categoryId" column="category_id"/>
+    <result property="categoryName" column="category_name"/>
     <result property="writer" column="writer"/>
     <result property="password" column="password"/>
     <result property="title" column="title"/>
@@ -67,7 +68,21 @@
     LIMIT #{pageSize} OFFSET #{rowStart}
   </select>
   <select id="selectArticle" resultMap="articleResultMap" parameterType="int">
-    SELECT *
+    SELECT article_id,
+           category_id,
+           (SELECT name
+            FROM category
+            WHERE category_id = article.category_id LIMIT 1) AS category_name,
+           writer,
+           password,
+           title,
+           content,
+           view_count,
+           created_date,
+           modified_date,
+           (SELECT EXISTS(SELECT 1
+                          FROM article_file
+                          WHERE article_id = article.article_id)) AS is_file_exist
     FROM article
     WHERE article_id = #{articleId}
   </select>

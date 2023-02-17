@@ -1,6 +1,7 @@
 package com.board.servlet.yoony;
 
 import com.board.servlet.yoony.article.ArticleListCommand;
+import com.board.servlet.yoony.article.ArticleViewCommand;
 import com.board.servlet.yoony.article.ArticleWriteActionCommand;
 import com.board.servlet.yoony.article.ArticleWriteCommand;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class MainCommandHelper {
     commands.put("articleList", new ArticleListCommand());
     commands.put("articleWrite", new ArticleWriteCommand());
     commands.put("articleWriteAction", new ArticleWriteActionCommand());
+    commands.put("articleView", new ArticleViewCommand());
   }
 
   /**

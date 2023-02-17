@@ -18,7 +18,7 @@
     VALUES (#{articleId}, #{fileOriginName}, #{fileSaveName}, #{fileType}, #{filePath})
   </insert>
   <select id="selectFileList" resultMap="fileResultMap" parameterType="int">
-    SELECT *
+    SELECT file_id, article_id, file_origin_name, file_type, created_date
     FROM article_file
     WHERE article_id = #{articleId}
   </select>
@@ -28,7 +28,7 @@
     WHERE article_id = #{articleId}
   </select>
   <select id="selectFileExist" resultType="boolean" parameterType="int">
-    SELECT EXISTS(SELECT *
+    SELECT EXISTS(SELECT 1
                   FROM article_file
                   WHERE article_id = #{articleId}
                   LIMIT 1) as is_file_exist

@@ -84,7 +84,7 @@
                             <td> ${categoryMap[articleDTO.getCategoryId()]}
                             </td>
                             <td>
-                                <a href="View.jsp?articleId=${articleDTO.getArticleId()}${searchManager.getSearchParamsQuery()}">
+                                <a href="View.do?articleId=${articleDTO.getArticleId()}${searchManager.getSearchParamsQuery()}">
                                     <%
                                         // TODO: subString 80자 공통 모듈화 해서 불러오기
                                     %>
@@ -122,7 +122,7 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
                 <input type="button" class="btn btn-primary" value="글쓰기"
-                       onclick="location.href='Write.jsp?${searchManager.getSearchParamsQuery()}'">
+                       onclick="location.href='write.do?${searchManager.getSearchParamsQuery()}'">
             </div>
         </div>
     </form>

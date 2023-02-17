@@ -13,18 +13,18 @@
     <result property="createdDate" column="created_date"/>
   </resultMap>
   <insert id="insertFile" parameterMap="fileParameterMap">
-    INSERT INTO file
+    INSERT INTO article_file
     (article_id, file_origin_name, file_save_name, file_type, file_path)
     VALUES (#{articleId}, #{fileOriginName}, #{fileSaveName}, #{fileType}, #{filePath})
   </insert>
   <select id="selectFileList" resultMap="fileResultMap" parameterType="int">
     SELECT *
-    FROM file
+    FROM article_file
     WHERE article_id = #{articleId}
   </select>
   <select id="selectFileCount" resultType="int" parameterType="int">
     SELECT COUNT(file_id)
-    FROM file
+    FROM article_file
     WHERE article_id = #{articleId}
   </select>
   <delete id="deleteFile" parameterType="int">
@@ -35,7 +35,7 @@
   </delete>
   <delete id="deleteAllFile" parameterType="int">
     DELETE
-    FROM file
+    FROM article_file
     WHERE article_id = #{articleId}
   </delete>
 </mapper>

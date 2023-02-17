@@ -1,6 +1,8 @@
 package com.board.servlet.yoony;
 
 import com.board.servlet.yoony.article.ArticleListCommand;
+import com.board.servlet.yoony.article.ArticleWriteActionCommand;
+import com.board.servlet.yoony.article.ArticleWriteCommand;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,8 @@ public class MainCommandHelper {
   // command String과 Command를 매핑하기 위한 commands 초기화 블록
   static {
     commands.put("articleList", new ArticleListCommand());
+    commands.put("articleWrite", new ArticleWriteCommand());
+    commands.put("articleWriteAction", new ArticleWriteActionCommand());
   }
 
   /**

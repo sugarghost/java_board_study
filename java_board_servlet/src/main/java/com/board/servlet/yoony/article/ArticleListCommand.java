@@ -18,33 +18,31 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * 게시글 목록을 보여주는 커맨드
+ *
  * @author yoony
- * @since 2023. 02. 14.
  * @version 1.0
  * @see MainCommand
+ * @since 2023. 02. 14.
  */
 public class ArticleListCommand implements MainCommand {
 
   private Logger logger = LogManager.getLogger(ArticleListCommand.class);
 
   /**
-   * 게시글 목록을 가져옴
-   * categoryDAO.selectCategoryList()를 통해 카테고리 목록을 가져온 후
-   * articleDAO.selectArticleList()를 통해 게시글 목록을 가져온다.
-   * 게시글 목록을 가져올 때는 검색을 위한 param을 넘겨준다.
-   * 검색 조건은 searchWord, category, startDate, endDate, pageNum(현재 페이지) 이다.
+   * 게시글 목록을 가져옴 categoryDAO.selectCategoryList()를 통해 카테고리 목록을 가져온 후 articleDAO.selectArticleList()를
+   * 통해 게시글 목록을 가져온다. 게시글 목록을 가져올 때는 검색을 위한 param을 넘겨준다. 검색 조건은 searchWord, category, startDate,
+   * endDate, pageNum(현재 페이지) 이다.
+   *
+   * @param request  HttpServletRequest
+   * @param response HttpServletResponse
+   * @throws IOException
    * @author yoony
-   * @since 2023. 02. 16.
    * @version 1.0
    * @see MainCommand
    * @see ArticleDAO#selectArticleCount(Map)
    * @see ArticleDAO#selectArticleList(Map)
    * @see CategoryDAO#selectCategoryList()
-   * @param request
-   *        HttpServletRequest
-   * @param response
-   *        HttpServletResponse
-   * @throws IOException
+   * @since 2023. 02. 16.
    */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -113,8 +111,9 @@ public class ArticleListCommand implements MainCommand {
       // 검색조건에 따른 게시글 가져옴
       List<ArticleDTO> articleList = articleDAO.selectArticleList(param);
       logger.debug("articleList size: " + articleList.size());
-      request.setAttribute("articleList",articleList);
+      request.setAttribute("articleList", articleList);
     } catch (Exception e) {
+      logger.error(e.getMessage());
       e.printStackTrace();
     }
   }

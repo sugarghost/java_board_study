@@ -2,6 +2,8 @@ package com.board.servlet.yoony;
 
 import com.board.servlet.yoony.article.search.SearchManager;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,25 +68,46 @@ public class MainServlet extends HttpServlet {
    */
   private void processRequest(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // request의 인코딩을 UTF-8로 설정
+    // 요청 응답에 대한 인코딩을 UTF-8로 설정
     request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
 
-    String uri = request.getRequestURI();
-    logger.debug("uri : " + uri);
-    String contextPath = request.getContextPath();
-    String currentUrl = uri.substring(contextPath.length());
-    logger.debug("currentUrl : " + currentUrl);
+    // 처리 중 Error가 발생하면 referer를 통해 기존 요청으로 리다이렉트됨
+    // 리다이렉트되면 request.setAttribute("error", "에러코드")를 통해 에러메세지를 설정해도 초기화 됨
+    // 대안으로 각 페이지별 분기에서 에러메세지를 개별로 Map에 저장해두고, 에러가 발생하면 해당 Map에서 메세지를 가져와 사용함
+    // error 코드는 referer+ "&error="+request.getAttribute("error")를 통해 전달됨
+    // 좋은 방법은 아닌거 같지만, 고민이 너무 길어지면서 일단은 이렇게 구현함
+    // TODO: 더 좋은 에러 핸들링 방식 고려
+    Map<String, String> errorMessages = new HashMap<>();
+
+    // servletPath를 가져와 각 경로별로 다른 처리를 분배함
+    String servletPath = request.getServletPath();
+    logger.debug("servletPath : " + servletPath);
+    // 각 요청에 맞는 jsp 페이지를 지정하기 위한 변수
     String viewPage = null;
 
-    if("/List.do".equals(currentUrl)) {
+    if("/list.do".equals(servletPath)) {
       viewPage = "/boards/free/List.jsp";
       request.setAttribute("command","articleList");
     }
+    if("/write.do".equals(servletPath)) {
+      viewPage = "/boards/free/Write.jsp";
+      request.setAttribute("command","articleWrite");
+      errorMessages.put("1", "입력값 오류!");
+      errorMessages.put("2", "게시물 등록 실패!");
+      errorMessages.put("3", "파일 등록 실패!");
+    }
+    if("/writeAction.do".equals(servletPath)) {
+      viewPage = "/list.do";
+      request.setAttribute("command","articleWriteAction");
+    }
     if(viewPage == null) {
       viewPage = "/Error.jsp";
-      request.setAttribute("errorMessage", "알수없는 엔드 포인트입니다: " + currentUrl);
+      request.setAttribute("errorMessage", "알수없는 엔드 포인트입니다: " + servletPath);
     }
-
+    // 페이지 분기별 지정된 에러 메시지들을 기본적으로 가져감
+    request.setAttribute("errorMessages", errorMessages);
+    
     // 모든 페이지에서 현재 유지되는 검색 조건을 가져와 유지하기 위해 사용
     SearchManager searchManager = new SearchManager(request);
     request.setAttribute("searchManager", searchManager);
@@ -93,9 +116,17 @@ public class MainServlet extends HttpServlet {
     MainCommand mainCommand = MainCommandHelper.getCommand(request);
     mainCommand.execute(request, response);
 
-
-    RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-    dispatcher.forward(request, response);
+    // command 처리 과정중 에러가 발생했다면 이전으로 돌아가기 위한 처리
+    if (request.getAttribute("error") != null) {
+      String referer = request.getHeader("referer");
+      // redirect를 통해 이동하기에 기존 request 정보가 사라지기 때문에 error 코드를 쿼리에 붙여서 날림
+      // 코드에 대응되는 message들은 기존이 미리 페이지 분기에서 설정되어 있음
+      response.sendRedirect(referer+ "&error="+request.getAttribute("error"));
+    } else {
+      // 에러가 발생하지 않았다면 지정된 페이지로 이동
+      RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+      dispatcher.forward(request, response);
+    }
   }
 
 

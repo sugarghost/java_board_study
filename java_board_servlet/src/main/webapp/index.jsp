@@ -6,7 +6,7 @@
 </head>
 <body>
 <script>
-  location.href = "/List.do";
+  location.href = "/list.do";
 </script>
 </body>
 </html>

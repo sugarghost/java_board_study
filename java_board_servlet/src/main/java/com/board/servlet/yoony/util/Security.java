@@ -22,7 +22,7 @@ public class Security {
    * @return String 암호화된 String
    * @throws NoSuchAlgorithmException
    */
-  public String sha256Encrypt(String text) throws NoSuchAlgorithmException {
+  public static String sha256Encrypt(String text) throws NoSuchAlgorithmException {
     MessageDigest md = MessageDigest.getInstance("SHA-256");
     md.update(text.getBytes());
     return bytesToHex(md.digest());
@@ -36,7 +36,7 @@ public class Security {
    * @param bytes 변환할 byte[]
    * @return String 변환된 Hex String
    */
-  private String bytesToHex(byte[] bytes) {
+  private static String bytesToHex(byte[] bytes) {
     StringBuilder builder = new StringBuilder();
     for (byte b : bytes) {
       builder.append(String.format("%02x", b));

@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="Article List 조회시 File 여부 확인 기능 추가">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleViewCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" afterDir="false" />
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="글 조회 추가, ArticleDTO에 CategoryName 추가">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/CommentWriteActionCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CommentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CommentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/Write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/Write.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/MessageHandler.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/MessageHandler.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +229,7 @@
       <workItem from="1676447370595" duration="6598000" />
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
-      <workItem from="1676533752698" duration="38836000" />
+      <workItem from="1676533752698" duration="41069000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -306,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676617159726</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="글 조회 추가, ArticleDTO에 CategoryName 추가">
+      <created>1676621046767</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1676621046767</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +337,8 @@
     <MESSAGE value="주석 강화 및 WriteAction 처리 후 페이지 이동 에러 해결" />
     <MESSAGE value="List 조회시 File 여부 확인 기능 추가" />
     <MESSAGE value="Article List 조회시 File 여부 확인 기능 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="Article List 조회시 File 여부 확인 기능 추가" />
+    <MESSAGE value="글 조회 추가, ArticleDTO에 CategoryName 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="글 조회 추가, ArticleDTO에 CategoryName 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

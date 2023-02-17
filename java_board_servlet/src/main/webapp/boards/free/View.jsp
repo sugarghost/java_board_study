@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
@@ -15,7 +14,7 @@
     <title>자유게시판 - 보기</title>
     <jsp:include page="/common/Bootstrap.jsp"></jsp:include>
     <jsp:include page="/common/MessageHandler.jsp">
-        <jsp:param name="messages" value="${errorMessages}"/>
+        <jsp:param name="errorMessages" value="${errorMessages}"/>
     </jsp:include>
 </head>
 <body>
@@ -69,7 +68,8 @@
                 </div>
             </c:forEach>
 
-            <form action="commentAction.do?${searchManager.getSearchParamsQuery()}" method="post" class="w-100"
+            <form action="commentWriteAction.do?${searchManager.getSearchParamsQuery()}"
+                  method="post" class="w-100"
                   id="commentForm">
                 <div class="row py-3">
                     <div class="col-10">

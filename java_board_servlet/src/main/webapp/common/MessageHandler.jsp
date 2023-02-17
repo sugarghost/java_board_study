@@ -9,9 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <script>
-  <c:forEach items="${messages}" var="message">
-  <c:if test="${message.key eq param.error}">
-  alert('${message.value}')
+  <c:forEach items="${errorMessages}" var="errorMessage">
+  <c:if test="${errorMessage.key eq param.error}">
+  alert('${errorMessage.value}')
   </c:if>
   </c:forEach>
 </script>

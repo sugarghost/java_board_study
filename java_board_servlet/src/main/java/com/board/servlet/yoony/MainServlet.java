@@ -28,7 +28,8 @@ public class MainServlet extends HttpServlet {
 
   /**
    * 서블릿의 doGet 메소드로 get 요청을 수신해 처리함
-   * <p>Command 패턴을 사용하기 때문에 {@link #processRequest(HttpServletRequest, HttpServletResponse)} 메소드를 통해 요청을 처리함
+   * <p>Command 패턴을 사용하기 때문에 {@link #processRequest(HttpServletRequest, HttpServletResponse)} 메소드를
+   * 통해 요청을 처리함
    *
    * @param request
    * @param response
@@ -44,7 +45,8 @@ public class MainServlet extends HttpServlet {
 
   /**
    * 서블릿의 doPost 메소드로 post 요청을 수신해 처리함
-   * <p>Command 패턴을 사용하기 때문에 {@link #processRequest(HttpServletRequest, HttpServletResponse)} 메소드를 통해 요청을 처리함
+   * <p>Command 패턴을 사용하기 때문에 {@link #processRequest(HttpServletRequest, HttpServletResponse)} 메소드를
+   * 통해 요청을 처리함
    *
    * @param request
    * @param response
@@ -107,9 +109,14 @@ public class MainServlet extends HttpServlet {
     if ("/view.do".equals(servletPath)) {
       viewPage = "/boards/free/View.jsp";
       request.setAttribute("command", "articleView");
-      errorMessages.put("1", "비밀번호가 일치하지 않습니다!");
-      errorMessages.put("2", "댓글 등록에 실패했습니다!");
-      errorMessages.put("3", "삭제에 실패했습니다!");
+      errorMessages.put("1", "해당 게시물이 존재하지 않습니다!");
+      errorMessages.put("2", "비밀번호가 일치하지 않습니다!");
+      errorMessages.put("comment1", "댓글 등록에 실패했습니다!");
+      errorMessages.put("delete1", "삭제에 실패했습니다!");
+    }
+    if ("/commentWriteAction.do".equals(servletPath)) {
+      viewPage = "/view.do";
+      request.setAttribute("command", "commentWriteAction");
     }
     if (viewPage == null) {
       viewPage = "/Error.jsp";
@@ -117,7 +124,6 @@ public class MainServlet extends HttpServlet {
     }
     // 페이지 분기별 지정된 에러 메시지들을 기본적으로 가져감
     request.setAttribute("errorMessages", errorMessages);
-
     // 모든 페이지에서 현재 유지되는 검색 조건을 가져와 유지하기 위해 사용
     SearchManager searchManager = new SearchManager(request);
     request.setAttribute("searchManager", searchManager);

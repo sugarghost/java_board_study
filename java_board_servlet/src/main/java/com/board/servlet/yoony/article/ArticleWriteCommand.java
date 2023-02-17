@@ -14,6 +14,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type Article write command.
+ */
 public class ArticleWriteCommand implements MainCommand {
 
   private Logger logger = LogManager.getLogger(ArticleWriteCommand.class);

@@ -8,10 +8,11 @@ import lombok.ToString;
 
 /**
  * 게시글 DTO
+ *
  * @author yoony
  * @version 1.0
- * @since 2023. 02. 15.
  * @see ArticleDAO
+ * @since 2023. 02. 15.
  */
 @Getter
 @Setter
@@ -21,7 +22,7 @@ public class ArticleDTO {
 
   // 게시글 ID(auto increment)
   private int articleId;
-  // 카테고리 ID(foreign key: category table, auto increment)
+  // 카테고리 ID(foreign key: category table)
   private int categoryId;
   // 작성자(3~4자)
   private String writer;
@@ -39,9 +40,8 @@ public class ArticleDTO {
   private Date modifiedDate;
 
   /**
-   * 작성자가 유효한지 검사
-   * null 체크, isEmpty 체크
-   * 정규식 검사: 3~4자
+   * 작성자가 유효한지 검사 null 체크, isEmpty 체크 정규식 검사: 3~4자
+   *
    * @return 유효하면 true, 아니면 false
    */
   public boolean isWriterValid() {
@@ -49,9 +49,8 @@ public class ArticleDTO {
   }
 
   /**
-   * 비밀번호가 유효한지 검사
-   * null 체크, isEmpty 체크
-   * 정규식 검사: 영문, 숫자, 특수문자 조합으로 4~15자
+   * 비밀번호가 유효한지 검사 null 체크, isEmpty 체크 정규식 검사: 영문, 숫자, 특수문자 조합으로 4~15자
+   *
    * @return 유효하면 true, 아니면 false
    */
   public boolean isPasswordValid() {
@@ -60,9 +59,8 @@ public class ArticleDTO {
   }
 
   /**
-   * 제목이 유효한지 검사
-   * null 체크, isEmpty 체크
-   * 정규식 검사: 4~99자
+   * 제목이 유효한지 검사 null 체크, isEmpty 체크 정규식 검사: 4~99자
+   *
    * @return 유효하면 true, 아니면 false
    */
   public boolean isTitleValid() {
@@ -70,9 +68,8 @@ public class ArticleDTO {
   }
 
   /**
-   * 내용이 유효한지 검사
-   * null 체크, isEmpty 체크
-   * 정규식 검사: 4~1999자
+   * 내용이 유효한지 검사 null 체크, isEmpty 체크 정규식 검사: 4~1999자
+   *
    * @return 유효하면 true, 아니면 false
    */
   public boolean isContentValid() {
@@ -80,8 +77,8 @@ public class ArticleDTO {
   }
 
   /**
-   * 작성일이 유효한지 검사
-   * null 체크
+   * 작성일이 유효한지 검사 null 체크
+   *
    * @return 유효하면 true, 아니면 false
    */
   public boolean isCreatedDateValid() {
@@ -89,8 +86,8 @@ public class ArticleDTO {
   }
 
   /**
-   * 수정일이 유효한지 검사
-   * null 체크
+   * 수정일이 유효한지 검사 null 체크
+   *
    * @return 유효하면 true, 아니면 false
    */
   public boolean isModifiedDateValid() {
@@ -99,6 +96,7 @@ public class ArticleDTO {
 
   /**
    * 게시글 등록이 유효한지 검사
+   *
    * @return 유효하면 true, 아니면 false
    * @see #isWriterValid()
    * @see #isPasswordValid()
@@ -114,6 +112,7 @@ public class ArticleDTO {
 
   /**
    * 게시글 수정이 유효한지 검사
+   *
    * @return 유효하면 true, 아니면 false
    * @see #isWriterValid()
    * @see #isPasswordValid()

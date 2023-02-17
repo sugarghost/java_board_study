@@ -17,7 +17,7 @@
 <body>
 <div class="container-fluid">
     <h1>자유게시판 - 목록</h1>
-    <form method="get">
+    <form method="get" action="list.do">
         <div class="row border align-content-center p-2">
             <div class="col-1 align-self-center">
                 등록일
@@ -84,7 +84,7 @@
                             <td> ${categoryMap[articleDTO.getCategoryId()]}
                             </td>
                             <td>
-                                <a href="View.do?articleId=${articleDTO.getArticleId()}${searchManager.getSearchParamsQuery()}">
+                                <a href="view.do?articleId=${articleDTO.getArticleId()}${searchManager.getSearchParamsQuery()}">
                                     <%
                                         // TODO: subString 80자 공통 모듈화 해서 불러오기
                                     %>
@@ -113,7 +113,6 @@
             </div>
         </div>
         <jsp:include page="/common/Paging.jsp">
-            <jsp:param value="${request.getRequestURI()}" name="requestUrl"/>
             <jsp:param value="${pageDTO}" name="pageDTO"/>
             <jsp:param value="${searchManager}" name="searchManager"/>
         </jsp:include>

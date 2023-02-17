@@ -20,7 +20,7 @@
 <div class="container">
     <h1>게시판 - 등록</h1>
     <form name="articleForm" method="post"
-          action="writeAction.do?${searchManager.getSearchParamsQuery()}"
+          action="writeAction.do?"
           enctype="multipart/form-data"
           onsubmit="return validateForm(this);">
 

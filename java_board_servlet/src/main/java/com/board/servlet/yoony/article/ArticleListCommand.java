@@ -30,8 +30,9 @@ public class ArticleListCommand implements MainCommand {
 
   /**
    * 게시글 목록을 가져옴 categoryDAO.selectCategoryList()를 통해 카테고리 목록을 가져온 후 articleDAO.selectArticleList()를
-   * 통해 게시글 목록을 가져온다. 게시글 목록을 가져올 때는 검색을 위한 param을 넘겨준다. 검색 조건은 searchWord, category, startDate,
-   * endDate, pageNum(현재 페이지) 이다.
+   * 통해 게시글 목록을 가져온다.
+   * <p>게시글 목록을 가져올 때는 검색을 위한 param을 넘겨준다.
+   * <p>검색 조건은 searchWord, category, startDate, endDate, pageNum(현재 페이지) 이다.
    *
    * @param request  HttpServletRequest
    * @param response HttpServletResponse
@@ -103,9 +104,7 @@ public class ArticleListCommand implements MainCommand {
       }
       PageDTO pageDTO = new PageDTO(pageNum, pageSize, blockSize, totalCount);
       request.setAttribute("pageDTO", pageDTO);
-
-      int rowStart = (pageNum - 1) * pageSize;
-      param.put("rowStart", rowStart);
+      param.put("rowStart", pageDTO.getStartRowNum());
       param.put("pageSize", pageSize);
 
       // 검색조건에 따른 게시글 가져옴

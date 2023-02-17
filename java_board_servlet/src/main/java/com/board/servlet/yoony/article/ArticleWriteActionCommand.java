@@ -21,6 +21,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The type Article write action command.
+ */
 public class ArticleWriteActionCommand implements MainCommand {
 
   private Logger logger = LogManager.getLogger(ArticleWriteActionCommand.class);
@@ -99,6 +102,10 @@ public class ArticleWriteActionCommand implements MainCommand {
           }
           // 게시글 등록 성공하고 파일 등록에 Exception이 발생하지 않았을 경우 commit
           sqlSession.commit();
+          // 게시글 등록 시 forward 방식으로 list.JSP로 이동
+          // 즉, list.JSP로 이동해서 위에 주소는 WriteAction을 잡고있음
+          // 링크 이동은 문제없지만 새로고침을 하면 계속 게시글이 등록됨
+          // TODO: 새로고침을 하면 계속 게시글이 등록되는 문제 해결 필요
         } catch (Exception e) {
           logger.error(e);
           sqlSession.rollback();

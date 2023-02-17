@@ -1,8 +1,12 @@
 package com.board.servlet.yoony.article.search;
 
+import com.board.servlet.yoony.util.ValidationChecker;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 검색 조건을 관리하기 위한 클래스
@@ -11,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
  * @version 1.0
  * @since 2023. 02. 15.
  */
+@Getter
+@Setter
+@ToString
 public class SearchManager {
   private String pageNum;
   private String searchWord;
@@ -44,19 +51,19 @@ public class SearchManager {
    */
   public String getSearchParamsQuery() throws UnsupportedEncodingException {
     String searchParams = "";
-    if(!pageNum.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(pageNum)) {
       searchParams += "&pageNum=" + pageNum;
     }
-    if(!searchWord.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(searchWord)) {
       searchParams += "&searchWord=" + URLEncoder.encode(searchWord, "UTF-8");
     }
-    if(!categoryId.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(categoryId)) {
       searchParams += "&categoryId=" + categoryId;
     }
-    if(!startDate.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(startDate)) {
       searchParams += "&startDate=" + startDate;
     }
-    if(!endDate.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(endDate)) {
       searchParams += "&endDate=" + endDate;
     }
     return searchParams;
@@ -76,58 +83,18 @@ public class SearchManager {
    */
   public String getSearchParamsQueryWithOutPageNum() throws UnsupportedEncodingException {
     String searchParams = "";
-    if(!searchWord.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(searchWord)) {
       searchParams += "&searchWord=" + URLEncoder.encode(searchWord, "UTF-8");
     }
-    if(!categoryId.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(categoryId)) {
       searchParams += "&categoryId=" + categoryId;
     }
-    if(!startDate.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(startDate)) {
       searchParams += "&startDate=" + startDate;
     }
-    if(!endDate.equals("")) {
+    if(!ValidationChecker.CheckStringIsNullOrEmpty(endDate)) {
       searchParams += "&endDate=" + endDate;
     }
     return searchParams;
-  }
-
-  public String getPageNum() {
-    return pageNum;
-  }
-
-  public void setPageNum(String pageNum) {
-    this.pageNum = pageNum;
-  }
-
-  public String getSearchWord() {
-    return searchWord;
-  }
-
-  public void setSearchWord(String searchWord) {
-    this.searchWord = searchWord;
-  }
-
-  public String getCategoryId() {
-    return categoryId;
-  }
-
-  public void setCategoryId(String categoryId) {
-    this.categoryId = categoryId;
-  }
-
-  public String getStartDate() {
-    return startDate;
-  }
-
-  public void setStartDate(String startDate) {
-    this.startDate = startDate;
-  }
-
-  public String getEndDate() {
-    return endDate;
-  }
-
-  public void setEndDate(String endDate) {
-    this.endDate = endDate;
   }
 }

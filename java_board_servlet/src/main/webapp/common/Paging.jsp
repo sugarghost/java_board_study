@@ -12,15 +12,15 @@
 <div class="row">
     <div class="col-12">
         <ul class="pagination d-flex justify-content-center">
-            <c:if test="${pageDTO.startNum != 1}">
+            <c:if test="${pageDTO.startPageNum != 1}">
                 <li class="page-item">
-                    <a class="page-link" href="${requestUrl}?pageNum=1${searchManager.getSearchParamsQueryWithOutPageNum()}"><<</a>
+                    <a class="page-link" href="list.do?pageNum=1${searchManager.getSearchParamsQueryWithOutPageNum()}"><<</a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="${requestUrl}?pageNum=${pageDTO.startNum - 1}${searchManager.getSearchParamsQueryWithOutPageNum()}"><</a>
+                    <a class="page-link" href="list.do?pageNum=${pageDTO.startPageNum - 1}${searchManager.getSearchParamsQueryWithOutPageNum()}"><</a>
                 </li>
             </c:if>
-            <c:forEach begin="${pageDTO.startNum}" end="${pageDTO.endNum}" step="1" var="index">
+            <c:forEach begin="${pageDTO.startPageNum}" end="${pageDTO.endPageNum}" step="1" var="index">
 
                 <c:if test="${index == pageDTO.pageNum}">
                     <li class="page-item active">
@@ -29,17 +29,17 @@
                 </c:if>
                 <c:if test="${index != pageDTO.pageNum && index <= pageDTO.totalPage}">
                 <li class="page-item">
-                    <a class="page-link" href="${requestUrl}?pageNum=${index}${searchManager.getSearchParamsQueryWithOutPageNum()}">${index}</a>
+                    <a class="page-link" href="list.do?pageNum=${index}${searchManager.getSearchParamsQueryWithOutPageNum()}">${index}</a>
                 </li>
                 </c:if>
             </c:forEach>
 
-            <c:if test="${pageDTO.startNum+pageDTO.blockPage <= pageDTO.totalPage}">
+            <c:if test="${pageDTO.startPageNum+pageDTO.blockPage <= pageDTO.totalPage}">
                 <li class="page-item">
-                    <a class="page-link" href="${requestUrl}?pageNum=${pageDTO.startNum+pageDTO.blockPage}${searchManager.getSearchParamsQueryWithOutPageNum()}">></a>
+                    <a class="page-link" href="list.do?pageNum=${pageDTO.startPageNum+pageDTO.blockPage}${searchManager.getSearchParamsQueryWithOutPageNum()}">></a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="${requestUrl}?pageNum=${pageDTO.totalPage}${searchManager.getSearchParamsQueryWithOutPageNum()}">>></a>
+                    <a class="page-link" href="list.do?pageNum=${pageDTO.totalPage}${searchManager.getSearchParamsQueryWithOutPageNum()}">>></a>
                 </li>
             </c:if>
 

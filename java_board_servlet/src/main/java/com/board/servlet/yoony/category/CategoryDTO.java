@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 카테고리를 DTO
+ * 카테고리 DTO
  * @author yoony
  * @since 2023. 02. 15.
  * @version 1.0

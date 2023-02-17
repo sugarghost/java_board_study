@@ -78,7 +78,6 @@
   <update id="updateArticle" parameterMap="articleParameterMap">
     UPDATE article
     SET writer        = #{writer},
-        password      = #{password},
         title         = #{title},
         content       = #{content},
         modified_date = current_timestamp()

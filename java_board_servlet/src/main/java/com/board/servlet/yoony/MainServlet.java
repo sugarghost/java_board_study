@@ -131,6 +131,4 @@ public class MainServlet extends HttpServlet {
       dispatcher.forward(request, response);
     }
   }
-
-
 }

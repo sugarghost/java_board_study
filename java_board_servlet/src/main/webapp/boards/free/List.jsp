@@ -91,9 +91,7 @@
                                         ${articleDTO.title}
                                 </a>
                                 <span>
-                                <%
-                                    // TODO: File 여부 확인해서 파일이 있으면 파일 아이콘 띄우기
-                                %>
+                                    ${(articleDTO.isFileExist) ? "📎" : ""}
                             </span>
                             </td>
                             <td>${articleDTO.getWriter()}

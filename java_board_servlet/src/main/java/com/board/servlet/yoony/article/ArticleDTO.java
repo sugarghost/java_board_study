@@ -34,6 +34,9 @@ public class ArticleDTO {
   private String content;
   // 조회수
   private int viewCount;
+  // 파일 존재 여부(DB상에 컬럼은 존재하지 않고 DTO에만 존재)
+  // boolean으로 잡으니깐 JSP에서 인식을 못함
+  private Boolean isFileExist;
   // 작성일(current_timestamp())
   private Date createdDate;
   // 수정일

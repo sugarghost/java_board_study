@@ -27,6 +27,12 @@
     FROM article_file
     WHERE article_id = #{articleId}
   </select>
+  <select id="selectFileExist" resultType="boolean" parameterType="int">
+    SELECT EXISTS(SELECT *
+                  FROM article_file
+                  WHERE article_id = #{articleId}
+                  LIMIT 1) as is_file_exist
+  </select>
   <delete id="deleteFile" parameterType="int">
     DELETE
     FROM article_file

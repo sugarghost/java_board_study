@@ -1,5 +1,6 @@
 package com.board.servlet.yoony;
 
+import com.board.servlet.yoony.article.ArticleDeleteActionCommand;
 import com.board.servlet.yoony.article.ArticleListCommand;
 import com.board.servlet.yoony.article.ArticleModifyActionCommand;
 import com.board.servlet.yoony.article.ArticleModifyCommand;
@@ -35,6 +36,7 @@ public class MainCommandHelper {
     commands.put("fileDownloadAction", new FileDownloadActionCommand());
     commands.put("articleModify", new ArticleModifyCommand());
     commands.put("articleModifyAction", new ArticleModifyActionCommand());
+    commands.put("articleDeleteAction", new ArticleDeleteActionCommand());
   }
 
   /**

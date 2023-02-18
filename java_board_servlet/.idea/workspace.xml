@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="게시글 수정 추가">
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="네이밍 정리">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/UnknownMainCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/UnknownMainCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/error.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/Modify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/modify.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/view.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/Write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/write.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/Bootstrap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/bootstrap.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/Encode.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/encode.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/MessageHandler.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/message_handler.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/Paging.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/paging.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/RequestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/RequestUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +226,7 @@
       <workItem from="1676447370595" duration="6598000" />
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
-      <workItem from="1676533752698" duration="56697000" />
+      <workItem from="1676533752698" duration="58348000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -342,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676696142994</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="네이밍 정리">
+      <created>1676697377333</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1676697377333</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +375,8 @@
     <MESSAGE value="forward 오류 해결" />
     <MESSAGE value="File Download 추가" />
     <MESSAGE value="게시글 수정 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="게시글 수정 추가" />
+    <MESSAGE value="네이밍 정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="네이밍 정리" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

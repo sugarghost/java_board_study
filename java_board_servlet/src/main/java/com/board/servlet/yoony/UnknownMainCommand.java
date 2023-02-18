@@ -30,7 +30,7 @@ public class UnknownMainCommand implements MainCommand {
       throws ServletException, IOException {
     // Handle the case where the action parameter is not recognized
     request.setAttribute("errorMessage", "알수없는 요청입니다: " + request.getParameter("action"));
-    request.getRequestDispatcher("/Error.jsp").forward(request, response);
+    request.getRequestDispatcher("/error.jsp").forward(request, response);
   }
 
 }

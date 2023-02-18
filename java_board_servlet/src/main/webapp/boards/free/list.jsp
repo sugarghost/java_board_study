@@ -10,9 +10,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-    <jsp:include page="/common/Encode.jsp"></jsp:include>
+    <jsp:include page="/common/encode.jsp"></jsp:include>
     <title>자유게시판 - 목록</title>
-    <jsp:include page="/common/Bootstrap.jsp"></jsp:include>
+    <jsp:include page="/common/bootstrap.jsp"></jsp:include>
 </head>
 <body>
 <div class="container-fluid">
@@ -110,7 +110,7 @@
                 </table>
             </div>
         </div>
-        <jsp:include page="/common/Paging.jsp">
+        <jsp:include page="/common/paging.jsp">
             <jsp:param value="${pageDTO}" name="pageDTO"/>
             <jsp:param value="${searchManager}" name="searchManager"/>
         </jsp:include>

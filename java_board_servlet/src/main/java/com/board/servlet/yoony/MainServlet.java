@@ -104,11 +104,11 @@ public class MainServlet extends HttpServlet {
     boolean isForward = true;
 
     if ("/list.do".equals(servletPath)) {
-      viewPage = "/boards/free/List.jsp";
+      viewPage = "/boards/free/list.jsp";
       request.setAttribute("command", "articleList");
     }
     if ("/write.do".equals(servletPath)) {
-      viewPage = "/boards/free/Write.jsp";
+      viewPage = "/boards/free/write.jsp";
       request.setAttribute("command", "articleWrite");
       errorMessages.put("1", "입력값 오류!");
       errorMessages.put("2", "게시물 등록 실패!");
@@ -121,38 +121,38 @@ public class MainServlet extends HttpServlet {
       request.setAttribute("command", "articleWriteAction");
     }
     if ("/view.do".equals(servletPath)) {
-      viewPage = "/boards/free/View.jsp";
+      viewPage = "/boards/free/view.jsp";
       request.setAttribute("command", "articleView");
       errorMessages.put("1", "해당 게시물이 존재하지 않습니다!");
       errorMessages.put("2", "비밀번호가 일치하지 않습니다!");
       errorMessages.put("comment1", "댓글 등록에 실패했습니다!");
       errorMessages.put("delete1", "삭제에 실패했습니다!");
     }
-    if ("/commentWriteAction.do".equals(servletPath)) {
+    if ("/comment_write_action.do".equals(servletPath)) {
       isRedirect = true;
       redirectParameters = RequestUtil.getUrlParameter(request.getHeader("referer"));
       viewPage = "/view.do";
       request.setAttribute("command", "commentWriteAction");
     }
-    if ("/fileDownloadAction.do".equals(servletPath)) {
+    if ("/file_download_action.do".equals(servletPath)) {
       isForward = false;
       request.setAttribute("command", "fileDownloadAction");
     }
-    if ("/deleteAction.do".equals(servletPath)) {
+    if ("/delete_action.do".equals(servletPath)) {
       isRedirect = true;
       redirectParameters = searchManager.getSearchParamsQuery();
       viewPage = "/list.do";
       request.setAttribute("command", "articleDeleteAction");
     }
     if ("/modify.do".equals(servletPath)) {
-      viewPage = "/boards/free/Modify.jsp";
+      viewPage = "/boards/free/modify.jsp";
       request.setAttribute("command", "articleModify");
       errorMessages.put("1", "해당 게시물이 존재하지 않습니다!");
       errorMessages.put("2", "비밀번호가 일치하지 않습니다!");
       errorMessages.put("3", "게시글 수정에 실패했습니다!");
       errorMessages.put("4", "파일 수정에 실패했습니다!");
     }
-    if ("/modifyAction.do".equals(servletPath)) {
+    if ("/modify_action.do".equals(servletPath)) {
       isRedirect = true;
       redirectParameters = searchManager.getSearchParamsQuery();
       redirectParameters += "&articleId=" + request.getParameter("articleId");
@@ -161,7 +161,7 @@ public class MainServlet extends HttpServlet {
     }
 
     if (viewPage == null) {
-      viewPage = "/Error.jsp";
+      viewPage = "/error.jsp";
       request.setAttribute("errorMessage", "알수없는 엔드 포인트입니다: " + servletPath);
     }
     // 페이지 분기별 지정된 에러 메시지들을 기본적으로 가져감

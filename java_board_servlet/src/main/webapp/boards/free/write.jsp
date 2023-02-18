@@ -9,10 +9,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-    <jsp:include page="/common/Encode.jsp"></jsp:include>
+    <jsp:include page="/common/encode.jsp"></jsp:include>
     <title>자유게시판 - 등록</title>
-    <jsp:include page="/common/Bootstrap.jsp"></jsp:include>
-    <jsp:include page="/common/MessageHandler.jsp">
+    <jsp:include page="/common/bootstrap.jsp"></jsp:include>
+    <jsp:include page="/common/message_handler.jsp">
         <jsp:param name="errorMessages" value="${errorMessages}"/>
     </jsp:include>
 </head>

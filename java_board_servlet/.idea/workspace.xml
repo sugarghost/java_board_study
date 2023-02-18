@@ -4,24 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="File Download 추가">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleModifyActionCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleModifyCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/Modify.jsp" afterDir="false" />
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="게시글 수정 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommandHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleViewCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleViewCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentWriteActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentWriteActionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDownloadActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDownloadActionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/FileMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/UnknownMainCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/UnknownMainCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Error.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/error.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/List.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/Modify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/modify.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/View.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/view.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/Write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/write.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/Bootstrap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/bootstrap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/Encode.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/encode.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/MessageHandler.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/message_handler.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/common/Paging.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/common/paging.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +235,7 @@
       <workItem from="1676447370595" duration="6598000" />
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
-      <workItem from="1676533752698" duration="55462000" />
+      <workItem from="1676533752698" duration="56697000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -340,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676688304421</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="게시글 수정 추가">
+      <created>1676696142994</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1676696142994</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,7 +376,8 @@
     <MESSAGE value="댓글 작성 추가, error 메시지 핸들시 messages 네임이 다른 기본 제공 네임과 곂쳐서 작동안하는 문제 해결&#10;(forward 오류 있음)" />
     <MESSAGE value="forward 오류 해결" />
     <MESSAGE value="File Download 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="File Download 추가" />
+    <MESSAGE value="게시글 수정 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="게시글 수정 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <head>
-  <%@ include file="/common/Encode.jsp" %>
+  <%@ include file="/common/encode.jsp" %>
     <title>Error</title>
 </head>
 <body>

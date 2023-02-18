@@ -39,7 +39,7 @@
                   WHERE article_id = #{articleId}
                   LIMIT 1) as is_file_exist
   </select>
-  <delete id="deleteFile" parameterType="int">
+  <delete id="deleteFile" parameterMap="fileParameterMap">
     DELETE
     FROM article_file
     WHERE file_id = #{fileId}

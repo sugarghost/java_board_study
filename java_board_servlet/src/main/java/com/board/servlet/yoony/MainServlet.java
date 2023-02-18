@@ -87,6 +87,10 @@ public class MainServlet extends HttpServlet {
     // TODO: 더 좋은 에러 핸들링 방식 고려
     Map<String, String> errorMessages = new HashMap<>();
 
+    // 모든 페이지에서 현재 유지되는 검색 조건을 가져와 유지하기 위해 사용
+    SearchManager searchManager = new SearchManager(request);
+    request.setAttribute("searchManager", searchManager);
+
     // servletPath를 가져와 각 경로별로 다른 처리를 분배함
     String servletPath = request.getServletPath();
     logger.debug("servletPath : " + servletPath);
@@ -134,15 +138,34 @@ public class MainServlet extends HttpServlet {
       isForward = false;
       request.setAttribute("command", "fileDownloadAction");
     }
+    if ("/deleteAction.do".equals(servletPath)) {
+      isRedirect = true;
+      redirectParameters = searchManager.getSearchParamsQuery();
+      viewPage = "/list.do";
+      request.setAttribute("command", "articleDeleteAction");
+    }
+    if ("/modify.do".equals(servletPath)) {
+      viewPage = "/boards/free/Modify.jsp";
+      request.setAttribute("command", "articleModify");
+      errorMessages.put("1", "해당 게시물이 존재하지 않습니다!");
+      errorMessages.put("2", "비밀번호가 일치하지 않습니다!");
+      errorMessages.put("3", "게시글 수정에 실패했습니다!");
+      errorMessages.put("4", "파일 수정에 실패했습니다!");
+    }
+    if ("/modifyAction.do".equals(servletPath)) {
+      isRedirect = true;
+      redirectParameters = searchManager.getSearchParamsQuery();
+      redirectParameters += "&articleId=" + request.getParameter("articleId");
+      viewPage = "/view.do";
+      request.setAttribute("command", "articleModifyAction");
+    }
+
     if (viewPage == null) {
       viewPage = "/Error.jsp";
       request.setAttribute("errorMessage", "알수없는 엔드 포인트입니다: " + servletPath);
     }
     // 페이지 분기별 지정된 에러 메시지들을 기본적으로 가져감
     request.setAttribute("errorMessages", errorMessages);
-    // 모든 페이지에서 현재 유지되는 검색 조건을 가져와 유지하기 위해 사용
-    SearchManager searchManager = new SearchManager(request);
-    request.setAttribute("searchManager", searchManager);
 
     // request의 command 파라미터를 통해 요청을 처리할 Command를 가져오지만, 판별을 Helper에 위임
     MainCommand mainCommand = MainCommandHelper.getCommand(request);

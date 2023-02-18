@@ -28,10 +28,10 @@
         </div>
         <div class="m-2">
             수정일시
-            <c:if test="${articleDTO.modifiedDate != null}">
+            <c:if test="${articleDTO.isModifiedDateValid()}">
                 <fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${articleDTO.modifiedDate}"/>
             </c:if>
-            <c:if test="${articleDTO.modifiedDate == null}">
+            <c:if test="${!articleDTO.isModifiedDateValid()}">
                 -
             </c:if>
         </div>

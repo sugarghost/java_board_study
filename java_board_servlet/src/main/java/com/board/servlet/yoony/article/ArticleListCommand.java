@@ -72,7 +72,7 @@ public class ArticleListCommand implements MainCommand {
       request.setAttribute("categoryMap", categoryMap);
 
       // 검색을 위한 param 설정
-      // TODO: 새롭게 SearchManager를 만들었지만 List부분은 기존 방식을 유지하다가 나중에 변경할 예정
+      // 새롭게 SearchManager를 만들었지만 List부분은 기존 방식을 유지
       // SearchManager는 일단은 List 이외의 페이지나 요청에서 검색을 요청하기 위한 용도로 사용될 예정
       Map<String, Object> param = new HashMap<String, Object>();
       String searchWord = request.getParameter("searchWord");

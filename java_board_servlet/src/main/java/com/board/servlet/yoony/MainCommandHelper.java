@@ -1,6 +1,8 @@
 package com.board.servlet.yoony;
 
 import com.board.servlet.yoony.article.ArticleListCommand;
+import com.board.servlet.yoony.article.ArticleModifyActionCommand;
+import com.board.servlet.yoony.article.ArticleModifyCommand;
 import com.board.servlet.yoony.article.ArticleViewCommand;
 import com.board.servlet.yoony.article.ArticleWriteActionCommand;
 import com.board.servlet.yoony.article.ArticleWriteCommand;
@@ -31,6 +33,8 @@ public class MainCommandHelper {
     commands.put("articleView", new ArticleViewCommand());
     commands.put("commentWriteAction", new CommentWriteActionCommand());
     commands.put("fileDownloadAction", new FileDownloadActionCommand());
+    commands.put("articleModify", new ArticleModifyCommand());
+    commands.put("articleModifyAction", new ArticleModifyActionCommand());
   }
 
   /**

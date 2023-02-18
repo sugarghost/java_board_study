@@ -4,6 +4,7 @@ import com.board.servlet.yoony.MainCommand;
 import com.board.servlet.yoony.article.ArticleDAO;
 import com.board.servlet.yoony.article.ArticleDTO;
 import com.board.servlet.yoony.database.MyBatisConfig;
+import com.board.servlet.yoony.util.ValidationChecker;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
@@ -47,7 +48,7 @@ public class CommentWriteActionCommand implements MainCommand {
     ) {
       // MyBatis Mapper 가져옴
       ArticleDAO articleDAO = sqlSession.getMapper(ArticleDAO.class);
-      int articleId = request.getParameter("articleId") == null ? 0
+      int articleId = ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
           : Integer.parseInt(request.getParameter("articleId"));
       String content = request.getParameter("content");
       // 게시물 존재 여부 확인

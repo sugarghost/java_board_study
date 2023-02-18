@@ -20,7 +20,7 @@ public class ValidationChecker {
    * @return boolean null이거나 빈 문자열이면 true, 아니면 false
    */
   public static boolean CheckStringIsNullOrEmpty(String targetString){
-    return targetString == null || "".equals(targetString) || targetString.isEmpty();
+    return targetString == null || "".equals(targetString) || targetString.isEmpty() || "null".equals(targetString);
   }
 
   /**

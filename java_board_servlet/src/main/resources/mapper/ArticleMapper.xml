@@ -86,11 +86,14 @@
     FROM article
     WHERE article_id = #{articleId}
   </select>
-  <select id="selectPasswordCheck" resultType="int" parameterType="Map">
-    SELECT COUNT(article_id)
-    FROM article
-    WHERE article_id = #{articleId}
-      AND password = #{password}
+  <select id="selectPasswordCheck" resultType="boolean" parameterMap="articleParameterMap">
+    SELECT EXISTS(
+             SELECT 1
+             FROM article
+             WHERE article_id = #{articleId}
+               AND password = #{password} LIMIT 1
+             ) as success
+
   </select>
   <update id="updateArticle" parameterMap="articleParameterMap">
     UPDATE article
@@ -106,7 +109,7 @@
     SET view_count = view_count + 1
     WHERE article_id = #{articleId}
   </update>
-  <delete id="deleteArticle" parameterType="Map">
+  <delete id="deleteArticle" parameterMap="articleParameterMap">
     DELETE
     FROM article
     WHERE article_id = #{articleId}

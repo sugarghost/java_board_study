@@ -79,14 +79,15 @@ public interface FileDAO {
   /**
    * 특정 게시글에 등록된 특정 파일 데이터를 삭제하는 메소드
    *
-   * @param fileId    삭제할 파일 id
-   * @param articleId 삭제할 파일이 속한 게시글 id
+   * @param fileDTO 파일 정보를 담은 DTO
+   *                <p>fileId는 삭제할 파일의 id
+   *                <p>articleId는 삭제할 파일이 속한 게시글 id
    * @return int 삭제된 파일의 개수
    * @aothor yoony
    * @version 1.0
    * @since 2023. 02. 17.
    */
-  public int deleteFile(int fileId, int articleId);
+  public int deleteFile(FileDTO fileDTO);
 
   /**
    * 특정 게시글에 등록된 모든 파일 데이터를 삭제하는 메소드

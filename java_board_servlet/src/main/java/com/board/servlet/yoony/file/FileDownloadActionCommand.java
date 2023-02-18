@@ -4,6 +4,7 @@ import com.board.servlet.yoony.MainCommand;
 import com.board.servlet.yoony.category.CategoryDAO;
 import com.board.servlet.yoony.category.CategoryDTO;
 import com.board.servlet.yoony.database.MyBatisConfig;
+import com.board.servlet.yoony.util.ValidationChecker;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,6 +32,19 @@ public class FileDownloadActionCommand implements MainCommand {
 
   private Logger logger = LogManager.getLogger(FileDownloadActionCommand.class);
 
+  /**
+   * 파일 다운로드를 위한 메소드
+   * <p>파라미터로 받은 articleId와 fileId를 통해 파일을 찾아 다운로드함
+   *
+   * @param request  HttpServletRequest
+   * @param response HttpServletResponse
+   * @throws Exception
+   * @author yoony
+   * @version 1.0
+   * @see MainCommand
+   * @see FileDAO#selectFile(Map)
+   * @since 2023. 02. 18.
+   */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
     logger.debug("execute()");
@@ -40,9 +54,9 @@ public class FileDownloadActionCommand implements MainCommand {
     try (
         SqlSession sqlSession = myBatisConfig.getSqlSessionFactory().openSession();
     ) {
-      int articleId = request.getParameter("articleId") == null ? 0
+      int articleId = ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
           : Integer.parseInt(request.getParameter("articleId"));
-      int fileId = request.getParameter("fileId") == null ? 0
+      int fileId = ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("fileId")) ? 0
           : Integer.parseInt(request.getParameter("fileId"));
 
       // MyBatis Mapper 가져옴
@@ -55,6 +69,7 @@ public class FileDownloadActionCommand implements MainCommand {
       FileDTO fileDTO = fileDAO.selectFile(param);
 
       if (fileDTO == null) {
+        logger.error("파일 정보를 찾을 수 없습니다!");
         return;
       }
 

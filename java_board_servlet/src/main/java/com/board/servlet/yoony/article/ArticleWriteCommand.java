@@ -23,7 +23,7 @@ public class ArticleWriteCommand implements MainCommand {
 
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
-    logger.debug("ArticleWriteCommand.execute()");
+    logger.debug("execute()");
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
     // auto close를 위한 try-with-resource

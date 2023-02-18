@@ -1,8 +1,8 @@
-package com.board.servlet.yoony.article;
+package com.board.servlet.yoony.comment;
 
 import com.board.servlet.yoony.MainCommand;
-import com.board.servlet.yoony.comment.CommentDAO;
-import com.board.servlet.yoony.comment.CommentDTO;
+import com.board.servlet.yoony.article.ArticleDAO;
+import com.board.servlet.yoony.article.ArticleDTO;
 import com.board.servlet.yoony.database.MyBatisConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

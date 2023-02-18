@@ -50,10 +50,11 @@ public interface ArticleDAO {
   /**
    * 게시글 목록을 조회하는 메소드
    *
-   * @param params Map<String, Object> 형태로 담긴 검색 조건 key: searchWord, value: 검색 키워드로 title, content,
-   *               writer 세가지 컬럼에 like 연산처리 key: categoryId, value: 카테고리 ID key: startDate, value:
-   *               endDate와 함께 쓰이며 작성일 기간 검색에 사용 key: endDate, value: startDate와 함께 쓰이며 작성일 기간 검색에
-   *               사용
+   * @param params Map<String, Object> 형태로 담긴 검색 조건
+   *               <p>key: searchWord, value: 검색 키워드로 title, content, writer 세가지 컬럼에 like 연산처리
+   *               <p>key: categoryId, value: 카테고리 ID
+   *               <p>key: startDate, value: endDate와 함께 쓰이며 작성일 기간 검색에 사용
+   *               <p>key: endDate, value: startDate와 함께 쓰이며 작성일 기간 검색에 사용
    * @return List ArticleDTO 리스트
    * @author yoony
    * @version 1.0

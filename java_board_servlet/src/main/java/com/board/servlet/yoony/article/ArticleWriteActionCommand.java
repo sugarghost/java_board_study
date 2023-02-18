@@ -30,7 +30,7 @@ public class ArticleWriteActionCommand implements MainCommand {
 
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
-    logger.debug("ArticleWriteActionCommand.execute()");
+    logger.debug("execute()");
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
   logger.debug(request);

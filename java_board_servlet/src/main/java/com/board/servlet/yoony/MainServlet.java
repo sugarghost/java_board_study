@@ -95,6 +95,9 @@ public class MainServlet extends HttpServlet {
     // action 요청에 대한 처리 후 리다이렉트 여부를 결정하기 위한 변수
     boolean isRedirect = false;
     String redirectParameters = "";
+    // download 등의 페이지 이동이 없는 요청에 대한 처리를 위한 변수
+    // isRedirect와 합쳐서 int에 저장해서 아래에서 if 분기로 처리해도 되지만 가독성을 위해 분리
+    boolean isForward = true;
 
     if ("/list.do".equals(servletPath)) {
       viewPage = "/boards/free/List.jsp";
@@ -127,6 +130,10 @@ public class MainServlet extends HttpServlet {
       viewPage = "/view.do";
       request.setAttribute("command", "commentWriteAction");
     }
+    if ("/fileDownloadAction.do".equals(servletPath)) {
+      isForward = false;
+      request.setAttribute("command", "fileDownloadAction");
+    }
     if (viewPage == null) {
       viewPage = "/Error.jsp";
       request.setAttribute("errorMessage", "알수없는 엔드 포인트입니다: " + servletPath);
@@ -150,10 +157,12 @@ public class MainServlet extends HttpServlet {
     } else if (isRedirect) {
       // action 처리인 경우 redirect를 통해 이동
       response.sendRedirect(viewPage+"?"+redirectParameters);
-    } else {
+    } else if (isForward) {
       // 에러가 발생하지 않았다면 지정된 페이지로 이동
       RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
       dispatcher.forward(request, response);
     }
+    // else에 경우 이동하지 않으며 페이지가 그대로 유지됨
+    // 대표적으로 download 요청이 이에 해당함
   }
 }

@@ -51,7 +51,7 @@
         <div class="w-100">
             <c:if test="${articleDTO.isFileExist}">
                 <c:forEach var="fileDTO" items="${fileList}">
-                    <a href="Download.jsp?fileId=${fileDTO.fileId}&articleId=${fileDTO.articleId}">${fileDTO.fileOriginName}</a>
+                    <a href="fileDownloadAction.do?fileId=${fileDTO.fileId}&articleId=${fileDTO.articleId}">${fileDTO.fileOriginName}</a>
                     <br>
                 </c:forEach>
             </c:if>

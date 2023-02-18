@@ -22,6 +22,12 @@
     FROM article_file
     WHERE article_id = #{articleId}
   </select>
+  <select id="selectFile" resultMap="fileResultMap" parameterType="Map">
+    SELECT file_id, article_id, file_origin_name, file_save_name, file_type, file_path, created_date
+    FROM article_file
+    WHERE file_id = #{fileId}
+      AND article_id = #{articleId}
+  </select>
   <select id="selectFileCount" resultType="int" parameterType="int">
     SELECT COUNT(file_id)
     FROM article_file

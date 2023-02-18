@@ -4,7 +4,8 @@ import com.board.servlet.yoony.article.ArticleListCommand;
 import com.board.servlet.yoony.article.ArticleViewCommand;
 import com.board.servlet.yoony.article.ArticleWriteActionCommand;
 import com.board.servlet.yoony.article.ArticleWriteCommand;
-import com.board.servlet.yoony.article.CommentWriteActionCommand;
+import com.board.servlet.yoony.comment.CommentWriteActionCommand;
+import com.board.servlet.yoony.file.FileDownloadActionCommand;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ public class MainCommandHelper {
     commands.put("articleWriteAction", new ArticleWriteActionCommand());
     commands.put("articleView", new ArticleViewCommand());
     commands.put("commentWriteAction", new CommentWriteActionCommand());
+    commands.put("fileDownloadAction", new FileDownloadActionCommand());
   }
 
   /**

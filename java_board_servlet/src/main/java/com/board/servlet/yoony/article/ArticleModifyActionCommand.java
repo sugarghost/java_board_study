@@ -4,6 +4,7 @@ import com.board.servlet.yoony.MainCommand;
 import com.board.servlet.yoony.database.MyBatisConfig;
 import com.board.servlet.yoony.file.FileDAO;
 import com.board.servlet.yoony.file.FileDTO;
+import com.board.servlet.yoony.util.RequestUtil;
 import com.board.servlet.yoony.util.Security;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -69,8 +70,7 @@ public class ArticleModifyActionCommand implements MainCommand {
     ) {
       MultipartRequest multi = new MultipartRequest(request, saveDirectory, maxPostSize,
           encoding, new DefaultFileRenamePolicy());
-      articleDTO.setArticleId(Integer.parseInt(
-          (multi.getParameter("articleId") != null) ? multi.getParameter("articleId") : "0"));
+      articleDTO.setArticleId(RequestUtil.getIntParameter(multi, "articleId"));
 
       articleDTO.setTitle(multi.getParameter("title"));
       articleDTO.setContent(multi.getParameter("content"));

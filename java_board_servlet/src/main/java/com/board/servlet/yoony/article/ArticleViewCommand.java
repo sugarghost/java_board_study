@@ -8,6 +8,7 @@ import com.board.servlet.yoony.comment.CommentDTO;
 import com.board.servlet.yoony.database.MyBatisConfig;
 import com.board.servlet.yoony.file.FileDAO;
 import com.board.servlet.yoony.file.FileDTO;
+import com.board.servlet.yoony.util.RequestUtil;
 import com.board.servlet.yoony.util.ValidationChecker;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -55,9 +56,7 @@ public class ArticleViewCommand implements MainCommand {
     ) {
       // MyBatis Mapper 가져옴
       ArticleDAO articleDAO = sqlSession.getMapper(ArticleDAO.class);
-      int articleId =
-          ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
-              : Integer.parseInt(request.getParameter("articleId"));
+      int articleId = RequestUtil.getIntParameter(request, "articleId");
       ArticleDTO articleDTO = articleDAO.selectArticle(articleId);
       if (articleDTO == null) {
         logger.error("해당 게시물이 존재하지 않습니다.");

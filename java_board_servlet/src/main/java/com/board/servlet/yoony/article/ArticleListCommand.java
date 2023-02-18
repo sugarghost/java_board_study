@@ -5,6 +5,7 @@ import com.board.servlet.yoony.article.page.PageDTO;
 import com.board.servlet.yoony.category.CategoryDAO;
 import com.board.servlet.yoony.category.CategoryDTO;
 import com.board.servlet.yoony.database.MyBatisConfig;
+import com.board.servlet.yoony.util.RequestUtil;
 import com.board.servlet.yoony.util.ValidationChecker;
 import java.io.IOException;
 import java.util.HashMap;
@@ -96,11 +97,8 @@ public class ArticleListCommand implements MainCommand {
       int pageSize = 5;
       int blockSize = 10;
 
-      int pageNum;
-      String pageTemp = request.getParameter("pageNum");
-      if (!ValidationChecker.CheckStringIsNullOrEmpty(pageTemp)) {
-        pageNum = Integer.parseInt(pageTemp);
-      } else {
+      int pageNum = RequestUtil.getIntParameter(request, "pageNum");
+      if (pageNum == 0) {
         pageNum = 1;
       }
       PageDTO pageDTO = new PageDTO(pageNum, pageSize, blockSize, totalCount);

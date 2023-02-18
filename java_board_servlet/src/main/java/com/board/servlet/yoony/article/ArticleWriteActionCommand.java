@@ -6,6 +6,7 @@ import com.board.servlet.yoony.category.CategoryDTO;
 import com.board.servlet.yoony.database.MyBatisConfig;
 import com.board.servlet.yoony.file.FileDAO;
 import com.board.servlet.yoony.file.FileDTO;
+import com.board.servlet.yoony.util.RequestUtil;
 import com.board.servlet.yoony.util.Security;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -71,8 +72,7 @@ public class ArticleWriteActionCommand implements MainCommand {
       articleDTO.setTitle(multi.getParameter("title"));
       articleDTO.setContent(multi.getParameter("content"));
       articleDTO.setWriter(multi.getParameter("writer"));
-      articleDTO.setCategoryId(Integer.parseInt(
-          (multi.getParameter("categoryId") != null) ? multi.getParameter("categoryId") : "0"));
+      articleDTO.setCategoryId(RequestUtil.getIntParameter(multi, "categoryId"));
       articleDTO.setPassword(multi.getParameter("password"));
 
       if (!articleDTO.isInsertArticleValid()) {

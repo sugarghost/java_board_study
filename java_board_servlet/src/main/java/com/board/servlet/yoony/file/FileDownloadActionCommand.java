@@ -4,6 +4,7 @@ import com.board.servlet.yoony.MainCommand;
 import com.board.servlet.yoony.category.CategoryDAO;
 import com.board.servlet.yoony.category.CategoryDTO;
 import com.board.servlet.yoony.database.MyBatisConfig;
+import com.board.servlet.yoony.util.RequestUtil;
 import com.board.servlet.yoony.util.ValidationChecker;
 import java.io.File;
 import java.io.FileInputStream;
@@ -54,11 +55,8 @@ public class FileDownloadActionCommand implements MainCommand {
     try (
         SqlSession sqlSession = myBatisConfig.getSqlSessionFactory().openSession();
     ) {
-      int articleId =
-          ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
-              : Integer.parseInt(request.getParameter("articleId"));
-      int fileId = ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("fileId")) ? 0
-          : Integer.parseInt(request.getParameter("fileId"));
+      int articleId = RequestUtil.getIntParameter(request, "articleId");
+      int fileId = RequestUtil.getIntParameter(request, "fileId");
 
       // MyBatis Mapper 가져옴
       FileDAO fileDAO = sqlSession.getMapper(FileDAO.class);

@@ -1,7 +1,9 @@
 package com.board.servlet.yoony;
 
 import com.board.servlet.yoony.article.search.SearchManager;
+import com.board.servlet.yoony.util.RequestUtil;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
@@ -90,6 +92,9 @@ public class MainServlet extends HttpServlet {
     logger.debug("servletPath : " + servletPath);
     // 각 요청에 맞는 jsp 페이지를 지정하기 위한 변수
     String viewPage = null;
+    // action 요청에 대한 처리 후 리다이렉트 여부를 결정하기 위한 변수
+    boolean isRedirect = false;
+    String redirectParameters = "";
 
     if ("/list.do".equals(servletPath)) {
       viewPage = "/boards/free/List.jsp";
@@ -103,6 +108,8 @@ public class MainServlet extends HttpServlet {
       errorMessages.put("3", "파일 등록 실패!");
     }
     if ("/writeAction.do".equals(servletPath)) {
+      // action 처리의 경우 처리 후 리다이렉트를 위해 isRedirect를 true로 설정
+      isRedirect = true;
       viewPage = "/list.do";
       request.setAttribute("command", "articleWriteAction");
     }
@@ -115,6 +122,8 @@ public class MainServlet extends HttpServlet {
       errorMessages.put("delete1", "삭제에 실패했습니다!");
     }
     if ("/commentWriteAction.do".equals(servletPath)) {
+      isRedirect = true;
+      redirectParameters = RequestUtil.getUrlParameter(request.getHeader("referer"));
       viewPage = "/view.do";
       request.setAttribute("command", "commentWriteAction");
     }
@@ -138,6 +147,9 @@ public class MainServlet extends HttpServlet {
       // redirect를 통해 이동하기에 기존 request 정보가 사라지기 때문에 error 코드를 쿼리에 붙여서 날림
       // 코드에 대응되는 message들은 기존이 미리 페이지 분기에서 설정되어 있음
       response.sendRedirect(referer + "&error=" + request.getAttribute("error"));
+    } else if (isRedirect) {
+      // action 처리인 경우 redirect를 통해 이동
+      response.sendRedirect(viewPage+"?"+redirectParameters);
     } else {
       // 에러가 발생하지 않았다면 지정된 페이지로 이동
       RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

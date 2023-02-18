@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>게시판 - 보기</h1>
+    <h1>자유게시판 - 보기</h1>
     <div class="row d-flex">
         <div class="m-2 mr-auto">${articleDTO.writer}</div>
         <div class="m-2">

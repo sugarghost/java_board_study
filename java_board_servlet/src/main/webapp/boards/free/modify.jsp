@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>게시판 - 수정</h1>
+    <h1>자유게시판 - 수정</h1>
     <form name="articleForm" method="post"
           action="modify_action.do?articleId=${articleDTO.articleId}${searchManager.getSearchParamsQuery()}"
           enctype="multipart/form-data"
@@ -106,7 +106,7 @@
         <div>
             <button type="button"
                     class="btn border float-left"
-                    onclick="location.href = 'view.jsp?articleId=${articleDTO.articleId}${searchKeeperSearchParams}'">
+                    onclick="location.href = 'view.do?articleId=${articleDTO.articleId}${searchManager.getSearchParamsQuery()}'">
                 취소
             </button>
         </div>

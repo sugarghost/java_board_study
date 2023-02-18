@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container">
-    <h1>게시판 - 등록</h1>
+    <h1>자유게시판 - 등록</h1>
     <form name="articleForm" method="post"
           action="writeAction.do?"
           enctype="multipart/form-data"

@@ -7,10 +7,11 @@ import lombok.ToString;
 
 /**
  * 카테고리 DTO
+ *
  * @author yoony
- * @since 2023. 02. 15.
  * @version 1.0
  * @see CategoryDAO
+ * @since 2023. 02. 15.
  */
 @Getter
 @Setter

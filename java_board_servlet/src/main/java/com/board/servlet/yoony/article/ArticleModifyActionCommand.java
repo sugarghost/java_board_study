@@ -29,6 +29,28 @@ public class ArticleModifyActionCommand implements MainCommand {
 
   private Logger logger = LogManager.getLogger(ArticleModifyActionCommand.class);
 
+  /**
+   * 게시글 수정 처리를 위한 메소드
+   * <p>게시글 수정을 위해 articleId, title, content, writer, password를 매개변수로 받아옴
+   * <p>password를 sha256으로 암호화하고 게시글의 비밀번호와 일치하는지 확인
+   * <p>일치하면 게시글을 수정하고 해당 게시글에 속한 파일들을 수정
+   * <p>파일이 등록되면 파일을 저장하고 파일 정보를 DB에 저장
+   * <p>삭제 대상 파일 id를 deleteFileId으로 받아와서 해당 파일을 삭제
+   * <p>사용되는 에러 코드는 modify.do에서 정의됨
+   *
+   * @param request  HttpServletRequest
+   * @param response HttpServletResponse
+   * @throws Exception
+   * @version 1.0
+   * @aothor yoony
+   * @see MainCommand
+   * @see ArticleDAO#selectPasswordCheck(ArticleDTO)
+   * @see ArticleDAO#updateArticle(ArticleDTO)
+   * @see FileDAO#deleteFile(FileDTO)
+   * @see FileDAO#insertFile(FileDTO)
+   * @since 2023. 02. 18.
+   */
+
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
     logger.debug("execute()");
@@ -75,21 +97,21 @@ public class ArticleModifyActionCommand implements MainCommand {
       // 검사를 통과했으면 수정을 진행
 
       int articleUpdateResult = articleDAO.updateArticle(articleDTO);
-      if (articleUpdateResult < 1 ) {
+      if (articleUpdateResult < 1) {
         logger.debug("게시글 수정에 실패했습니다.");
         request.setAttribute("error", "3");
         return;
       }
       // 파일 삭제 대상의 ID들을 받아옴
-      String[] files = multi.getParameterValues("deleteFileId");
+      String[] deleteFileIds = multi.getParameterValues("deleteFileId");
       FileDAO fileDAO = sqlSession.getMapper(FileDAO.class);
 
       // 파일 삭제 대상이 있다면 삭제
 
-      if (files != null) {
-        for (String file : files) {
+      if (deleteFileIds != null) {
+        for (String deleteFileId : deleteFileIds) {
           FileDTO deleteFileDTO = new FileDTO();
-          deleteFileDTO.setFileId(Integer.parseInt(file));
+          deleteFileDTO.setFileId(Integer.parseInt(deleteFileId));
           deleteFileDTO.setArticleId(articleDTO.getArticleId());
           // 시간 관계상 처리가 안된 File에 대한 분기를 생략
           int fileDeleteResult = fileDAO.deleteFile(deleteFileDTO);
@@ -113,7 +135,7 @@ public class ArticleModifyActionCommand implements MainCommand {
           String realFileName = multi.getFilesystemName(file);
           String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
-          String newFileName = UUID.randomUUID()  + "." + ext;
+          String newFileName = UUID.randomUUID() + "." + ext;
 
           File oldFile = new File(saveDirectory + File.separator + realFileName);
           File newFile = new File(saveDirectory + File.separator + newFileName);

@@ -8,10 +8,11 @@ import lombok.ToString;
 
 /**
  * 댓글 DTO
+ *
  * @author yoony
- * @since 2023. 02. 17.
  * @version 1.0
  * @see CommentDAO
+ * @since 2023. 02. 17.
  */
 @Getter
 @Setter

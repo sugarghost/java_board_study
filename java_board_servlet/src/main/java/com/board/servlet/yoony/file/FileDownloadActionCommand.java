@@ -54,8 +54,9 @@ public class FileDownloadActionCommand implements MainCommand {
     try (
         SqlSession sqlSession = myBatisConfig.getSqlSessionFactory().openSession();
     ) {
-      int articleId = ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
-          : Integer.parseInt(request.getParameter("articleId"));
+      int articleId =
+          ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
+              : Integer.parseInt(request.getParameter("articleId"));
       int fileId = ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("fileId")) ? 0
           : Integer.parseInt(request.getParameter("fileId"));
 

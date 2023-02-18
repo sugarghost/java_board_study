@@ -45,7 +45,7 @@ public class PageDTO {
 
   /**
    * 페이지네이션 구성시 자동으로 필요 정보를 계산해주는 생성자
-   * <p>
+   *
    * @param pageNum    페이지 번호
    * @param pageSize   페이지당 보여줄 게시물 수
    * @param blockPage  페이지 블록당 보여줄 페이지 수

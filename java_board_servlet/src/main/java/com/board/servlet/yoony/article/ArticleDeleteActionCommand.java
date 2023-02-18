@@ -20,12 +20,36 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * The type Article write action command.
+ * 게시글 삭제 처리를 처리하는 커맨드
+ *
+ * @author yoony
+ * @version 1.0
+ * @see MainCommand
+ * @since 2023. 02. 18.
  */
 public class ArticleDeleteActionCommand implements MainCommand {
 
   private Logger logger = LogManager.getLogger(ArticleDeleteActionCommand.class);
 
+  /**
+   * 게시글 삭제 처리을 처리하는 메소드
+   * <p>게시글 삭제를 위해 articleId와 password를 매개변수로 받아옴
+   * <p>password를 sha256로 암호화하고 게시글의 비밀번호와 일치하는지 확인
+   * <p>일치하면 게시글을 삭제하고 해당 게시글에 속한 파일들을 삭제
+   * <p>사용되는 에러 코드는 view.do에서 정의됨
+   *
+   * @param request  HttpServletRequest
+   * @param response HttpServletResponse
+   * @throws Exception
+   * @version 1.0
+   * @aothor yoony
+   * @see MainCommand
+   * @see ArticleDAO#selectArticle(int)
+   * @see ArticleDAO#selectPasswordCheck(ArticleDTO)
+   * @see ArticleDAO#deleteArticle(ArticleDTO)
+   * @see FileDAO#deleteAllFile(int)
+   * @since 2023. 02. 18.
+   */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
     logger.debug("execute()");

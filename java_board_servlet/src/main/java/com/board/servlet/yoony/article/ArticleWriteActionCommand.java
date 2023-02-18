@@ -22,18 +22,40 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * The type Article write action command.
+ * 게시글 등록 액션을 처리하는 커맨드
+ *
+ * @version 1.0
+ * @aothor yoony
+ * @see MainCommand
+ * @since 2023. 02. 18.
  */
 public class ArticleWriteActionCommand implements MainCommand {
 
   private Logger logger = LogManager.getLogger(ArticleWriteActionCommand.class);
 
+  /**
+   * 게시글 등록 액션을 처리하는 메소드
+   * <p>게시글 등록을 위해 제목, 내용, 작성자, 카테고리, 비밀번호를 입력받아 해당 게시글을 등록
+   * <p>파일이 첨부되었다면 파일을 저장하고 파일 정보를 DB에 저장
+   * <p>사용되는 에러 코드는 write.do에서 정의됨
+   *
+   * @param request  HttpServletRequest
+   * @param response HttpServletResponse
+   * @throws Exception
+   * @throws IOException
+   * @version 1.0
+   * @aothor yoony
+   * @see MainCommand
+   * @see ArticleDAO#insertArticle(ArticleDTO)
+   * @see FileDAO#insertFile(FileDTO)
+   * @since 2023. 02. 18.
+   */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
     logger.debug("execute()");
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
-  logger.debug(request);
+    logger.debug(request);
     String saveDirectory = "C:\\tempUploads";
     int maxPostSize = 10 * 1024 * 1024; // 10MB 제한
     String encoding = "UTF-8";
@@ -49,7 +71,8 @@ public class ArticleWriteActionCommand implements MainCommand {
       articleDTO.setTitle(multi.getParameter("title"));
       articleDTO.setContent(multi.getParameter("content"));
       articleDTO.setWriter(multi.getParameter("writer"));
-      articleDTO.setCategoryId(Integer.parseInt((multi.getParameter("categoryId") != null) ? multi.getParameter("categoryId") : "0" ));
+      articleDTO.setCategoryId(Integer.parseInt(
+          (multi.getParameter("categoryId") != null) ? multi.getParameter("categoryId") : "0"));
       articleDTO.setPassword(multi.getParameter("password"));
 
       if (!articleDTO.isInsertArticleValid()) {
@@ -58,7 +81,6 @@ public class ArticleWriteActionCommand implements MainCommand {
         return;
       }
       articleDTO.setPassword(Security.sha256Encrypt(multi.getParameter("password")));
-
 
       // MyBatis Mapper 가져옴
       ArticleDAO articleDAO = sqlSession.getMapper(ArticleDAO.class);

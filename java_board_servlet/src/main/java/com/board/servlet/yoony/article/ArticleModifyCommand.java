@@ -28,9 +28,18 @@ public class ArticleModifyCommand implements MainCommand {
 
   /**
    * 게시글 수정화면 이동 메소드
+   * <p>articleId를 매개변수로 받아 게시글 정보를 가져옴
+   * <p>게시글에 등록된 파일 정보가 있다면 파일 리스트를 가져옴
    *
    * @param request  HttpServletRequest
    * @param response HttpServletResponse
+   * @throws Exception
+   * @version 1.0
+   * @author yoony
+   * @see MainCommand
+   * @see ArticleDAO#selectArticle(int)
+   * @see FileDAO#selectFileList(int)
+   * @since 2023. 02. 18.
    */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -43,8 +52,9 @@ public class ArticleModifyCommand implements MainCommand {
     ) {
       // MyBatis Mapper 가져옴
       ArticleDAO articleDAO = sqlSession.getMapper(ArticleDAO.class);
-      int articleId = ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
-          : Integer.parseInt(request.getParameter("articleId"));
+      int articleId =
+          ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter("articleId")) ? 0
+              : Integer.parseInt(request.getParameter("articleId"));
 
       ArticleDTO articleDTO = articleDAO.selectArticle(articleId);
       if (articleDTO == null) {

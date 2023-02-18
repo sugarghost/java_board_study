@@ -26,6 +26,7 @@ public class CommentWriteActionCommand implements MainCommand {
   /**
    * 댓글 작성
    * <p> 게시물 존재 여부 확인 후 댓글 작성
+   * <p>articleId, content 파라미터를 받아와 작성
    *
    * @param request  HttpServletRequest
    * @param response HttpServletResponse

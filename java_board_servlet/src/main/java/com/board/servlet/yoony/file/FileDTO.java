@@ -8,10 +8,11 @@ import lombok.ToString;
 
 /**
  * 파일 DTO
+ *
  * @author yoony
- * @since 2023. 02. 16.
  * @version 1.0
  * @see FileDAO
+ * @since 2023. 02. 16.
  */
 @Getter
 @Setter

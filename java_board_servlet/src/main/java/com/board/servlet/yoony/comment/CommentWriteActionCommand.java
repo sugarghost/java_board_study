@@ -52,6 +52,8 @@ public class CommentWriteActionCommand implements MainCommand {
       ArticleDAO articleDAO = sqlSession.getMapper(ArticleDAO.class);
       int articleId = RequestUtil.getIntParameter(request, "articleId");
       String content = request.getParameter("content");
+
+
       // 게시물 존재 여부 확인
       // TODO: 게시물 존재 여부만 확인하는 쿼리 따로 짜기
       ArticleDTO articleDTO = articleDAO.selectArticle(articleId);
@@ -66,6 +68,14 @@ public class CommentWriteActionCommand implements MainCommand {
       CommentDTO commentDTO = new CommentDTO();
       commentDTO.setArticleId(articleId);
       commentDTO.setContent(content);
+
+      // content 유효성 검사
+      if (!commentDTO.isContentValid()) {
+        logger.error("댓글 내용이 유효하지 않습니다.");
+        request.setAttribute("error", "comment1");
+        return;
+      }
+
       int commentInsertResult = commentDAO.insertComment(commentDTO);
 
       // 댓글 작성 성공 여부 확인
@@ -73,7 +83,7 @@ public class CommentWriteActionCommand implements MainCommand {
         logger.debug("댓글 작성에 성공했습니다.");
       } else {
         logger.error("댓글 작성에 실패했습니다.");
-        request.setAttribute("error", "comment1");
+        request.setAttribute("error", "comment2");
         return;
       }
     } catch (Exception e) {

@@ -5,6 +5,9 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
+<%
+    System.out.println("index");
+%>
 <script>
   location.href = "/list.do";
 </script>

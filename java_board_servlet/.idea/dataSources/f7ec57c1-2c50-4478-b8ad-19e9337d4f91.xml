@@ -1278,7 +1278,7 @@ sleepcareweb|schema||sleepcare_web|localhost|grant option|G</Grants>
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
     <column id="343" parent="339" name="article_id">
-      <AutoIncrement>233</AutoIncrement>
+      <AutoIncrement>248</AutoIncrement>
       <DasType>bigint(20) unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1336,7 +1336,7 @@ sleepcareweb|schema||sleepcare_web|localhost|grant option|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="354" parent="340" name="file_id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>14</AutoIncrement>
       <DasType>bigint(20) unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1409,7 +1409,7 @@ sleepcareweb|schema||sleepcare_web|localhost|grant option|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="368" parent="342" name="comment_id">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>16</AutoIncrement>
       <DasType>bigint(20) unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

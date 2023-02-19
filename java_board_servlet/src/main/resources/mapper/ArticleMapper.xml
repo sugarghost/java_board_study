@@ -44,7 +44,7 @@
   </select>
   <!-- TODO: (공식홈페이지 참조) Map보다는 Type을 사용하면 런타임에서 DTO를 검사해서 판단이 가능함-->
   <!-- TODO: 쿼리 포멧팅을 좀더 신경쓰기(예시: 컬럼명 3,4개 단위로 줄 바꿈을 하는 등)-->
-  <select id="selectArticleList" resultType="com" parameterType="Map">
+  <select id="selectArticleList" resultMap="articleResultMap" parameterType="Map">
     SELECT
       article_id, category_id, writer, password, title, content, view_count, created_date, modified_date,
       (SELECT EXISTS(SELECT 1 FROM article_file WHERE article_id = article.article_id)) AS is_file_exist

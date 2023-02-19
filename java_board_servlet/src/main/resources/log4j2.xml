@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- TODO: logback으로 사용하기 -->
 <configuration status="debug">
 
   <Appenders>
@@ -22,34 +23,5 @@
       <AppenderRef ref="file"/>
     </root>
   </loggers>
-  <logger name="jdbc.connection" additivity="false">
-    <level value="warn" />
-    <appender-ref ref="console"/>
-  </logger>
-
-  <logger name="jdbc.audit" additivity="false">
-    <level value="warn"/>
-    <appender-ref ref="console"/>
-  </logger>
-
-  <logger name="jdbc.resultset" additivity="false">
-    <level value="warn" />
-    <appender-ref ref="console"/>
-  </logger>
-
-  <logger name="jdbc.sqlonly" additivity="false">
-    <level value="info"/>
-    <appender-ref ref="console"/>
-  </logger>
-
-  <logger name="jdbc.resultsettable" additivity="false">
-    <level value="info"/>
-    <appender-ref ref="console"/>
-  </logger>
-
-  <logger name="jdbc.sqltiming" additivity="false">
-    <level value="warn" />
-    <appender-ref ref="console"/>
-  </logger>
 
 </configuration>

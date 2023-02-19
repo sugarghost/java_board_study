@@ -20,8 +20,8 @@ public interface MainCommand {
    *
    * @param request  HttpServletRequest
    * @param response HttpServletResponse
-   * @throws ServletException
-   * @throws IOException
+   * @throws ServletException the servlet exception
+   * @throws IOException      the io exception
    */
   void execute(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException;

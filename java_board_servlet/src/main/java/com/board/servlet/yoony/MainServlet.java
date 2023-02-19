@@ -102,7 +102,8 @@ public class MainServlet extends HttpServlet {
     // download 등의 페이지 이동이 없는 요청에 대한 처리를 위한 변수
     // isRedirect와 합쳐서 int에 저장해서 아래에서 if 분기로 처리해도 되지만 가독성을 위해 분리
     boolean isForward = true;
-
+    // TODO: if else 내용 치워버리고 1/10로 코드를 줄여버리기(힌트: 인터페이스를 쓰는 이유는 if else를 줄이기 위해서)
+    // TODO: if문은 else if 처리하기(return 문이 있는게 아니니 if문을 전부 검사함)
     if ("/list.do".equals(servletPath)) {
       viewPage = "/boards/free/list.jsp";
       request.setAttribute("command", "articleList");
@@ -110,6 +111,7 @@ public class MainServlet extends HttpServlet {
     if ("/write.do".equals(servletPath)) {
       viewPage = "/boards/free/write.jsp";
       request.setAttribute("command", "articleWrite");
+      // TODO: feedback 에러 핸들러를 따로 둬서 그쪽 클래스에서 핸들하는 방안이 좋음
       errorMessages.put("1", "입력값 오류!");
       errorMessages.put("2", "게시물 등록 실패!");
       errorMessages.put("3", "파일 등록 실패!");
@@ -168,11 +170,17 @@ public class MainServlet extends HttpServlet {
     request.setAttribute("errorMessages", errorMessages);
 
     // request의 command 파라미터를 통해 요청을 처리할 Command를 가져오지만, 판별을 Helper에 위임
+    // TODO: request를 특정 클래스에 던지는 코드는 좋은 코드가 아님
+    // request가 매개변수로 던져지면 확장성이 떨어짐
+    // pojo형태(내가 만든 자바 DTO또는 MAP이 됬든 던져서 처리하는게 나음)
     MainCommand mainCommand = MainCommandHelper.getCommand(request);
     mainCommand.execute(request, response);
 
     // command 처리 과정중 에러가 발생했다면 이전으로 돌아가기 위한 처리
     if (request.getAttribute("error") != null) {
+      // referer의 용도는 통계 데이터 수집이 큼
+      // TODO: referer를 오류 발생시 이전 페이지로 돌아가는건 좋은 구문이 아님
+      // 에러 발생시 일반적으로 에러페이지로 돌아감
       String referer = request.getHeader("referer");
       // redirect를 통해 이동하기에 기존 request 정보가 사라지기 때문에 error 코드를 쿼리에 붙여서 날림
       // 코드에 대응되는 message들은 기존이 미리 페이지 분기에서 설정되어 있음

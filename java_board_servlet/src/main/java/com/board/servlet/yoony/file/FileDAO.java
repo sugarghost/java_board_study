@@ -17,8 +17,7 @@ public interface FileDAO {
   /**
    * 파일을 등록하는 메소드
    *
-   * @param fileDTO 파일 정보를 담은 DTO
-   *                <p>fileId는 Auto Increment이므로 입력하지 않음
+   * @param fileDTO 파일 정보를 담은 DTO                <p>fileId는 Auto Increment이므로 입력하지 않음
    *                <p>createdDate는 current_timestamp로 입력되므로 입력하지 않음
    * @return int 등록된 파일의 개수
    * @author yoony
@@ -42,8 +41,7 @@ public interface FileDAO {
   /**
    * 특정 게시글의 특정 파일을 조회하는 메소드
    *
-   * @param params 조회할 파일의 id와 게시글 id를 담은 {@link Map}
-   *               <p>key: articleId, value: 게시글 id
+   * @param params 조회할 파일의 id와 게시글 id를 담은 {@link Map}               <p>key: articleId, value: 게시글 id
    *               <p>key: fileId, value: 파일 id
    * @return 조회된 파일 정보를 담은 {@link FileDTO}
    * @author yoony
@@ -79,9 +77,8 @@ public interface FileDAO {
   /**
    * 특정 게시글에 등록된 특정 파일 데이터를 삭제하는 메소드
    *
-   * @param fileDTO 파일 정보를 담은 DTO
-   *                <p>fileId는 삭제할 파일의 id
-   *                <p>articleId는 삭제할 파일이 속한 게시글 id
+   * @param fileDTO 파일 정보를 담은 DTO                <p>fileId는 삭제할 파일의 id                <p>articleId는
+   *                삭제할 파일이 속한 게시글 id
    * @return int 삭제된 파일의 개수
    * @aothor yoony
    * @version 1.0

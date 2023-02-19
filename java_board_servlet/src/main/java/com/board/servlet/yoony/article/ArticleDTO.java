@@ -103,10 +103,10 @@ public class ArticleDTO {
    * 게시글 등록이 유효한지 검사
    *
    * @return 유효하면 true, 아니면 false
-   * @see #isWriterValid()
-   * @see #isPasswordValid()
-   * @see #isTitleValid()
-   * @see #isContentValid()
+   * @see #isWriterValid() #isWriterValid()#isWriterValid()
+   * @see #isPasswordValid() #isPasswordValid()#isPasswordValid()
+   * @see #isTitleValid() #isTitleValid()#isTitleValid()
+   * @see #isContentValid() #isContentValid()#isContentValid()
    */
   public boolean isInsertArticleValid() {
     return isWriterValid()
@@ -119,10 +119,10 @@ public class ArticleDTO {
    * 게시글 수정이 유효한지 검사
    *
    * @return 유효하면 true, 아니면 false
-   * @see #isWriterValid()
-   * @see #isPasswordValid()
-   * @see #isTitleValid()
-   * @see #isContentValid()
+   * @see #isWriterValid() #isWriterValid()#isWriterValid()
+   * @see #isPasswordValid() #isPasswordValid()#isPasswordValid()
+   * @see #isTitleValid() #isTitleValid()#isTitleValid()
+   * @see #isContentValid() #isContentValid()#isContentValid()
    */
   public boolean isUpdateArticleValid() {
     return isWriterValid()

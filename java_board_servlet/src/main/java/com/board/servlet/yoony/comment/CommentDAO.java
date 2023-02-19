@@ -16,8 +16,7 @@ public interface CommentDAO {
   /**
    * 댓글을 등록하는 메소드
    *
-   * @param commentDTO 게시글 정보를 담은 DTO
-   *                   <p>commentId는 Auto Increment이므로 입력하지 않음
+   * @param commentDTO 게시글 정보를 담은 DTO                   <p>commentId는 Auto Increment이므로 입력하지 않음
    *                   <p>createdDate는 current_timestamp로 입력되므로 입력하지 않음
    * @return int 등록된 댓글의 개수
    * @author yoony

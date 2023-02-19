@@ -36,6 +36,13 @@ public class SearchManager {
    * @since 2023. 02. 15.
    */
   public SearchManager(HttpServletRequest request) {
+    // TODO: 만약 getSearchParamsQuery를 다른 곳에서 쓸떄
+    // request는 내가 만들 수 없고 톰캣에서 생성되기 때문에 다른 것으로 SearchManager를 쓰려고 하면 사용하지 못함
+    // map을 가져다 넣으면 어디서든 사용 가능
+    // 특정 인터페이스(WAS)에서 만들어주는 데이터는 가능하면 파라미터로 사용하지 않는걸 추찬함
+    // request는 안에 뭐가 있는지 알수가 없음
+    // TODO: 공통 TODO로 util성 있는 클래스들은 특정 클래스나 데이터에 종속적이지 않도록 하기(나 말고 누구나 사용 가능하도록)
+
     this.pageNum = (request.getParameter("pageNum") != null) ? request.getParameter("pageNum") : "";
     this.searchWord =
         (request.getParameter("searchWord") != null) ? request.getParameter("searchWord") : "";
@@ -50,7 +57,7 @@ public class SearchManager {
    * 저장된 검색 조건을 Url에 붙여서 사용하기 위한 String을 생성함
    *
    * @return String 저장된 검색 조건을 붙여서 만든 query String
-   * @throws UnsupportedEncodingException
+   * @throws UnsupportedEncodingException the unsupported encoding exception
    * @author yoony
    * @version 1.0
    * @since 2023. 02. 15.
@@ -83,7 +90,7 @@ public class SearchManager {
    * <p>좀더 좋은 설계가 있겠지만 이 문제로 오래 고민하는 대신 다른 기능 작업하려는 판단
    *
    * @return String 저장된 검색 조건을 붙여서 만든 query String
-   * @throws UnsupportedEncodingException
+   * @throws UnsupportedEncodingException the unsupported encoding exception
    * @author yoony
    * @version 1.0
    * @since 2023. 02. 15.

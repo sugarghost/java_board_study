@@ -16,6 +16,7 @@ import lombok.ToString;
 @ToString
 public class PageDTO {
 
+  // TODO: 한줄짜리 설명 주석도 javadoc 주석으로 변경해야함
   // 페이지 번호
   private int pageNum;
   // 페이지당 보여줄 게시물 수

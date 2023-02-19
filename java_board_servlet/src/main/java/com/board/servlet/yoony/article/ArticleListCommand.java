@@ -53,6 +53,7 @@ public class ArticleListCommand implements MainCommand {
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
     // auto close를 위한 try-with-resource
     // session을 DAO별로 따로 생성했는데, 굳이 이럴 필요는 없을 것 같음
+    // TODO: session을 하나로 통합
     try (
         SqlSession articleSqlSession = myBatisConfig.getSqlSessionFactory().openSession();
         SqlSession categorySqlSession = myBatisConfig.getSqlSessionFactory().openSession();

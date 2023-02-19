@@ -44,6 +44,7 @@ public class ArticleModifyCommand implements MainCommand {
    */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
+    // TODO: 화면 이동은 PageAction이라는 별도 객체를 만들어서 처리하는 방안 고려
     logger.debug("execute()");
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
@@ -61,6 +62,7 @@ public class ArticleModifyCommand implements MainCommand {
         return;
       }
       request.setAttribute("articleDTO", articleDTO);
+      // TODO: getIsFileExist대신 그냥 isFileExist만 써도 의미전달은 됨
       if (articleDTO.getIsFileExist()) {
         FileDAO fileDAO = sqlSession.getMapper(FileDAO.class);
         List<FileDTO> fileList = fileDAO.selectFileList(articleId);

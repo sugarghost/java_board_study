@@ -53,10 +53,13 @@ public class ArticleWriteActionCommand implements MainCommand {
    */
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) {
+    // TODO: 코드를 줄일려는 노력해야함, 리팩토링 중심 코드
+    // Try catch만 줄여도 코드가 줄어듬(그냥 던져버리기)(아니면 핸들러를 마련해서 핸들러가 처리를 해도 코드가 깔끔)
     logger.debug("execute()");
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
     logger.debug(request);
+    // TODO: properties로 빼기(아래 3줄)
     String saveDirectory = "C:\\tempUploads";
     int maxPostSize = 10 * 1024 * 1024; // 10MB 제한
     String encoding = "UTF-8";
@@ -132,13 +135,17 @@ public class ArticleWriteActionCommand implements MainCommand {
         }
       } else {
         logger.error("게시글 등록 실패");
+        // TODO: rollback 처리 같은 마지막 처리 필요 부분은 fanllay에서 처리(에러 체크를 통해 마지막 결정 등...)
         sqlSession.rollback();
         request.setAttribute("error", "2");
       }
     } catch (IOException e) {
       logger.error(e);
+      // TODO: 다시한번 명시하지만 에러 처리 부분은 따로 클래스를 빼거나 처리하기(명확하게)(본인만의 Exception 만들기)
+      // 현재 코드 상으로는 어떤 에러인지 알기 힘듬
       request.setAttribute("error", "2");
     } catch (Exception e) {
+      // catch에 e.printStackTrace()를 사용하는 이유는 Log 때문
       logger.error(e);
       request.setAttribute("error", "2");
     }

@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Project Files" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="int형 파라미터를 받아오는 로직을 RequestUtil.getIntParameter를 사용해 축약">
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="잘못 연결된 주소 수정(수정페이지 취소버튼) 및 title 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/modify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/modify.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/view.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/view.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/write.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleModifyCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleModifyCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/page/PageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/page/PageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/search/SearchManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/search/SearchManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/database/MyBatisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/file/FileDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/RequestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/RequestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/Security.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/Security.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/ArticleMapper.xml" afterDir="false" />
+    </list>
+    <list id="61183091-c0d5-4c29-b72e-ad474411ad52" name="Changes by ohseachun" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +49,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="java_board_servlet" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -51,6 +70,24 @@
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleListCommand.java">
+      <ranges>
+        <range start1="55" end1="55" start2="55" end2="56" changelist="fafb23d6-87b7-44c5-ba9d-a7689e89f705" />
+        <range start1="66" end1="73" start2="67" end2="69" changelist="61183091-c0d5-4c29-b72e-ad474411ad52" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/article/ArticleWriteActionCommand.java">
+      <ranges>
+        <range start1="55" end1="55" start2="55" end2="57" changelist="fafb23d6-87b7-44c5-ba9d-a7689e89f705" />
+        <range start1="59" end1="59" start2="61" end2="62" changelist="fafb23d6-87b7-44c5-ba9d-a7689e89f705" />
+        <range start1="134" end1="134" start2="137" end2="138" changelist="fafb23d6-87b7-44c5-ba9d-a7689e89f705" />
+        <range start1="137" end1="137" start2="141" end2="146" changelist="61183091-c0d5-4c29-b72e-ad474411ad52" />
+        <range start1="139" end1="139" start2="148" end2="150" changelist="fafb23d6-87b7-44c5-ba9d-a7689e89f705" />
+        <range start1="141" end1="141" start2="152" end2="153" changelist="fafb23d6-87b7-44c5-ba9d-a7689e89f705" />
+      </ranges>
+    </file>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -93,7 +130,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.5275862",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -227,7 +264,8 @@
       <workItem from="1676447370595" duration="6598000" />
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
-      <workItem from="1676533752698" duration="61138000" />
+      <workItem from="1676533752698" duration="62165000" />
+      <workItem from="1676782903013" duration="4883000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -362,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676701419310</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="잘못 연결된 주소 수정(수정페이지 취소버튼) 및 title 수정">
+      <created>1676701744234</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1676701744234</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,7 +446,8 @@
     <MESSAGE value="삭제 기능 추가" />
     <MESSAGE value="주석 포맷 정리 및 일부 주석 강화" />
     <MESSAGE value="int형 파라미터를 받아오는 로직을 RequestUtil.getIntParameter를 사용해 축약" />
-    <option name="LAST_COMMIT_MESSAGE" value="int형 파라미터를 받아오는 로직을 RequestUtil.getIntParameter를 사용해 축약" />
+    <MESSAGE value="잘못 연결된 주소 수정(수정페이지 취소버튼) 및 title 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="잘못 연결된 주소 수정(수정페이지 취소버튼) 및 title 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -22,6 +22,10 @@ public class ValidationChecker {
    * @since 2023. 02. 14.
    */
   public static boolean CheckStringIsNullOrEmpty(String targetString) {
+    // TODO: 테스트 같은 경우는 이름이 길어도 되지만, 가능한 명확한게 좋음
+    // TODO: 메소드 소문자로 들어가야함(이름 또한 너무 기니 isEmpty로 바꿔야함)
+    // TODO: "null"이라는 스트링 값 자체가넘어가는 게 이상함(애초에 문자로 된 null이 가면 안됨) 만약 간다면 의미가 있는 즉 의도된 상태일 수 있으니 의도와 다른 결과를 낼 수 있음)
+    // TODO: 명명규칙상 boolean은 is로 시작하는 방안을 고려
     return targetString == null || "".equals(targetString) || targetString.isEmpty()
         || "null".equals(targetString);
   }

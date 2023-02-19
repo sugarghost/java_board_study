@@ -2,7 +2,6 @@ package com.board.servlet.yoony.util;
 
 import com.oreilly.servlet.MultipartRequest;
 import javax.servlet.http.HttpServletRequest;
-import org.graalvm.compiler.core.GraalCompiler.Request;
 
 /**
  * 요청을 처리하는 유틸리티 클래스
@@ -38,6 +37,8 @@ public class RequestUtil {
    * @param key     가져올 파라미터 이름
    * @return int 파라미터 값 혹은 0
    * @see ValidationChecker#CheckStringIsNullOrEmpty(String)
+   * ValidationChecker#CheckStringIsNullOrEmpty(String)
+   * ValidationChecker#CheckStringIsNullOrEmpty(String)
    */
   public static int getIntParameter(HttpServletRequest request, String key) {
     return ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter(key)) ? 0
@@ -52,7 +53,10 @@ public class RequestUtil {
    * @param key     가져올 파라미터 이름
    * @return int 파라미터 값 혹은 0
    * @see ValidationChecker#CheckStringIsNullOrEmpty(String)
-   * @see #getIntParameter(HttpServletRequest, String)
+   * ValidationChecker#CheckStringIsNullOrEmpty(String)
+   * ValidationChecker#CheckStringIsNullOrEmpty(String)
+   * @see #getIntParameter(HttpServletRequest, String) #getIntParameter(HttpServletRequest,
+   * String)#getIntParameter(HttpServletRequest, String)
    */
   public static int getIntParameter(MultipartRequest request, String key) {
     return ValidationChecker.CheckStringIsNullOrEmpty(request.getParameter(key)) ? 0

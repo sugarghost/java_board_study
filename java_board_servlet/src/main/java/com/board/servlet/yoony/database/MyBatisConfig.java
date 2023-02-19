@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * MyBatis 설정 클래스
+ *
  * @author yoony
  * @version 1.0
  * @since 2023. 02. 16.
@@ -40,6 +41,7 @@ public class MyBatisConfig {
 
   /**
    * 싱글톤 패턴을 이용한 MyBatisConfig 객체 생성
+   *
    * @return MyBatisConfig 객체
    */
   public static MyBatisConfig getInstance() {
@@ -49,6 +51,14 @@ public class MyBatisConfig {
     return instance;
   }
 
+  /**
+   * Gets sql session factory.
+   *
+   * @return the sql session factory
+   */
+// TODO: sqlSessionFactory는 노출시키지 말고 sqlSession을 생성해서 return 하기
+  // 자원 관리를 Factory에서 하는데 그걸 가져다가 잘못 다룰 수 있기 떄문
+  // Mybatis에서 session에 대한 관리를 자동으로 해줌(예전에는 안해줬기 떄문이 finally에서 닫아줬음)
   public SqlSessionFactory getSqlSessionFactory() {
     return sqlSessionFactory;
   }
@@ -65,6 +75,7 @@ public class MyBatisConfig {
    */
   private void setupSqlSessionFactory() {
     try {
+      // TODO: xml은 소문자로
     InputStream configuration = Resources.getResourceAsStream("Mybatis.xml");
     sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
     } catch (IOException e) {

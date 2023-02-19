@@ -18,10 +18,10 @@ public class Security {
    *
    * @param text 암호화할 String
    * @return String 암호화된 String
-   * @throws NoSuchAlgorithmException
+   * @throws NoSuchAlgorithmException the no such algorithm exception
    * @author yoony
    * @version 1.0
-   * @see #bytesToHex(byte[])
+   * @see #bytesToHex(byte[]) #bytesToHex(byte[])#bytesToHex(byte[])
    * @since 2023. 02. 14.
    */
   public static String sha256Encrypt(String text) throws NoSuchAlgorithmException {

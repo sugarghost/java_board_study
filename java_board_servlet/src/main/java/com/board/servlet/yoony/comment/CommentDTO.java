@@ -29,4 +29,7 @@ public class CommentDTO {
   // 작성일(current_timestamp())
   private Date createdDate;
 
+  public boolean isContentValid() {
+    return content != null && !content.isEmpty() && content.matches("^.{1,255}$");
+  }
 }

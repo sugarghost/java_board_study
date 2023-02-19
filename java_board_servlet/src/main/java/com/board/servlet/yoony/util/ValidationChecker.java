@@ -39,4 +39,21 @@ public class ValidationChecker {
   public static boolean CheckStringIsNullOrEmpty(Object targetObject) {
     return targetObject == null || "".equals(targetObject);
   }
+
+  /**
+   * String의 길이가 지정한 StringLength보다 길면 StringLength만큼 자르고 "..."을 붙여서 반환
+   *
+   * @param targetString 자를 String
+   * @param StringLength 자를 길이
+   * @return substring된 targetString
+   * @author yoony
+   * @version 1.0
+   * @since 2023. 02. 19.
+   */
+  public static String SubStringWithSkipMark(String targetString, int StringLength) {
+    if (targetString.length() > StringLength) {
+      targetString = targetString.substring(0, StringLength) + "...";
+    }
+    return targetString;
+  }
 }

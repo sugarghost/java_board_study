@@ -70,7 +70,8 @@
 
             <form action="comment_write_action.do?${searchManager.getSearchParamsQuery()}"
                   method="post" class="w-100"
-                  id="commentForm">
+                  id="commentForm"
+                  onsubmit="return validateForm(this);">
                 <div class="row py-3">
                     <div class="col-10">
                         <input type="hidden" name="articleId" value="${articleDTO.articleId}">
@@ -134,5 +135,16 @@
         </div>
     </div>
 </div>
+<script>
+
+  function validateForm(form) {
+    if (form.content.value == "" || !/^.{1,255}$/g.test(form.content.value)) {
+      alert("댓글을 1글자 이상, 255글자 미만으로 입력해주세요.");
+      form.content.focus();
+      return false;
+    }
+  }
+
+</script>
 </body>
 </html>

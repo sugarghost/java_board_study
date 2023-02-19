@@ -85,10 +85,7 @@
                             </td>
                             <td>
                                 <a href="view.do?articleId=${articleDTO.getArticleId()}${searchManager.getSearchParamsQuery()}">
-                                    <%
-                                        // TODO: subString 80자 공통 모듈화 해서 불러오기
-                                    %>
-                                        ${articleDTO.title}
+                                        ${ValidationChecker.SubStringWithSkipMark(articleDTO.title, 80)}
                                 </a>
                                 <span>
                                     ${(articleDTO.isFileExist) ? "📎" : ""}

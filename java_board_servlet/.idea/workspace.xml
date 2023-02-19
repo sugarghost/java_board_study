@@ -6,9 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="int형 파라미터를 받아오는 로직을 RequestUtil.getIntParameter를 사용해 축약">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/modify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/modify.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/MainServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentWriteActionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/comment/CommentWriteActionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/board/servlet/yoony/util/ValidationChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/view.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/view.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/boards/free/write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/boards/free/write.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +87,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Project/java_board_study/java_board_servlet/src/main/webapp/boards/free",
+    "last_opened_file_path": "D:/Project/java_board_study/java_board_jsp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -228,6 +231,7 @@
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
       <workItem from="1676533752698" duration="61138000" />
+      <workItem from="1676768360952" duration="3053000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>

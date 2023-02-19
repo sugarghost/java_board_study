@@ -125,7 +125,8 @@ public class MainServlet extends HttpServlet {
       request.setAttribute("command", "articleView");
       errorMessages.put("1", "해당 게시물이 존재하지 않습니다!");
       errorMessages.put("2", "비밀번호가 일치하지 않습니다!");
-      errorMessages.put("comment1", "댓글 등록에 실패했습니다!");
+      errorMessages.put("comment1", "댓글 내용이 유효하지 않습니다!");
+      errorMessages.put("comment2", "댓글 등록에 실패했습니다!");
       errorMessages.put("delete1", "삭제에 실패했습니다!");
     }
     if ("/comment_write_action.do".equals(servletPath)) {

@@ -91,6 +91,8 @@ public class MainServlet extends HttpServlet {
     SearchManager searchManager = new SearchManager(request);
     request.setAttribute("searchManager", searchManager);
 
+    // TODO: @PathParam을 사용하거나 어노테이션을 따로 만들어보기
+    // 메소드에 관련된 어노테이션을 만들고 메소드 실행 전 개입을 해서 데코레이터처럼 작동함(어노테이션 AOP)
     // servletPath를 가져와 각 경로별로 다른 처리를 분배함
     String servletPath = request.getServletPath();
     logger.debug("servletPath : " + servletPath);

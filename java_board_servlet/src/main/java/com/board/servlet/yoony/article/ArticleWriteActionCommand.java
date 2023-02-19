@@ -59,7 +59,8 @@ public class ArticleWriteActionCommand implements MainCommand {
     // MyBatis instance 가져옴
     MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
     logger.debug(request);
-    // TODO: properties로 빼기(아래 3줄)
+    // TODO: properties로 빼기(아래 3줄): 정적 자원은 resources에 빼기,
+    // TODO: properties를 사용할때 국제화 고민하기(locale)(경험해보면 좋음, 별도 TODO)
     String saveDirectory = "C:\\tempUploads";
     int maxPostSize = 10 * 1024 * 1024; // 10MB 제한
     String encoding = "UTF-8";

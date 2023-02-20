@@ -1,4 +1,4 @@
-# 목차
+# 
 - [Java_board_Servlet](#java-board-servlet)
   * [이전 Java_board_JSP 피드백](#---java-board-jsp----)
     + [meta와 같은 공통 요소의 처리](#meta--------------)
@@ -35,7 +35,7 @@
     + [DTO에서 boolean에 경우 get을 붙이지 말기](#dto---boolean-----get--------)
     + [한줄짜리 주석도 javaDoc 주석을 활용하기](#---------javadoc---------)
     + [코드 줄이기](#------)
-    + 
+
 # Java_board_Servlet
 
 간단한 게시판 프로젝트를 JSP, Servlet에 model2 + command 패턴 방식으로 구현한 프로젝트 입니다.  

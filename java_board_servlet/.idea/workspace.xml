@@ -8,11 +8,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="feedback 내용 기록(추가)">
-      <change afterPath="$PROJECT_DIR$/../.idea/intellij-javadocs-4.0.1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="feedback을 README.md에 반영">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +224,7 @@
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
       <workItem from="1676533752698" duration="62165000" />
-      <workItem from="1676782903013" duration="22392000" />
+      <workItem from="1676782903013" duration="22731000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -390,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676813602921</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feedback을 README.md에 반영">
+      <created>1676869333493</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1676869333493</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -432,7 +436,8 @@
     <MESSAGE value="잘못 연결된 주소 수정(수정페이지 취소버튼) 및 title 수정" />
     <MESSAGE value="feedback 내용 기록" />
     <MESSAGE value="feedback 내용 기록(추가)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feedback 내용 기록(추가)" />
+    <MESSAGE value="feedback을 README.md에 반영" />
+    <option name="LAST_COMMIT_MESSAGE" value="feedback을 README.md에 반영" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

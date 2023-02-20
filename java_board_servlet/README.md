@@ -1,9 +1,47 @@
+
 # Java_board_JSP
 
 간단한 게시판 프로젝트를 JSP, Servlet에 model2 + command 패턴 방식으로 구현한 프로젝트 입니다.  
 학습을 위해 Spring을 사용하지 않았습니다.   
 이전 프로젝트인 Java_board_JSP에 피드백을 반영하고, 새롭게 피드백을 받았습니다.   
 피드백은 다음 프로젝트인 Java_board_Spring에 반영 될 것입니다.
+
+# 피드백 목차
+* [이전 Java_board_JSP 피드백](#---java-board-jsp----)
+    + [meta와 같은 공통 요소의 처리](#meta--------------)
+    + [Util 활용하기](#util-----)
+    + [equals 사용시 비교 Text를 기준으로 하기](#equals--------text---------)
+    + [Session 사용 피하기](#session-------)
+    + [System.out.println() 사용 피하기](#systemoutprintln---------)
+    + [파일 저장시 UUID 활용하기](#-------uuid-----)
+    + [Java에서 javascript 호출하지 말기](#java---javascript--------)
+    + [필드별, 서비스별 유효성 검증을 구분하기](#----------------------)
+    + [Vector 대신 ArrayList 사용하기](#vector----arraylist-----)
+    + [return을 Finally에 사용하지 말기](#return--finally---------)
+    + [Database를 설정할 땐 Class loader를 주의하기](#database--------class-loader------)
+    + [Query 잘 짜기](#query-----)
+    + [공통적으로 쓰는 설정은 properties 파일로 관리하기](#-------------properties---------)
+    + [사용자에게 서버와 관련된 데이터를 보여주지 말기](#--------------------------)
+* [신규 Java_board_Servlet 피드백](#---java-board-servlet----)
+    + [log4j2대신 logback 사용하기](#log4j2---logback-----)
+    + [에러 핸드링 방식 변경](#------------)
+    + [url을 가져올 때 @PathParam을 사용고려](#url---------pathparam------)
+    + [if else 활용하기](#if-else-----)
+    + [if else 치워버리기](#if-else------)
+    + [request를 매개변수로 던지지 말기](#request--------------)
+    + [이전 페이지로 돌아간다고 referer를 사용하지 말기](#--------------referer---------)
+    + [util 클래스를 만든다면 이름은 간결하게](#util-------------------)
+    + [null 체크시 "null" 문자열은 별도의 의미를 가질 수 있음](#null------null----------------------)
+    + [이름을 지을 때 Wrapper와 Manager를 구분하기](#---------wrapper--manager------)
+    + [MyBatis에서 sqlSessionFactory를 외부에 노출하지 않기](#mybatis---sqlsessionfactory-------------)
+    + [SqlSession을 사용한다면 각 처리에서 SqlSession 하나만 사용하기](#sqlsession---------------sqlsession---------)
+    + [rollback 등의 마지막 처리는 Finally에서 하기](#rollback------------finally-----)
+    + [resultMap 대신 resultType 사용하기](#resultmap----resulttype-----)
+    + [쿼리문 예쁘게 정리하기](#------------)
+    + [properties 파일 활용하기](#properties--------)
+    + [DTO에서 boolean에 경우 get을 붙이지 말기](#dto---boolean-----get--------)
+    + [한줄짜리 주석도 javaDoc 주석을 활용하기](#---------javadoc---------)
+    + [코드 줄이기](#------)
 
 ## 이전 Java_board_JSP 피드백
 

@@ -1,13 +1,6 @@
-
-# Java_board_JSP
-
-간단한 게시판 프로젝트를 JSP, Servlet에 model2 + command 패턴 방식으로 구현한 프로젝트 입니다.  
-학습을 위해 Spring을 사용하지 않았습니다.   
-이전 프로젝트인 Java_board_JSP에 피드백을 반영하고, 새롭게 피드백을 받았습니다.   
-피드백은 다음 프로젝트인 Java_board_Spring에 반영 될 것입니다.
-
-# 피드백 목차
-* [이전 Java_board_JSP 피드백](#---java-board-jsp----)
+# 목차
+- [Java_board_Servlet](#java-board-servlet)
+  * [이전 Java_board_JSP 피드백](#---java-board-jsp----)
     + [meta와 같은 공통 요소의 처리](#meta--------------)
     + [Util 활용하기](#util-----)
     + [equals 사용시 비교 Text를 기준으로 하기](#equals--------text---------)
@@ -22,7 +15,7 @@
     + [Query 잘 짜기](#query-----)
     + [공통적으로 쓰는 설정은 properties 파일로 관리하기](#-------------properties---------)
     + [사용자에게 서버와 관련된 데이터를 보여주지 말기](#--------------------------)
-* [신규 Java_board_Servlet 피드백](#---java-board-servlet----)
+  * [신규 Java_board_Servlet 피드백](#---java-board-servlet----)
     + [log4j2대신 logback 사용하기](#log4j2---logback-----)
     + [에러 핸드링 방식 변경](#------------)
     + [url을 가져올 때 @PathParam을 사용고려](#url---------pathparam------)
@@ -42,6 +35,13 @@
     + [DTO에서 boolean에 경우 get을 붙이지 말기](#dto---boolean-----get--------)
     + [한줄짜리 주석도 javaDoc 주석을 활용하기](#---------javadoc---------)
     + [코드 줄이기](#------)
+    + 
+# Java_board_Servlet
+
+간단한 게시판 프로젝트를 JSP, Servlet에 model2 + command 패턴 방식으로 구현한 프로젝트 입니다.  
+학습을 위해 Spring을 사용하지 않았습니다.   
+이전 프로젝트인 Java_board_JSP에 피드백을 반영하고, 새롭게 피드백을 받았습니다.   
+피드백은 다음 프로젝트인 Java_board_Spring에 반영 될 것입니다.
 
 ## 이전 Java_board_JSP 피드백
 

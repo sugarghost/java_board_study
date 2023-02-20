@@ -8,10 +8,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="목차 고치는 중">
-      <change afterPath="$PROJECT_DIR$/../.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="fafb23d6-87b7-44c5-ba9d-a7689e89f705" name="Changes" comment="피드백목차 반영">
+      <change beforePath="$PROJECT_DIR$/../java_board_jsp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../java_board_jsp/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +224,7 @@
       <workItem from="1676511559310" duration="1852000" />
       <workItem from="1676514455006" duration="18836000" />
       <workItem from="1676533752698" duration="62165000" />
-      <workItem from="1676782903013" duration="24762000" />
+      <workItem from="1676782903013" duration="25062000" />
     </task>
     <task id="LOCAL-00001" summary="servlet 구성 commit">
       <created>1676347506392</created>
@@ -417,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676872130732</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="피드백목차 반영">
+      <created>1676872591005</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1676872591005</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +440,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="기타 환경 commit" />
     <MESSAGE value="Mybatis 적용전 기존 JSP 방식을 가져와 일부 Command 패턴의 Servlet 구조로 만듬" />
     <MESSAGE value="검색 조건 유지 Servlet 형태로 변경, mybatis 적용" />
     <MESSAGE value="mybatis 적용 완료, 주석 강화, 예외처리 강화" />
@@ -460,7 +464,8 @@
     <MESSAGE value="feedback을 README.md에 반영" />
     <MESSAGE value="README.md 피드백 목차 생성" />
     <MESSAGE value="목차 고치는 중" />
-    <option name="LAST_COMMIT_MESSAGE" value="목차 고치는 중" />
+    <MESSAGE value="피드백목차 반영" />
+    <option name="LAST_COMMIT_MESSAGE" value="피드백목차 반영" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

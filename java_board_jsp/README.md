@@ -4,6 +4,23 @@
 Java와 JSP만을 학습하기 위해 Servlet과 Spring을 사용하지 않았습니다.   
 1주일간의 개발 후 피드백을 받고, 하루간 리팩토링을 진행해 피드백을 반영하고, 일부 피드백은 다음 프로젝트인 Java_board_Servlet에 반영하였습니다.
 
+# 피드백 목차
+* [피드백](#---)
+    + [meta와 같은 공통 요소의 처리](#meta--------------)
+    + [Util 활용하기](#util-----)
+    + [equals 사용시 비교 Text를 기준으로 하기](#equals--------text---------)
+    + [Session 사용 피하기](#session-------)
+    + [System.out.println() 사용 피하기](#systemoutprintln---------)
+    + [파일 저장시 UUID 활용하기](#-------uuid-----)
+    + [Java에서 javascript 호출하지 말기](#java---javascript--------)
+    + [필드별, 서비스별 유효성 검증을 구분하기](#----------------------)
+    + [Vector 대신 ArrayList 사용하기](#vector----arraylist-----)
+    + [return을 Finally에 사용하지 말기](#return--finally---------)
+    + [Database를 설정할 땐 Class loader를 주의하기](#database--------class-loader------)
+    + [Query 잘 짜기](#query-----)
+    + [공통적으로 쓰는 설정은 properties 파일로 관리하기](#-------------properties---------)
+    + [사용자에게 서버와 관련된 데이터를 보여주지 말기](#--------------------------)
+
 ## 피드백
 
 ### meta와 같은 공통 요소의 처리

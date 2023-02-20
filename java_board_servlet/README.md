@@ -42,7 +42,8 @@
   * [DTO에서 boolean에 경우 get을 붙이지 말기](#dto에서-boolean에-경우-get을-붙이지-말기)
   * [한줄짜리 주석도 javaDoc 주석을 활용하기](#한줄짜리-주석도-javadoc-주석을-활용하기)
   * [코드 줄이기](#코드-줄이기)
-  * 
+
+
 ## 이전 Java_board_JSP 피드백
 
 ### meta와 같은 공통 요소의 처리

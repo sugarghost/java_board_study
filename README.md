@@ -17,7 +17,7 @@ JSP -> Servlet -> Spring에 대한 공부를 위한 프로젝트입니다.
 [Java_board_Spring](https://github.com/sugarghost/java_board_spring/tree/d40d7000cecd01a69c9c237023d2b3018c134ccf)
 * Spring을 학습하기 위해 model2 방식에 Spring Boot를 활용해 구현한 프로젝트입니다.
 
-[Java_board_Spring](https://github.com/sugarghost/java_board_spring_rest/tree/6fabeb09c82e9a4b6ec89c81af3f4fe813fba6c8)
+[Java_board_Spring_Rest](https://github.com/sugarghost/java_board_spring_rest/tree/6fabeb09c82e9a4b6ec89c81af3f4fe813fba6c8)
 * Spring+Vue을 학습하기 위해 model2 방식에 Spring Boot, Vue를 활용해 구현한 프로젝트입니다.
 
 각 프로젝트를 1주일간 구현하고, 별도로 피드백을 받은 후 다음 프로젝트에서 피드백을 반영하였습니다.  

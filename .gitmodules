@@ -1,3 +1,6 @@
 [submodule "java_board_spring"]
 	path = java_board_spring
 	url = https://github.com/sugarghost/java_board_spring.git
+[submodule "java_board_spring_rest"]
+	path = java_board_spring_rest
+	url = https://github.com/sugarghost/java_board_spring_rest.git
